@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="ja" lang="ja" xmlns='http://www.w3.org/1999/xhtml'>
+	
+<head>
+	<title>PB List Image Maker 0.1</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<link href='../../favicon.ico' rel='shortcut icon' />
+	<link type='text/css' rel='stylesheet' href='all.css' />
+	<script type="text/javascript" src="jquery-min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+
+<body>
+
+<ul id="tabNavi">
+<!--  input  -->
+	<li id="input" class="focus">
+		<a href="#input" onclick="moveTab('input'); return false;" class="tab">input</a>
+		<div class="tabContent">
+			<form name="dataTypeSetting">
+				<div class="caption">File Type</div>
+				<div class="u" style="width:400px;">
+					<input type="radio" name="dataType" value="basic" onclick="changeTextareaDemo('basic')" id="basic" checked="checked" />
+						<label for="basic">BASIC</label>
+					<input type="radio" name="dataType" value="databank" onclick="changeTextareaDemo('databank')" id="databank" />
+						<label for="databank">DATA BANK</label>
+					<input type="radio" name="dataType" value="values" onclick="changeTextareaDemo('value')" id="values" />
+						<label for="values">Value Table</label>
+					<input type="radio" name="dataType" value="output" onclick="changeTextareaDemo('output')" id="output" />
+						<label for="output">Program Output</label>
+				</div>
+			</form>
+			<input value="Title" type="text" id="listTitle" /><br>
+			<textarea rows=20 name="input" id="listTextarea" onclick="editStart()" style="font-size:14px">
+Wellcome to PB List Maker!
+			</textarea>
+		</div>
+	</li>
+<!--  Preview  -->
+	<li id="preview">
+		<a href="#preview" onclick="moveTab('preview'); return false;" class="tab">Preview</a>
+		<div class="tabContent">
+			<form name="outputSetting">
+				<table width="400">
+					<tr>
+						<td width="200">
+							<div class="caption">Charactor Set</div>
+							<div class="u">
+								<input type="radio" name="fontSet" value="PB-100" onclick="setFontSet('PB-100')" id="PB-100" checked="checked" />
+									<label for="PB-100">PB-100</label>
+								<input type="radio" name="fontSet" value="PB-120" onclick="setFontSet('PB-120')" id="PB-120" />
+									<label for="PB-120">PB-120</label>
+							</div>							
+						</td>
+						<td>
+							<div class="caption">Printer</div>
+							<div class="u">
+								<input type="radio" name="printer" value="FP-12T" onclick="setPrinter('FP-12T')" id="FP-12T" checked="checked" />
+									<label for="FP-12T">FP-12T</label>
+								<input type="radio" name="printer" value="FP-40T" onclick="setPrinter('FP-40T')" id="FP-40T" />
+									<label for="FP-40T">FP-40T</label>
+							</div>							
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="caption">Desine</div>
+							<div class="u">
+								<input type="radio" name="desine" value="magazine" onclick="setDesine('magazine')" id="magazine" checked="checked" />
+									<label for="magazine">Magazine Style</label>
+								<input type="radio" name="desine" value="printer" onclick="setDesine('printer')" id="printer" />
+									<label for="printer">Print Style</label>
+							</div>							
+						</td>
+						<td>
+							<div id='selectMagazine'>
+								<div class="caption">Magazine</div>
+								<div class="u">
+									 <select name="selectMagazine" onclick="setMagazin()">
+										<option value="style_pj" selected>ポケコンジャーナル風</option>
+										<option value="style_bm">マイコンBASICマガジン</option>
+										<option value="style_pp">プログラムポシェット</option>
+										<option value="style_og">パソコンおもしろゲーム</option>
+									</select>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td id='sheetCount'>							
+							<div class="caption">Sheets</div>
+							<div class="u">
+								 <select name="sheetCountFP12" onclick="setSheetCount()" id="useFP-12T"><!-- FP-12T -->
+									<option value="1">1 Sheet</option>
+									<option value="2">2 sheets</option>
+									<option value="3" selected>3 sheets</option>
+									<option value="4">4 sheets</option>
+									<option value="5">5 sheets</option>
+								</select>
+								<select name="sheetCountFP40" onclick="setSheetCount()" id="useFP-40T"><!-- FP-40T -->
+									<option value="1" selected>1 Sheet</option>
+									<option value="2">2 sheets</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="caption">Count Program Steps</div>
+							<div class="u">
+								<input type="checkbox" name="countSteps" value="enable" onclick="changeCountSteps( this.value)" id="countSteps" />
+									<label for="countSteps">Enable</label>
+							</div>
+						</td>	
+					</tr>
+				</table>
+			</form>
+			<div id="outputDesine" style="margin-top:30px;">
+				<div id="outputPrinter">
+					<div id="outputSheetCount">
+						<div id="outputTop"></div>
+						<div id="outputBody"></div>
+						<div id="outputBottom"></div>
+					</div>				
+				</div>
+			</div>
+		</div>
+	</li>
+<!--  PB-SIM  -->
+	<li id="embed">
+		<a href="#embed" onclick="moveTab('embed'); return false;" class="tab">PB-Sim</a>
+		<div class="tabContent">
+			<h2>File Name</h2>
+			<input type="text" value="file name">
+			<h2>Program Body</h2>
+			<p>Past Your PB-SIM style List,whitch debugged enouh.</p>
+			<textarea rows=20 cols=62 name="input">
+			</textarea>
+		</div>
+	</li>
+<!--  html  -->
+	<li id="html">
+		<a href="#html" onclick="moveTab('html'); return false;" class="tab">HTML</a>
+		<div class="tabContent">
+			<h2>Get HTML</h2>
+			<textarea rows=20 cols=62 id="getHtml" onclick="this.focus(); this.select();"></textarea>
+		</div>
+	</li>
+<!--  help  -->
+	<li id="help" style="width:24px;">
+		<a href="#help" onclick="moveTab('help'); return false;" class="tab">?</a>
+		<div class="tabContent">
+			<h2>help</h2>
+			<p>
+				comming soon...
+			</p>
+		</div>
+	</li>
+<!--  information  -->
+	<li id="infomation" style="width:24px;">
+		<a href="#information" onclick="moveTab('infomation'); return false;" class="tab">i</a>
+		<div class="tabContent">
+			<h2>PB List Image Maker ver0.1.0</h2>
+			<p>
+				<a href="http://pb-100.blogspot.com/" target="_blank">CASIO PB-100の宇宙</a>/
+				<a href="http://pbrocky.blogspot.com/" target="_blank">PBロッキー</a>				
+			</p>
+		</div>
+	</li>
+</ul>
+<form>
+<textarea id="shadowTxtarea" style="display:none;">
+
+</textarea>
+</form>
+
+</html>
+
+
+
+

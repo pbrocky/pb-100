@@ -1,0 +1,753 @@
+@charset "utf-8";
+*{
+	zoom:1;
+	font-size:12px;
+	margin:0;
+	padding:0;
+}
+a {
+	text-decoration:none;
+}
+/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
+textarea { font-size: 100%; }
+
+/* 画像の下にできる隙間をなくす */
+img { vertical-align: bottom; }
+
+/* Reset CSS for the case Embed to other Web Page */ 
+#pbdisplay_outer span,
+#pbdisplay_outer div {
+	margin:0;
+	padding:0;
+    border: none;
+    list-style-type: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: left;
+}
+/* ------------------------------------
+　キャラクターコード
+-------------------------------------*/
+.chr00	{background-position:0 0}
+.chr01	{background-position:0 -30px}
+.chr02	{background-position:0 -60px}
+.chr03	{background-position:0 -90px}
+.chr04	{background-position:0 -120px}
+.chr05	{background-position:0 -150px}
+.chr06	{background-position:0 -180px}
+.chr07	{background-position:0 -210px}
+.chr08	{background-position:0 -240px}
+.chr09	{background-position:0 -270px}
+.chr0A	{background-position:0 -300px}
+.chr0B	{background-position:0 -330px}
+.chr0C	{background-position:0 -360px}
+.chr0D	{background-position:0 -390px}
+.chr0E	{background-position:0 -420px}
+.chr0F	{background-position:0 -450px}
+.chr10	{background-position:0 -480px}
+.chr11	{background-position:0 -510px}
+.chr12	{background-position:0 -540px}
+.chr13	{background-position:0 -570px}
+.chr14	{background-position:0 -600px}
+.chr15	{background-position:0 -630px}
+.chr16	{background-position:0 -660px}
+.chr17	{background-position:0 -690px}
+.chr18	{background-position:0 -720px}
+.chr19	{background-position:0 -750px}
+.chr1A	{background-position:0 -780px}
+.chr1B	{background-position:0 -810px}
+.chr1C	{background-position:0 -840px}
+.chr1D	{background-position:0 -870px}
+.chr1E	{background-position:0 -900px}
+.chr1F	{background-position:0 -930px}
+.chr20	{background-position:0 -960px}
+.chr21	{background-position:0 -990px}
+.chr22	{background-position:0 -1020px}
+.chr23	{background-position:0 -1050px}
+.chr24	{background-position:0 -1080px}
+.chr25	{background-position:0 -1110px}
+.chr26	{background-position:0 -1140px}
+.chr27	{background-position:0 -1170px}
+.chr28	{background-position:0 -1200px}
+.chr29	{background-position:0 -1230px}
+.chr2A	{background-position:0 -1260px}
+.chr2B	{background-position:0 -1290px}
+.chr2C	{background-position:0 -1320px}
+.chr2D	{background-position:0 -1350px}
+.chr2E	{background-position:0 -1380px}
+.chr2F	{background-position:0 -1410px}
+.chr30	{background-position:0 -1440px}
+.chr31	{background-position:0 -1470px}
+.chr32	{background-position:0 -1500px}
+.chr33	{background-position:0 -1530px}
+.chr34	{background-position:0 -1560px}
+.chr35	{background-position:0 -1590px}
+.chr36	{background-position:0 -1620px}
+.chr37	{background-position:0 -1650px}
+.chr38	{background-position:0 -1680px}
+.chr39	{background-position:0 -1710px}
+
+.chr40	{background-position:0 -1920px}
+.chr41	{background-position:0 -1950px}
+.chr42	{background-position:0 -1980px}
+.chr43	{background-position:0 -2010px}
+.chr44	{background-position:0 -2040px}
+.chr45	{background-position:0 -2070px}
+.chr46	{background-position:0 -2100px}
+.chr47	{background-position:0 -2130px}
+.chr48	{background-position:0 -2160px}
+.chr49	{background-position:0 -2190px}
+.chr4A	{background-position:0 -2220px}
+.chr4B	{background-position:0 -2250px}
+.chr4C	{background-position:0 -2280px}
+.chr4D	{background-position:0 -2310px}
+.chr4E	{background-position:0 -2340px}
+.chr4F	{background-position:0 -2370px}
+.chr50	{background-position:0 -2400px}
+.chr51	{background-position:0 -2430px}
+.chr52	{background-position:0 -2460px}
+.chr53	{background-position:0 -2490px}
+.chr54	{background-position:0 -2520px}
+.chr55	{background-position:0 -2550px}
+.chr56	{background-position:0 -2580px}
+.chr57	{background-position:0 -2610px}
+.chr58	{background-position:0 -2640px}
+.chr59	{background-position:0 -2670px}
+/* .chr5A {background-position:0 -1890px} x
+   .chr5B {background-position:0 -1911px} x */
+.chr5C	{background-position:0 -2760px}
+.chr5D	{background-position:0 -2790px}
+.chr5E	{background-position:0 -2820px}
+.chr5F	{background-position:0 -2850px}
+.chr60	{background-position:0 -2880px}
+.chr61	{background-position:0 -2910px}
+.chr62	{background-position:0 -2940px}
+.chr63	{background-position:0 -2970px}
+.chr64	{background-position:0 -3000px}
+.chr65	{background-position:0 -3030px}
+.chr66	{background-position:0 -3060px}
+.chr67	{background-position:0 -3090px}
+.chr68	{background-position:0 -3120px}
+.chr69	{background-position:0 -3150px}
+.chr6A	{background-position:0 -3180px}
+.chr6B	{background-position:0 -3210px}
+.chr6C	{background-position:0 -3240px}
+.chr6D	{background-position:0 -3270px}
+.chr6E	{background-position:0 -3300px}
+.chr6F	{background-position:0 -3330px}
+.chr70	{background-position:0 -3360px}
+.chr71	{background-position:0 -3390px}
+.chr72	{background-position:0 -3420px}
+.chr73	{background-position:0 -3450px}
+.chr74	{background-position:0 -3480px}
+.chr75	{background-position:0 -3510px}
+.chr76	{background-position:0 -3540px}
+.chr77	{background-position:0 -3570px}
+.chr78	{background-position:0 -3600px}
+.chr79	{background-position:0 -3630px}
+.chr7A	{background-position:0 -3660px}
+.chr7B {background-position:0 0}
+
+/* FX-795P */
+.FX-795P .chr7B {background-position:0 -3690px}
+
+/* PB-120 */
+.PB-120 .chr00, .FX-795P .chr00 {background-position:0 -1740px}
+.PB-120	.chr32, .FX-795P .chr32 {background-position:0 -1770px}
+.PB-120	.chr67, .FX-795P .chr67 {background-position:0 -1800px}
+.PB-120	.chr69, .FX-795P .chr69 {background-position:0 -1830px}
+.PB-120	.chr6A, .FX-795P .chr6A {background-position:0 -1860px}
+.PB-120 .chr6B, .FX-795P .chr6B {background-position:0 -1890px}
+
+/* ------------------------------------
+ pbDisplayImageMaker
+-------------------------------------*/
+#pbDisplayImageMaker {
+	width:350px;
+	background:url(bg_metal.gif);
+	padding:3px 8px;
+	border:2px outset #999;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px;
+	position:relative;
+	display:block;
+	top:0;
+	left:0;	
+}
+#pbDisplayImageMaker:hover #pbdisplay,
+#pbDisplayImageMaker:hover #display_head span,
+#ie6noHover #pbdisplay,
+#ie6noHover #display_head span {
+	background-image:url(pbDisplay_hover.gif) !important;
+}
+
+#pbdisplay_outerColor {
+	width:248px;
+	float:left;
+	background:#7AAA8F;
+	padding:6px 0;
+	border:1px inset #9cccaf;
+}
+#pbdisplay_outer {
+	border:1px inset #030D31;
+	-webkit-border-radius: 7px; 
+	-moz-border-radius: 7px;
+	margin:0 9px;
+}
+#pbDisplayImg-Logo {
+	width:95px;
+	float:right;
+	height:37px;
+	background:url(pbDisplay_hover.gif) no-repeat 0px -98px;
+	text-indent:-9999px !important;
+	line-height:37px;
+	margin-top:10px;
+}
+
+/* ------------------------------------
+　PB ディスプレイ
+-------------------------------------*/
+#pbdisplay {
+	height:53px;
+	overflow:hidden; /* for IE6, and no-repeat too. */
+	border-width:5px 9px !important;
+	border-color: #030D31 !important;
+	border-style:solid !important;
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px;
+	background:#030D31 url(pbDisplay.gif) left -18px no-repeat;
+	font-size:13px;
+	line-height:13px;
+	text-indent:-9999px;			
+}
+/* PBディスプレイ ヘッダー */
+	#display_head span{
+		display:block;
+		height:13px;
+		background-image:url(pbDisplay.gif);
+		top:30px; *top:27px !important;
+		position:absolute;
+	}
+		.ext {width: 11px;left: 34px;background-position:0 0;}
+		.shift, .function {width: 7px;left:47px;}
+			.shift {background-position:-13px 0;}
+			.function {background-position:-22px 0;}
+		.run, .wrt {width: 14px;left: 54px;	}
+			.run {background-position:-31px 0;}
+			.wrt {background-position:-47px 0;}
+		.deg, .rad, .gra {width: 13px;}
+			.deg {background-position:-63px 0;left: 70px;}
+			.rad {background-position:-78px 0;left: 82px;}
+			.gra {background-position:-93px 0;left: 94px;}
+		.trace {
+			width: 8px;
+			background-position:-108px 0;
+			left: 109px;
+			}
+		.prt {
+			width: 12px;
+			background-position:-118px 0;
+			left: 163px;
+			}
+		.stop {
+			width: 17px;
+			background-position:-132px 0;
+			left: 179px;
+			}
+/* PBディスプレイ メイン */
+	#display_main span,
+	#cursor {
+		width:10px;
+		height:21px;
+		background-image:url(pbfont_x3.gif);
+		background-repeat:no-repeat;
+		position:absolute;
+		border:none;
+		padding:0;
+		background-color:transparent;
+		*left:0;/* for ie6 */
+		display:block;
+	} 
+
+	.CSR00 {top:50px;*top:47px !important;left:37px !important;*left:38px !important}
+	.CSR01 {top:50px;*top:47px !important;left:51px !important;*left:52px !important}
+	.CSR02 {top:50px;*top:47px !important;left:65px !important;*left:66px !important}
+	.CSR03 {top:50px;*top:47px !important;left:79px !important;*left:80px !important}
+	.CSR04 {top:50px;*top:47px !important;left:93px !important;*left:94px !important}
+	.CSR05 {top:50px;*top:47px !important;left:107px !important;*left:108px !important}
+	.CSR06 {top:50px;*top:47px !important;left:121px !important;*left:122px !important}
+	.CSR07 {top:50px;*top:47px !important;left:135px !important;*left:136px !important}
+	.CSR08 {top:50px;*top:47px !important;left:149px !important;*left:150px !important}
+	.CSR09 {top:50px;*top:47px !important;left:163px !important;*left:164px !important}
+	.CSR10 {top:50px;*top:47px !important;left:177px !important;*left:178px !important}
+	.CSR11 {top:50px;*top:47px !important;left:191px !important;*left:192px !important}
+	
+	.op1 span{
+		opacity:0.1;
+		filter: alpha(opacity=10);		
+	}
+	.op1 .layer0{
+		opacity:0.9;
+		filter: alpha(opacity=90);		
+	}
+	.op2 span{
+		opacity:0.2;
+		filter: alpha(opacity=20);		
+	}
+	.op2 .layer0{
+		opacity:0.8;
+		filter: alpha(opacity=80);		
+	}
+	.op3 span{
+		opacity:0.3;
+		filter: alpha(opacity=30);		
+	}
+	.op3 .layer0{
+		opacity:0.7;
+		filter: alpha(opacity=70);		
+	}
+	.op4 span{
+		opacity:0.4;
+		filter: alpha(opacity=40);		
+	}
+	.op4 .layer0{
+		opacity:0.6;
+		filter: alpha(opacity=60);		
+	}
+	.op5 *{
+		opacity:0.5;
+		filter: alpha(opacity=50);		
+	}
+	.op6 span{
+		opacity:0.6;
+		filter: alpha(opacity=60);		
+	}
+	.op6 .layer0{
+		opacity:0.4;
+		filter: alpha(opacity=40);		
+	}
+	.op7 span{
+		opacity:0.7;
+		filter: alpha(opacity=70);		
+	}
+	.op7 .layer0{
+		opacity:0.3;
+		filter: alpha(opacity=30);		
+	}
+	.op8 span{
+		opacity:0.8;
+		filter: alpha(opacity=80);		
+	}
+	.op8 .layer0{
+		opacity:0.2;
+		filter: alpha(opacity=20);		
+	}
+	.op9 span{
+		opacity:0.9;
+		filter: alpha(opacity=90);		
+	}
+	.op9 .layer0{
+		opacity:0.1;
+		filter: alpha(opacity=10);		
+	}
+
+#display_main span:hover {
+	background-color:green;
+}
+
+/* ------------------------------------
+　ツール
+-------------------------------------*/
+#editor {
+	position:relative;
+	z-index:0;_z-index:-1;
+}
+#toolbox {
+	border:1px solid #333;
+	background-color:#D4C78C;
+	_height:31px;
+	overflow:hidden; /* <- Safari3.2.2 & ie6 */
+}
+.key, .command {
+	float:left;
+	height:31px;
+	line-height:31px;
+	text-align:center;
+	border-left:1px solid #eee;
+	display:block;
+}
+.key {
+	width:49px;
+}
+.key input {
+	text-indent:0 !important;
+	border:1px #999 outset !important;
+	background:#eee;
+	width:32px !important;
+	font-size:10px;
+	font-weight:bold;
+	color:#333;
+	text-align:center;
+	_margin-top:8px;
+}
+.arrow input {
+	text-indent:-9999px !important;
+	background-image:url(pbDisplay_hover.gif) !important;
+	background-repeat:no-repeat;
+	_overflow:hidden;
+}
+.command {
+	width:32px !important;
+	background-color:#8CA4B0 !important;	
+}
+.icon-command {
+	background-image:url(pbDisplay_hover.gif) !important;
+	background-repeat:no-repeat;
+	width:22px;
+	height:21px;
+	border:1px solid #ccc;
+	margin:4px;
+	_overflow:hidden;
+}
+.icon-command a {
+	display:block;
+	width:22px !important;
+	height:21px !important;
+	line-height:21px !important;
+	text-indent:-9999px;
+	border:0 !important;
+}
+.icon-command :hover {
+	background-color:#fff;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+}
+
+/* ------------------------------------
+　hover表示用 コンテンツ ラッパー
+-------------------------------------*/
+.popupContainer {
+    display: none;
+	position:absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+}
+
+.popupContent {
+	text-align:left;
+	margin:4px 20px 0;
+	padding:8px 15px 15px;
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px;
+	border:1px #ccc solid;
+	background:#fff;
+	_width:280px;
+}
+
+/* ------------------------------------
+　カーソル表示
+-------------------------------------*/
+#pbDisplayImageMaker:hover #cursor,
+#ie6noHover #cursor,
+.chrCS {
+	background-position:0 -2700px !important;
+}
+#pbDisplayImageMaker:hover #cursor,
+#ie6noHover #cursor {
+	background-color:#8FAF67 !important;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+}
+
+/* ------------------------------------
+　Layer Editor
+-------------------------------------*/
+/* アイコンの修飾 */
+#icon-layer0, #icon-layer1, #swOverlay {
+	background-image:url(pbDisplay_hover.gif) !important;
+	background-repeat:no-repeat;
+	text-indent:-9999px;
+	height:21px;
+}
+#icon-layer0 {
+	width:20px;
+	background-position:-61px -72px !important;
+}
+#icon-layer1 {
+	width:20px;
+	background-position:-25px -72px !important;
+}
+.lock #icon-layer1 {
+	background-position:0px -72px !important;
+}
+#layer0 input, #layer1 input{
+	background-color:#8FAF67 !important;
+	margin:0 !important;
+}
+#opacity {
+	text-indent:0 !important;
+	width:40px;
+	font-weight:bold;
+	color:#666;
+	text-align:center;
+	display:block;
+	background:#B2C66E;
+}
+/* 透過率の入力 */
+#setOpacity form {
+	background:#fff !important;
+	border:1px solid #ccc;
+	width:100px;
+	padding:10px 0;
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px;
+	opacity:0.9 !important;
+	filter: alpha(opacity=90) !important;
+}
+#setOpacity form input {
+	text-indent:0 !important;
+	border:none;
+	padding:3px;
+	background-color:#fff !important;
+	display:block !important;
+	width:100% !important;
+	margin:0 !important;
+}
+#setOpacity form input:hover {
+	background-color:#ddd !important;
+}
+
+/* オーバーレイのON/OFF */
+#swOverlay {
+	background-position:-91px -72px;
+	border:none;
+	background-color:transparent;
+	width:30px;
+	margin:0;
+	padding:0;
+}
+.overlayOn {
+	width:113px !important;
+}
+.overlayOn,
+.overlayOn .tooltip-pointer-right{
+	opacity:1.0 !important;
+	filter: alpha(opacity=100) !important;
+}
+.overlayOn #swOverlay {
+	background-position:-49px -72px !important;
+	width:12px !important;
+}
+.tooltip-pointer-right {
+	*filter: alpha(opacity=50) !important;	
+}
+
+#layer0, #layer1, #setOpacityContainer {
+	display:none;
+}
+.overlayOn #layer0,
+.overlayOn #setOpacityContainer,
+.overlayOn #layer1 {
+	display:block !important;
+}
+
+/* ------------------------------------
+　LayerEdit主要部分：透過率のPopup
+-------------------------------------*/
+#setOvarlayContainer {
+	display:none;
+	position:absolute;
+	top:0 !important;
+	margin:47px 0 0 16px;*margin:44px 0 0 24px;
+	height:27px;
+	z-index:10;
+}
+/* LayerEditorのON/OFF */
+#pbDisplayImageMaker:hover #setOvarlayContainer,
+#ie6noHover #setOvarlayContainer {
+	display:block;
+}
+
+#setOverlay {
+	border:1px solid #666;
+	padding:2px 5px;
+	overflow:visible;
+	height:21px;
+	width:30px;
+	background:#B2C66E;
+	-webkit-border-radius: 6px; 
+	-moz-border-radius: 6px;
+	opacity:0.5;
+	filter: alpha(opacity=50);
+}
+
+#setOpacityContainer {
+	height: 21px;
+	overflow: hidden;		
+	width: 40px;
+	line-height: 21px;
+	float:left;
+}
+#setOpacityContainer:hover ,
+#setOpacity-hover:hover {
+	overflow: visible;
+}
+
+#setOpacity-hover:hover table {
+	overflow: visible;
+	position: absolute;
+}
+#setOpacity-hover table,
+#setOpacity-hover body,
+#setOpacity-hover tr,
+#setOpacity-hover td {
+	border-collapse: collapse;
+	border:0;
+	margin:0;
+	padding:0;	
+}
+#setOverlayTools div,#setOverlayTools input,#setOverlayTools label{
+	float:left;
+}
+#setOpacityContainer input {
+	float:none !important;
+}
+/*
+-------------------------------------------------------------
+	Tooltip
+-------------------------------------------------------------
+*/
+.tooltip .tooltipBody {
+	left: 9px;
+	zoom: 1;
+}
+.tooltip .tooltipBody .tooltip-pointer-right {
+	border-top: solid 5px transparent;_border-top-color:#8FAF67;
+	border-bottom: solid 5px transparent;_border-bottom-color:#8FAF67;
+	border-left-width: 0;
+	border-right: solid 10px #666;
+	line-height: 0;
+	position: absolute;
+	left: -9px;
+	top: 9px;
+}
+
+.tooltip .tooltipBody .tooltip-pointer-right .tooltip-pointer-right-Inner {
+	border-top: solid 4px transparent;
+	border-bottom: solid 4px transparent;
+	border-left-width: 0;
+	border-right: solid 9px #B2C66E;
+	line-height: 0;
+	position: absolute;
+	left: 1px;
+	top: -4px;
+}
+
+/* ------------------------------------
+　キャラクター表
+-------------------------------------*/
+#chr-set {
+	padding:3px 2px 15px;
+	overflow:auto;
+}
+/* キャラクター表の透過 */
+
+#chr-set li {
+	width:100%;
+	height:21px;
+	float:left;
+	overflow:auto;
+	padding:7px 0 3px;
+	border-bottom:1px solid #999;
+}
+#chr-set input,
+#chr-set span,
+#layer0 input,
+#layer1 input {
+	text-indent:-9999px;
+	width:10px;
+	height:21px;
+	margin-left:10px;
+	background-image:url(pbfont_x3.gif);
+	background-repeat:no-repeat;
+	background-color:#bbb;
+	display:block;
+	float:left;
+	border:none;
+	padding:0;
+	
+}
+#chr-set input {_font-size:0px;}
+#chr-set input:hover {
+	background-color:blue;
+}
+
+#chr-set .chr-code {
+	font-weight:bold;
+	text-align:center;
+	color:#333;
+	width:20px;
+	margin:0;
+	line-height:21px;
+	text-indent:0px;
+	background:none;
+	overflow:hidden;
+}
+#chr-set .none {background:none;}
+
+/* FX-795P */
+#chr-set .chr7B {background-color:transparent;}
+.FX-795P #chr-set .chr7B {background-color:#ccc;}
+
+.clear {
+	clear:both;
+}
+
+/* ------------------------------------
+　setting
+-------------------------------------*/
+.u {
+	border-bottom:1px solid #ccc;
+	line-height:12px;
+	padding:15px 3px 2px;
+}
+.caption {
+	font-weight:bold;
+	color:#666;
+}
+label, input {
+  cursor: pointer;
+}
+#dumpHTML {
+	line-height:10px !important;
+	font-size:10px;
+	font-family:monospace;
+	height:200px;
+	overflow:auto;
+	word-break:break-all;
+	border:1px inset #666;
+	padding:1px 3px 0;
+}
+.close {
+	border:1px outset #666 !important;
+	width:14px;
+	height:14px;
+	float:right;
+	font-width:10px;
+	line-height:14px;
+	font-weight:bold;
+	text-align:center;
+	color:#900;
+	margin:0.5em 0;
+	background:#fff;
+}
+.popupContent dt{
+	border-left:3px solid #999;
+	padding-left:3px;
+}
+.popupContent dd{
+	padding-left:1em;
+	border-bottom:1px dotted #ccc;
+}
