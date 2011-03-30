@@ -201,17 +201,35 @@
 			var layer0class = $(this).children(':first').clone(true).removeClass('layer0').attr('className');
 			var layer1class = $(this).children(':last').attr('className');
 			if(layer0class){
-				var layer0txt = $("#chr-set ."+layer0class+":eq(0)").attr('title');
+				var layer0txt = $("#chr-set ."+layer0class+":eq(0)").attr('title').entitize();
 				html += '&nbsp;&nbsp;&nbsp;&lt;span class="'+csr+' '+layer0class+layer0op+'"&gt;'+layer0txt+'&lt;\/span&gt;<br>'
 			}
 			if(layer1class){
-				var layer1txt = $("#chr-set ."+layer1class+":eq(0)").attr('title');
+				var layer1txt = $("#chr-set ."+layer1class+":eq(0)").attr('title').entitize();
 				html += '&nbsp;&nbsp;&nbsp;&lt;span class="'+csr+' '+layer1class+layer1op+'"&gt;'+layer1txt+'&lt;\/span&gt;<br>'
 			}
 			
 		});
-		html += "&nbsp;&lt;\/div&gt;<br>&lt;\/div&gt;"
+		html += "&nbsp;&lt;\/div&gt;<br>&lt;\/div&gt;";
 		$("#dumpHTML").html(html);
+	}
+
+
+/*
+ * http://serennz.sakura.ne.jp/sb/log/eid73.html
+ */
+	String.prototype.entitize = function(){
+	  var str = "" + this;
+	  str = str.split("&").join("&amp;amp;")
+	  			.split("<").join("&amp;lt;")
+				.split(">").join("&amp;gt;")
+				.split('"').join("&amp;quot;");
+	  str = str.charCodeAt(0) === 92 ? "&amp;yen;" : str;
+	  str = str.charCodeAt(0) === 9824 ? "&amp;spades;" : str;
+	  str = str.charCodeAt(0) === 9827 ? "&amp;clubs;" : str;
+	  str = str.charCodeAt(0) === 9829 ? "&amp;hearts;" : str;
+	  str = str.charCodeAt(0) === 9830 ? "&amp;diams;" : str;
+	  return str;
 	}
 /* ------------------------------------------
  IE6 :hover
