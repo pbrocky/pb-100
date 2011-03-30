@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="ja" lang="ja" xmlns='http://www.w3.org/1999/xhtml'>
 <head>
-	<title>PB Display Image Maker 1.0</title>
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ja" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="imagetoolbar" content="no">
+	<title>PB Display Image Maker 1.0</title>
 	<link href='../../favicon.ico' rel='shortcut icon' />
 	<link type='text/css' rel='stylesheet' href='all.css' />
-	<script type="text/javascript" src="jquery-min.js"></script>
-	<script type="text/javascript" src="main.js"></script>
 </head>
 <body>
 	
@@ -16,7 +19,8 @@
 		<div id="pbdisplay_outerColor">
 			<div id="pbdisplay_outer">
 				<div id="pbdisplay" style="border-right-width:58px;z-index:99;">
-					<div id="display_head"><span class="ext">EXT</span>
+					<div id="display_head">
+						<span class="ext">EXT</span>
 						<span class="shift">S</span>
 						<span class="run">RUN</span>
 						<span class="deg">DEG</span>
@@ -158,10 +162,10 @@
 	<div id="editor">
 		<div id="toolbox">
 			<div class="key arrow" style="border:none;">		
-				<input  type="button" onclick="left()" value="＜=" style="background-position:-127px -97px;"/>
+				<input  type="button" onclick="left()" value="←" style="background-position:-127px -97px;"/>
 			</div>
 			<div class="key arrow">		
-				<input  type="button" onclick="right()" value="=＞" style="background-position:-160px -97px;"/>
+				<input  type="button" onclick="right()" value="→" style="background-position:-160px -97px;"/>
 			</div> 
 			<div class="key">		
 				<input  type="button" onclick="del()" value="DEL"/>
@@ -272,7 +276,7 @@
 						<a  href="#closePopup" onclick="closePopup(); return false;" class="close">×</a>
 						<div class="u" style="text-align:center;line-height:1.8em;">
 							<h1 style="font-size:16px;">PB Dispaly Image Maker</h1>
-							<div>version 1.0.0</div>
+							<div>version 1.0.110330</div>
 							<div style="margin-top:5px;">
 								<a href="http://pb-100.blogspot.com/" target="_blank">CASIO PB-100の宇宙</a>
 								 by <a href="http://pbrocky.blogspot.com/" target="_blank">PBロッキー</a>
@@ -286,10 +290,12 @@
 						</div> -->						
 						<h3 class="caption u">Release Logs</h3>
 						<dl style="height:60px;line-height:1.2em;overflow:auto;border:1px #ccc inset;margin:8px 9px;padding:9px;">
+							<dt>11.03.30</dt>
+							<dd>Version 1.0.110330 released.</dd>
 							<dt>10.09.18</dt>
-							<dd>Version 1.0.0 released.</dd>
+							<dd><a href="http://pbrocky.blogspot.com/2010/09/pb-display-image-maker-100.html" target="_blank">Version 1.0.0 released.</a></dd>
 							<dt>10.05.01</dt>
-							<dd>Version 0.1.0 released.</dd>
+							<dd><a href="http://pbrocky.blogspot.com/2010/05/pb-100displayimagemaker-ver010.html" target="_blank">Version 0.1.0 released.</a></dd>
 						</dl>							
 					</div>
 				</div>
@@ -462,6 +468,8 @@
 	</div>
 </div>
 <!--[if lte IE 6]></div><![endif]-->
+<script type="text/javascript" src="jquery-min.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
 
