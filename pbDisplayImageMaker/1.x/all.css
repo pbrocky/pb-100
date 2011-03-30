@@ -11,20 +11,25 @@
  * -- Part Supported browser --
  *   IE6, 7, 8 (don't work Opacity when js disabled)
  */
-*{
-	zoom:1;
-	font-size:12px;
-	margin:0;
-	padding:0;
-}
-a {
-	text-decoration:none;
-}
-/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
-textarea { font-size: 100%; }
-
-/* 画像の下にできる隙間をなくす */
-img { vertical-align: bottom; }
+	*{
+		zoom:1;
+		font-size:12px;
+		margin:0;
+		padding:0;
+	}
+	a {
+		text-decoration:none;
+	}
+	/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
+	textarea { font-size: 100%; }
+	/* for Safari */  
+	p { text-shadow: #000 0 0 0;}  
+	/* for Firefox */  
+	p { -moz-opacity: 0.99;}
+	/* remember to define focus styles! */
+	:focus { outline: 0;}
+	/* 画像の下にできる隙間をなくす */
+	img { vertical-align: bottom; }
 
 /* Reset CSS for the case Embed to other Web Page */ 
 #pbdisplay_outer span,
