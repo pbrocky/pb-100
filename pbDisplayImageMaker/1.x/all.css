@@ -1,4 +1,16 @@
 @charset "utf-8";
+/*
+ * CSS Document
+ * 
+ * PB Display Image Maker
+ * version 1.0.110330
+ *
+ * -- Full Supported browser -- 
+ *   firefox3, Iron8, Safari3.2, Opera9,10,11
+ * 
+ * -- Part Supported browser --
+ *   IE6, 7, 8 (don't work Opacity when js disabled)
+ */
 *{
 	zoom:1;
 	font-size:12px;
@@ -270,18 +282,18 @@ img { vertical-align: bottom; }
 		display:block;
 	} 
 
-	.CSR00 {top:50px;*top:47px !important;left:37px !important;*left:38px !important}
-	.CSR01 {top:50px;*top:47px !important;left:51px !important;*left:52px !important}
-	.CSR02 {top:50px;*top:47px !important;left:65px !important;*left:66px !important}
-	.CSR03 {top:50px;*top:47px !important;left:79px !important;*left:80px !important}
-	.CSR04 {top:50px;*top:47px !important;left:93px !important;*left:94px !important}
-	.CSR05 {top:50px;*top:47px !important;left:107px !important;*left:108px !important}
-	.CSR06 {top:50px;*top:47px !important;left:121px !important;*left:122px !important}
-	.CSR07 {top:50px;*top:47px !important;left:135px !important;*left:136px !important}
-	.CSR08 {top:50px;*top:47px !important;left:149px !important;*left:150px !important}
-	.CSR09 {top:50px;*top:47px !important;left:163px !important;*left:164px !important}
-	.CSR10 {top:50px;*top:47px !important;left:177px !important;*left:178px !important}
-	.CSR11 {top:50px;*top:47px !important;left:191px !important;*left:192px !important}
+	.CSR00 {top:48px;*top:45px !important;left:38px !important;*left:38px !important}
+	.CSR01 {top:48px;*top:45px !important;left:52px !important;*left:52px !important}
+	.CSR02 {top:48px;*top:45px !important;left:66px !important;*left:66px !important}
+	.CSR03 {top:48px;*top:45px !important;left:80px !important;*left:80px !important}
+	.CSR04 {top:48px;*top:45px !important;left:94px !important;*left:94px !important}
+	.CSR05 {top:48px;*top:45px !important;left:108px !important;*left:108px !important}
+	.CSR06 {top:48px;*top:45px !important;left:122px !important;*left:122px !important}
+	.CSR07 {top:48px;*top:45px !important;left:136px !important;*left:136px !important}
+	.CSR08 {top:48px;*top:45px !important;left:150px !important;*left:150px !important}
+	.CSR09 {top:48px;*top:45px !important;left:164px !important;*left:164px !important}
+	.CSR10 {top:48px;*top:45px !important;left:178px !important;*left:178px !important}
+	.CSR11 {top:48px;*top:45px !important;left:192px !important;*left:192px !important}
 	
 	.op1 span{
 		opacity:0.1;
@@ -389,13 +401,16 @@ img { vertical-align: bottom; }
 	font-weight:bold;
 	color:#333;
 	text-align:center;
-	_margin-top:8px;
+	_margin-top:7px;
 }
 .arrow input {
 	text-indent:-9999px !important;
 	background-image:url(pbDisplay_hover.gif) !important;
 	background-repeat:no-repeat;
 	_overflow:hidden;
+	*float: left; /* fix for IE. arrowButton visible */
+	*margin-left:9px;
+	*margin-top:7px;
 }
 .command {
 	width:32px !important;

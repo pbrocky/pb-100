@@ -173,7 +173,7 @@
 		if(type==" PB-100"){type="";}
 		html += '&lt;style type="text/css"&gt;<br>' + 
 				'&nbsp;&lt;!--<br>' + 
-				'&nbsp;&nbsp;@import url(http://7511742479137856265-a-1802744773732722657-s-sites.googlegroups.com/site/casiopb100/pbDisplay0.1.0.css);<br>' +
+				'&nbsp;&nbsp;@import url(http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/pbDisplay0.1.0.css);<br>' +
 				'&nbsp;--&gt;<br>' + 
 				'&lt;\/style&gt;<br>' + 
 				'&lt;div class="pbDisplay010-Container'+ type +'"&gt;<br>' + 
