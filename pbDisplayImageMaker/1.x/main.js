@@ -126,24 +126,24 @@
  Check and reWright PBDispaly-Header
 ------------------------------------------ */
 	var setConditions = function(){
-		var c = [];
-		var d = document.conditions;
+		var html,
+			d = document.conditions,
+			c = [
+				checkRadio(d.ext),
+				checkRadio(d.sf),
+				checkRadio(d.rw),
+				checkRadio(d.drg),
+				checkRadio(d.tr),
+				checkRadio(d.prt),
+				checkRadio(d.stop)
+			];
 		
-		c[0] = checkRadio(d.sf);
-		c[1] = checkRadio(d.ext);
-		c[2] = checkRadio(d.rw);
-		c[3] = checkRadio(d.stop);
-		if(c[2] == "rw_r"){
+		if(c[2] === "rw_r"){
 			$('#stop').removeClass('op5');
 		} else {
 			$('#stop').addClass('op5');
-			c[3] = "st_n";
-		}		
-		c[4] = checkRadio(d.tr);
-		c[5] = checkRadio(d.prt);
-		c[6] = checkRadio(d.drg);
-		
-		var html;
+			c[6] = "st_n";
+		}
 
 		for(var i=0; i<c.length; i++){
 			var v = $('#'+c[i]).val();
