@@ -16,6 +16,9 @@
  *   MacIE5.2(Pseudo Opacity)
  *   
  * -- history --
+ *  ver 0.1.3
+ *    True Opacity when js disabled. IE7, 8(quirks mode)
+ * 
  *  ver 0.1.2
  *    Pseudo Opacity when js disabled. IE5.5, 6, 7, 8(quirks mode)
  *    Pseudo Opacity. MacIE5.2, IE8(ie8 mode)
@@ -146,18 +149,18 @@
 		top:				32px;
 	} 
 	
-	.pbDisplay010 .CSR00 {left:19px !important}
-	.pbDisplay010 .CSR01 {left:33px !important}
-	.pbDisplay010 .CSR02 {left:47px !important}
-	.pbDisplay010 .CSR03 {left:61px !important}
-	.pbDisplay010 .CSR04 {left:75px !important}
-	.pbDisplay010 .CSR05 {left:89px !important}
-	.pbDisplay010 .CSR06 {left:103px !important}
-	.pbDisplay010 .CSR07 {left:117px !important}
-	.pbDisplay010 .CSR08 {left:131px !important}
-	.pbDisplay010 .CSR09 {left:145px !important}
-	.pbDisplay010 .CSR10 {left:159px !important}
-	.pbDisplay010 .CSR11 {left:173px !important}
+	.CSR00 {left:19px !important}
+	.CSR01 {left:33px !important}
+	.CSR02 {left:47px !important}
+	.CSR03 {left:61px !important}
+	.CSR04 {left:75px !important}
+	.CSR05 {left:89px !important}
+	.CSR06 {left:103px !important}
+	.CSR07 {left:117px !important}
+	.CSR08 {left:131px !important}
+	.CSR09 {left:145px !important}
+	.CSR10 {left:159px !important}
+	.CSR11 {left:173px !important}
 	
 /*  Charactor code
 --------------------------------------------------------------------------------------*/
@@ -430,9 +433,24 @@
 	.pbDisplay010 .CSR10,
 	.pbDisplay010 .CSR11 {
 		background-image:		url(pbfont_x3_0.1.0.gif);
-		*background-image:		url(pbfont_x3_x10.gif);
+		_background-image:		url(pbfont_x3_x10.gif);
 	}
-
+	/*
+	html>body .pbDisplay010 .CSR00,
+	html>body .pbDisplay010 .CSR01,
+	html>body .pbDisplay010 .CSR02,
+	html>body .pbDisplay010 .CSR03,
+	html>body .pbDisplay010 .CSR04,
+	html>body .pbDisplay010 .CSR05,
+	html>body .pbDisplay010 .CSR06,
+	html>body .pbDisplay010 .CSR07,
+	html>body .pbDisplay010 .CSR08,
+	html>body .pbDisplay010 .CSR09,
+	html>body .pbDisplay010 .CSR10,
+	html>body .pbDisplay010 .CSR11 {
+		*background-image:		url(pbfont_x3_x10.png);
+	}
+	*/
 	html>/**/body .pbDisplay010 .CSR00,
 	html>/**/body .pbDisplay010 .CSR01,
 	html>/**/body .pbDisplay010 .CSR02,
@@ -445,7 +463,7 @@
 	html>/**/body .pbDisplay010 .CSR09,
 	html>/**/body .pbDisplay010 .CSR10,
 	html>/**/body .pbDisplay010 .CSR11 {
-		background-image/*\**/:		url(pbfont_x3_x10.gif)\9;  /* ie8(ie8 mode) */
+		background-image/*\**/:		url(pbfont_x3_x10.png)\9;  /* ie8(ie8 mode) */
 	}
 
 /*   Pseudo Opacity for noscript winIE
