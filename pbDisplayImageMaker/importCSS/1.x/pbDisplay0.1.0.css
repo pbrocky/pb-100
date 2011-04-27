@@ -3,29 +3,34 @@
  * CSS Document
  * 
  * PB Display Image
- * version 0.1.2
+ * version 0.1.3
  * 
  * -- Supported Rendering mode --
  *   standard & quirks
  *  
  * -- Full Supported browser -- 
  *   firefox3, Iron8, Safari3.2, Opera9,10,11
+ *   ie7( needs big-png when js disabled)
+ *   ie8( needs big-png when ie8 mode or js disabled)
  * 
  * -- Part Supported browser --
- *   IE5.5, 6, 7, 8 (Pseudo Opacity when js disabled)
- *   MacIE5.2(Pseudo Opacity)
+ *   IE5.5, 6(fake Opacity when js disabled)
+ *   MacIE5.2(fake Opacity)
  *   
  * -- history --
  *  ver 0.1.3
- *    True Opacity when js disabled. IE7, 8(quirks mode)
+ *    True Opacity by big-png. IE7, 8(quirks mode)
+ *    Fix ie6 don't work className overrie by css expression.
+ *    True Opacity by alpha-image-loader for IE5.5,6
  * 
  *  ver 0.1.2
- *    Pseudo Opacity when js disabled. IE5.5, 6, 7, 8(quirks mode)
- *    Pseudo Opacity. MacIE5.2, IE8(ie8 mode)
+ *    fake Opacity when js disabled. IE5.5, 6, 7, 8(quirks mode)
+ *    fake Opacity. MacIE5.2, IE8(ie8 mode)
  * 
  *  ver 0.1.1
  *    Support MacIE5.2(don't work Opacity)
  */
+
 
 /*  Container
 --------------------------------------------------------------------------------------*/
@@ -35,8 +40,9 @@
 		height:					63px;
 		position:				relative;
 	}
-	.pbDisplay010-Container_ieJsEnable {
-		overflow:				hidden;/*  for IE */
+	.pbDisplay010-Container_ieJsEnable .pbDisplay010 {
+		/* overflow:				hidden;for IE */
+		height:					53px;
 	}
 	
 	/* Reset CSS for the case Embed to other Web Page */
@@ -149,18 +155,18 @@
 		top:				32px;
 	} 
 	
-	.CSR00 {left:19px !important}
-	.CSR01 {left:33px !important}
-	.CSR02 {left:47px !important}
-	.CSR03 {left:61px !important}
-	.CSR04 {left:75px !important}
-	.CSR05 {left:89px !important}
-	.CSR06 {left:103px !important}
-	.CSR07 {left:117px !important}
-	.CSR08 {left:131px !important}
-	.CSR09 {left:145px !important}
-	.CSR10 {left:159px !important}
-	.CSR11 {left:173px !important}
+	.pbDisplay010 .CSR00 {left:19px !important}
+	.pbDisplay010 .CSR01 {left:33px !important}
+	.pbDisplay010 .CSR02 {left:47px !important}
+	.pbDisplay010 .CSR03 {left:61px !important}
+	.pbDisplay010 .CSR04 {left:75px !important}
+	.pbDisplay010 .CSR05 {left:89px !important}
+	.pbDisplay010 .CSR06 {left:103px !important}
+	.pbDisplay010 .CSR07 {left:117px !important}
+	.pbDisplay010 .CSR08 {left:131px !important}
+	.pbDisplay010 .CSR09 {left:145px !important}
+	.pbDisplay010 .CSR10 {left:159px !important}
+	.pbDisplay010 .CSR11 {left:173px !important}
 	
 /*  Charactor code
 --------------------------------------------------------------------------------------*/
@@ -308,7 +314,7 @@
 		-moz-opacity:			0.1;
 		opacity:				0.1;
 		filter:					alpha(opacity=10);
-		/*-ms-filter:				alpha(opacity=10); ie8(ie8 mode) use pseudo opacity */
+		/*-ms-filter:				alpha(opacity=10); ie8(ie8 mode) use png opacity */
 		*background-position-x:	-180px;
 		z-index:				1; /* ie & MacIE */		
 	}
@@ -432,25 +438,12 @@
 	.pbDisplay010 .CSR09,
 	.pbDisplay010 .CSR10,
 	.pbDisplay010 .CSR11 {
-		background-image:		url(pbfont_x3_0.1.0.gif);
-		_background-image:		url(pbfont_x3_x10.gif);
+		background-image:		url(pbfont_x3_0.1.0.gif); /* modern browser */
+		*background-image:		url(pbfont_x3_x10.png); /* ie7,8(7mode) js disabled */
+		_background-image:		url(pbfont_x3_x10.gif?222); /* ie5.5, 6 js disabled */
+		_filter:progid:			DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale, src='pbfont_x3_x10.png') !important; /* ie5.5, 6 js enabled */
 	}
-	/*
-	html>body .pbDisplay010 .CSR00,
-	html>body .pbDisplay010 .CSR01,
-	html>body .pbDisplay010 .CSR02,
-	html>body .pbDisplay010 .CSR03,
-	html>body .pbDisplay010 .CSR04,
-	html>body .pbDisplay010 .CSR05,
-	html>body .pbDisplay010 .CSR06,
-	html>body .pbDisplay010 .CSR07,
-	html>body .pbDisplay010 .CSR08,
-	html>body .pbDisplay010 .CSR09,
-	html>body .pbDisplay010 .CSR10,
-	html>body .pbDisplay010 .CSR11 {
-		*background-image:		url(pbfont_x3_x10.png);
-	}
-	*/
+
 	html>/**/body .pbDisplay010 .CSR00,
 	html>/**/body .pbDisplay010 .CSR01,
 	html>/**/body .pbDisplay010 .CSR02,
@@ -466,14 +459,19 @@
 		background-image/*\**/:		url(pbfont_x3_x10.png)\9;  /* ie8(ie8 mode) */
 	}
 
-/*   Pseudo Opacity for noscript winIE
+/*   fake Opacity for noscript winIE
  *     ie8(ie8 mode) doesn't work css expression, so wo can't check js enabled.
- *     when ie8(ie8 mode), we use pseudo opacity whether js enabled or disabled.
+ *     when ie8(ie8 mode), use png opacity whether js enabled or disabled.
+ *     ie6 doesn't work override className by css expression, but ie5.5 work.
 --------------------------------------------------------------------------------------*/
-	.pbDisplay010-Container {
-		scrollbar-shadow-color:	expression( this.className='pbDisplay010-Container_ieJsEnable');
+	html>body .pbDisplay010-Container {
+		*scrollbar-shadow-color:			expression( this.className='pbDisplay010-Container_ieJsEnable');
 	}
 
+	@media tty {
+	    i{content:"\";/*" "*/}} @import 'optional_winie5x.css'; /*";}
+	}/* */
+	
 	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op1,
 	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op2,
 	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op3,
@@ -486,8 +484,18 @@
 		background-image:		url(pbfont_x3_0.1.0.gif) !important;
 		background-position-x:	0 !important;
 	}
+	
+	/* cursol */
+	html>body .pbDisplay010 .chrCS {
+		*background-position-y:	0;
+		*background-image:		url(pbfont_cs_x3_x10.gif) !important;
+	}
+	html>body .pbDisplay010-Container_ieJsEnable .pbDisplay010 .chrCS {
+		*background-position:	0 -2700px !important;
+		*background-image:		url(pbfont_cs_x3_0.1.0.gif) !important;
+	}	
 
-/*   Pseudo Opacity for MacIE
+/*   fake Opacity for MacIE
 --------------------------------------------------------------------------------------*/	
 	/*\*//*/
 	.pbDisplay010 .op1 {
