@@ -3,21 +3,24 @@
  * CSS Document
  * 
  * PB Display Image
- * version 0.1.3
+ * version 0.1.4
  * 
  * -- Supported Rendering mode --
  *   standard & quirks
  *  
  * -- Full Supported browser -- 
- *   firefox3, Iron8, Safari3.2, Opera9,10,11
- *   ie7( needs big-png when js disabled)
- *   ie8( needs big-png when ie8 mode or js disabled)
+ *   firefox3.6, Iron8, Safari3.2, Opera9,10,11
+ *   IE7,8(Use big-png when ActiveX disabled)
  * 
  * -- Part Supported browser --
- *   IE5.5, 6(fake Opacity when js disabled)
- *   MacIE5.2(fake Opacity)
+ *   IE5.5, 6(Fake Opacity when ActiveX disabled)
+ *   MacIE5.2(Don't work Opacity for cursol)
  *   
  * -- history --
+ *  ver 0.1.4
+ *    The check on ActiveX uses htc instead of css-expression.
+ *    MacIE uses png-font x10. 
+ *    
  *  ver 0.1.3
  *    True Opacity by big-png. IE7, 8(quirks mode)
  *    Fix ie6 don't work className overrie by css expression.
@@ -34,29 +37,23 @@
 
 /*  Container
 --------------------------------------------------------------------------------------*/
-	.pbDisplay010-Container,
-	.pbDisplay010-Container_ieJsEnable {
+	.pbDisplay010-Container {
 		width:					202px;
 		height:					63px;
 		position:				relative;
-	}
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 {
-		/* overflow:				hidden;for IE */
-		height:					53px;
+		behavior:				url('checkActiveX.htc');
+		-ms-behavior:			url('checkActiveX.htc');
 	}
 	
 	/* Reset CSS for the case Embed to other Web Page */
 	.pbDisplay010-Container span,
-	.pbDisplay010-Container div,
-	.pbDisplay010-Container_ieJsEnable span,
-	.pbDisplay010-Container_ieJsEnablediv div {
+	.pbDisplay010-Container div {
 		margin:					0;
 		padding:				0;
 	    border:					none;
 		z-index:				0;
 	}
-	.pbDisplay010-Container br,
-	.pbDisplay010-Container_ieJsEnable br {
+	.pbDisplay010-Container br {
 		display:				none;
 	}
 	
@@ -311,103 +308,111 @@
 /*  Opacity
 --------------------------------------------------------------------------------------*/
 	.pbDisplay010 .op1 {
-		-moz-opacity:			0.1;
-		opacity:				0.1;
-		filter:					alpha(opacity=10);
-		/*-ms-filter:				alpha(opacity=10); ie8(ie8 mode) use png opacity */
-		*background-position-x:	-180px;
-		z-index:				1; /* ie & MacIE */		
+		-moz-opacity:					0.1;
+		opacity:						0.1;
+		filter:							alpha(opacity=10);
+		-ms-filter:						alpha(opacity=10);
+		*background-position-x:			-180px;
+		z-index:						1; /* ie & MacIE */		
 	}
 	html>/**/body .pbDisplay010 .op1 {
-		background-position-x/*\**/:		-180px\9; /* ie8 (ie8mode) */
+		background-position-x/*\**/:	-180px\9; /* ie8 (ie8mode) */
 	}
 	
 	.pbDisplay010 .op2 {
-		-moz-opacity:			0.2;
-		opacity:				0.2;
-		filter:					alpha(opacity=20);
-		*background-position-x:	-160px;
-		z-index:				2;				
+		-moz-opacity:					0.2;
+		opacity:						0.2;
+		filter:							alpha(opacity=20);
+		-ms-filter:						alpha(opacity=20);
+		*background-position-x:			-160px;
+		z-index:						2;				
 	}
 	html>/**/body .pbDisplay010 .op2 {
-		background-position-x/*\**/:		-160px\9;
+		background-position-x/*\**/:	-160px\9;
 	}
 	
 	.pbDisplay010 .op3 {
-		-moz-opacity:			0.3;
-		opacity:				0.3;
-		filter:					alpha(opacity=30);
-		*background-position-x:	-140px;
-		z-index:				3;				
+		-moz-opacity:					0.3;
+		opacity:						0.3;
+		filter:							alpha(opacity=30);
+		-ms-filter:						alpha(opacity=30);
+		*background-position-x:			-140px;
+		z-index:						3;				
 	}
 	html>/**/body .pbDisplay010 .op3 {
-		background-position-x/*\**/:		-140px\9;
+		background-position-x/*\**/:	-140px\9;
 	}
 	
 	.pbDisplay010 .op4 {
-		-moz-opacity:			0.4;
-		opacity:				0.4;
-		filter:					alpha(opacity=40);
-		*background-position-x:	-120px;
-		z-index:				4;				
+		-moz-opacity:					0.4;
+		opacity:						0.4;
+		filter:							alpha(opacity=40);
+		-ms-filter:						alpha(opacity=40);
+		*background-position-x:			-120px;
+		z-index:						4;				
 	}
 	html>/**/body .pbDisplay010 .op4 {
-		background-position-x/*\**/:		-120px\9;
+		background-position-x/*\**/:	-120px\9;
 	}
 	
 	.pbDisplay010 .op5 {
-		-moz-opacity:			0.5;
-		opacity:				0.5;
-		filter:					alpha(opacity=50);
-		*background-position-x:	-100px;
-		z-index:				5;				
+		-moz-opacity:					0.5;
+		opacity:						0.5;
+		filter:							alpha(opacity=50);
+		-ms-filter:						alpha(opacity=50);
+		*background-position-x:			-100px;
+		z-index:						5;				
 	}
 	html>/**/body .pbDisplay010 .op5 {
-		background-position-x/*\**/:		-100px\9;
+		background-position-x/*\**/:	-100px\9;
 	}
 	
 	.pbDisplay010 .op6 {
-		-moz-opacity:			0.6;
-		opacity:				0.6;
-		filter:					alpha(opacity=60);
-		*background-position-x:	-80px;
-		z-index:				6;				
+		-moz-opacity:					0.6;
+		opacity:						0.6;
+		filter:							alpha(opacity=60);
+		-ms-filter:						alpha(opacity=60);
+		*background-position-x:			-80px;
+		z-index:						6;				
 	}
 	html>/**/body .pbDisplay010 .op6 {
-		background-position-x/*\**/:		-80px\9;
+		background-position-x/*\**/:	-80px\9;
 	}
 	
 	.pbDisplay010 .op7 {
-		-moz-opacity:			0.7;
-		opacity:				0.7;
-		filter:					alpha(opacity=70);
-		*background-position-x:	-60px;
-		z-index:				7;			
+		-moz-opacity:					0.7;
+		opacity:						0.7;
+		filter:							alpha(opacity=70);
+		-ms-filter:						alpha(opacity=70);
+		*background-position-x:			-60px;
+		z-index:						7;			
 	}
 	html>/**/body .pbDisplay010 .op7 {
-		background-position-x/*\**/:		-60px\9;
+		background-position-x/*\**/:	-60px\9;
 	}
 	
 	.pbDisplay010 .op8 {
-		-moz-opacity:			0.8;
-		opacity:				0.8;
-		filter:					alpha(opacity=80);
-		*background-position-x	-40px;
-		z-index:				8;			
+		-moz-opacity:					0.8;
+		opacity:						0.8;
+		filter:							alpha(opacity=80);
+		-ms-filter:						alpha(opacity=80);
+		*background-position-x			-40px;
+		z-index:						8;			
 	}
 	html>/**/body .pbDisplay010 .op8 {
-		background-position-x/*\**/:		-40px\9;
+		background-position-x/*\**/:	-40px\9;
 	}
 	
 	.pbDisplay010 .op9 {
-		-moz-opacity:			0.9;
-		opacity:				0.9;
-		filter:					alpha(opacity=90);
-		*background-position-x:	-20px;
-		z-index:				9;
+		-moz-opacity:					0.9;
+		opacity:						0.9;
+		filter:							alpha(opacity=90);
+		-ms-filter:						alpha(opacity=90);
+		*background-position-x:			-20px;
+		z-index:						9;
 	}
 	html>/**/body .pbDisplay010 .op9 {
-		background-position-x/*\**/:		-20px\9;
+		background-position-x/*\**/:	-20px\9;
 	}
 
 /*  background-image
@@ -439,91 +444,81 @@
 	.pbDisplay010 .CSR10,
 	.pbDisplay010 .CSR11 {
 		background-image:		url(pbfont_x3_0.1.0.gif); /* modern browser */
-		*background-image:		url(pbfont_x3_x10.png); /* ie7,8(7mode) js disabled */
-		_background-image:		url(pbfont_x3_x10.gif?222); /* ie5.5, 6 js disabled */
-		_filter:progid:			DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale, src='pbfont_x3_x10.png') !important; /* ie5.5, 6 js enabled */
+		*background-image:		url(pbfont_x3_x10.png); /* ie7,8 ActiveX disabled */
+		/*\*/
+		_background-image:		url(pbfont_x3_x10.gif);/*  ie5.5,6 ActiveX disabled */
 	}
 
-	html>/**/body .pbDisplay010 .CSR00,
-	html>/**/body .pbDisplay010 .CSR01,
-	html>/**/body .pbDisplay010 .CSR02,
-	html>/**/body .pbDisplay010 .CSR03,
-	html>/**/body .pbDisplay010 .CSR04,
-	html>/**/body .pbDisplay010 .CSR05,
-	html>/**/body .pbDisplay010 .CSR06,
-	html>/**/body .pbDisplay010 .CSR07,
-	html>/**/body .pbDisplay010 .CSR08,
-	html>/**/body .pbDisplay010 .CSR09,
-	html>/**/body .pbDisplay010 .CSR10,
-	html>/**/body .pbDisplay010 .CSR11 {
-		background-image/*\**/:		url(pbfont_x3_x10.png)\9;  /* ie8(ie8 mode) */
-	}
-
-/*   fake Opacity for noscript winIE
- *     ie8(ie8 mode) doesn't work css expression, so wo can't check js enabled.
- *     when ie8(ie8 mode), use png opacity whether js enabled or disabled.
- *     ie6 doesn't work override className by css expression, but ie5.5 work.
+/*   fake opacity for cursol when ActiveX disabled. (winIE)
 --------------------------------------------------------------------------------------*/
-	html>body .pbDisplay010-Container {
-		*scrollbar-shadow-color:			expression( this.className='pbDisplay010-Container_ieJsEnable');
+	.pbDisplay010 .chrCS {
+		*background-position-y:			18px;
+		*background-image:				url(pbfont_x3_x10_cs.gif);
+		*z-index:						1;
+	}
+	html>/**/body .pbDisplay010-Container .chrCS {/* ie8(ie8 mode) */
+		background-position-y/*\**/:	18px\9;
+		background-image/*\**/:			url(pbfont_x3_x10_cs.gif)\9;
+		z-index/*\**/:					1\9;
+	}
+/*   x10 image Opacity when ActiveX disabled. (winIE)
+--------------------------------------------------------------------------------------*/
+	.pbDisplay-ActiveX-enabled .op1,
+	.pbDisplay-ActiveX-enabled .op2,
+	.pbDisplay-ActiveX-enabled .op3,
+	.pbDisplay-ActiveX-enabled .op4,
+	.pbDisplay-ActiveX-enabled .op5,
+	.pbDisplay-ActiveX-enabled .op6,
+	.pbDisplay-ActiveX-enabled .op7,
+	.pbDisplay-ActiveX-enabled .op8,
+	.pbDisplay-ActiveX-enabled .op9 {
+		background-image:				url(pbfont_x3_0.1.0.gif);
+		background-position-x:			0;
+	}
+	
+	/* override cursol */
+	.pbDisplay-ActiveX-enabled .chrCS {
+		*background-position-y:			-2700px;
+		*background-image:				url(pbfont_x3_0.1.0.gif);
+	}
+	html>/**/body .pbDisplay-ActiveX-enabled .chrCS {
+		background-position-y/*\**/:	-2700px\9;  /* ie8(ie8 mode) */
+		background-image/*\**/:			url(pbfont_x3_0.1.0.gif)\9;  /* ie8(ie8 mode) */
 	}
 
-	@media tty {
-	    i{content:"\";/*" "*/}} @import 'optional_winie5x.css'; /*";}
-	}/* */
-	
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op1,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op2,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op3,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op4,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op5,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op6,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op7,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op8,
-	.pbDisplay010-Container_ieJsEnable .pbDisplay010 .op9 {
-		background-image:		url(pbfont_x3_0.1.0.gif) !important;
-		background-position-x:	0 !important;
-	}
-	
-	/* cursol */
-	html>body .pbDisplay010 .chrCS {
-		*background-position-y:	0;
-		*background-image:		url(pbfont_cs_x3_x10.gif) !important;
-	}
-	html>body .pbDisplay010-Container_ieJsEnable .pbDisplay010 .chrCS {
-		*background-position:	0 -2700px !important;
-		*background-image:		url(pbfont_cs_x3_0.1.0.gif) !important;
-	}	
-
-/*   fake Opacity for MacIE
+/*   image x10 Opacity for MacIE
+ *     MacIE support png, ignore background-position-x[y].
 --------------------------------------------------------------------------------------*/	
 	/*\*//*/
 	.pbDisplay010 .op1 {
-		background-image:	url(pbfont_x3_10pct.gif) !important;
+		background-image:	url(pbfont_x3_10pct.png) !important;
 	}
 	.pbDisplay010 .op2 {
-		background-image:	url(pbfont_x3_20pct.gif) !important;
+		background-image:	url(pbfont_x3_20pct.png) !important;
 	}
 	.pbDisplay010 .op3 {
-		background-image:	url(pbfont_x3_30pct.gif) !important;
+		background-image:	url(pbfont_x3_30pct.png) !important;
 	}
 	.pbDisplay010 .op4 {
-		background-image:	url(pbfont_x3_40pct.gif) !important;
+		background-image:	url(pbfont_x3_40pct.png) !important;
 	}
 	.pbDisplay010 .op5 {
-		background-image:	url(pbfont_x3_50pct.gif) !important;
+		background-image:	url(pbfont_x3_50pct.png) !important;
 	}
 	.pbDisplay010 .op6 {
-		background-image:	url(pbfont_x3_60pct.gif) !important;
+		background-image:	url(pbfont_x3_60pct.png) !important;
 	}
 	.pbDisplay010 .op7 {
-		background-image:	url(pbfont_x3_70pct.gif) !important;
+		background-image:	url(pbfont_x3_70pct.png) !important;
 	}
 	.pbDisplay010 .op8 {
-		background-image:	url(pbfont_x3_80pct.gif) !important;
+		background-image:	url(pbfont_x3_80pct.png) !important;
 	}
 	.pbDisplay010 .op9 {
-		background-image:	url(pbfont_x3_90pct.gif) !important;
+		background-image:	url(pbfont_x3_90pct.png) !important;
+	}
+	.pbDisplay010 .chrCS {
+		background-image:	url(pbfont_x3_0.1.0.gif) !important;
 	}
 	/**/
 	
