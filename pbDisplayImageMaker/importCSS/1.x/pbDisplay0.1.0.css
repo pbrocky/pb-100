@@ -3,7 +3,7 @@
  * CSS Document
  * 
  * PB Display Image
- * version 0.1.4
+ * version 0.1.41
  * 
  * -- Supported Rendering mode --
  *   standard & quirks
@@ -41,9 +41,13 @@
 		width:					202px;
 		height:					63px;
 		position:				relative;
-		behavior:				url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
-		-ms-behavior:			url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
+		behavior:				url('checkActiveX.htc');
+		-ms-behavior:			url('checkActiveX.htc');
 	}
+	/*
+		.htcは自ドメインに置かないと機能しない．
+		pathはcssからの相対pathでなく、htmlからの相対pathとする。または絶対pathを使用する。
+	*/
 	
 	/* Reset CSS for the case Embed to other Web Page */
 	.pbDisplay010-Container span,
@@ -454,12 +458,12 @@
 	.pbDisplay010 .chrCS {
 		*background-position-y:			18px;
 		*background-image:				url(pbfont_x3_x10_cs.gif);
-		*z-index:						1;
+		*z-index:						0;
 	}
 	html>/**/body .pbDisplay010-Container .chrCS {/* ie8(ie8 mode) */
 		background-position-y/*\**/:	18px\9;
 		background-image/*\**/:			url(pbfont_x3_x10_cs.gif)\9;
-		z-index/*\**/:					1\9;
+		z-index/*\**/:					0\9;
 	}
 /*   x10 image Opacity when ActiveX disabled. (winIE)
 --------------------------------------------------------------------------------------*/
@@ -519,6 +523,7 @@
 	}
 	.pbDisplay010 .chrCS {
 		background-image:	url(pbfont_x3_0.1.0.gif) !important;
+		z-index;			0 !important;
 	}
 	/**/
 	
