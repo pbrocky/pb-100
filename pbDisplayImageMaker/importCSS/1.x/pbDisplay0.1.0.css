@@ -41,8 +41,8 @@
 		width:					202px;
 		height:					63px;
 		position:				relative;
-		behavior:				url('checkActiveX.htc');
-		-ms-behavior:			url('checkActiveX.htc');
+		behavior:				url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
+		-ms-behavior:			url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
 	}
 	
 	/* Reset CSS for the case Embed to other Web Page */
