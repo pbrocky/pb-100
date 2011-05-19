@@ -3,7 +3,7 @@
  * CSS Document
  * 
  * PB Display Image
- * version 0.1.41
+ * version 0.1.42
  * 
  * -- Supported Rendering mode --
  *   standard & quirks
@@ -14,7 +14,7 @@
  * 
  * -- Part Supported browser --
  *   IE5.5, 6(Fake Opacity when ActiveX disabled)
- *   MacIE5.2(Don't work Opacity for cursol)
+ *   MacIE5.2(cursol don't work Opacity)
  *   
  * -- history --
  *  ver 0.1.4
@@ -41,8 +41,8 @@
 		width:					202px;
 		height:					63px;
 		position:				relative;
-		behavior:				url('checkActiveX.htc');
-		-ms-behavior:			url('checkActiveX.htc');
+		behavior:				url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
+		-ms-behavior:			url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
 	}
 	/*
 		.htcは自ドメインに置かないと機能しない．
@@ -314,11 +314,13 @@
 	.pbDisplay010 .op1 {
 		-moz-opacity:					0.1;
 		opacity:						0.1;
-		filter:							alpha(opacity=10);
-		-ms-filter:						alpha(opacity=10);
 		*background-position-x:			-180px;
-		z-index:						1; /* ie & MacIE */		
+		z-index:						1; /* ie5.5,6 & MacIE */		
 	}
+	.pbDisplay-ActiveX-enabled .op1 {
+		filter:							alpha(opacity=10);
+		-ms-filter:						alpha(opacity=10);		
+	}	
 	html>/**/body .pbDisplay010 .op1 {
 		background-position-x/*\**/:	-180px\9; /* ie8 (ie8mode) */
 	}
@@ -326,10 +328,12 @@
 	.pbDisplay010 .op2 {
 		-moz-opacity:					0.2;
 		opacity:						0.2;
-		filter:							alpha(opacity=20);
-		-ms-filter:						alpha(opacity=20);
 		*background-position-x:			-160px;
 		z-index:						2;				
+	}
+	.pbDisplay-ActiveX-enabled .op2 {
+		filter:							alpha(opacity=20);
+		-ms-filter:						alpha(opacity=20);		
 	}
 	html>/**/body .pbDisplay010 .op2 {
 		background-position-x/*\**/:	-160px\9;
@@ -338,10 +342,12 @@
 	.pbDisplay010 .op3 {
 		-moz-opacity:					0.3;
 		opacity:						0.3;
-		filter:							alpha(opacity=30);
-		-ms-filter:						alpha(opacity=30);
 		*background-position-x:			-140px;
 		z-index:						3;				
+	}
+	.pbDisplay-ActiveX-enabled .op3 {
+		filter:							alpha(opacity=30);
+		-ms-filter:						alpha(opacity=30);		
 	}
 	html>/**/body .pbDisplay010 .op3 {
 		background-position-x/*\**/:	-140px\9;
@@ -350,10 +356,12 @@
 	.pbDisplay010 .op4 {
 		-moz-opacity:					0.4;
 		opacity:						0.4;
-		filter:							alpha(opacity=40);
-		-ms-filter:						alpha(opacity=40);
 		*background-position-x:			-120px;
 		z-index:						4;				
+	}
+	.pbDisplay-ActiveX-enabled .op4 {
+		filter:							alpha(opacity=40);
+		-ms-filter:						alpha(opacity=40);		
 	}
 	html>/**/body .pbDisplay010 .op4 {
 		background-position-x/*\**/:	-120px\9;
@@ -362,10 +370,12 @@
 	.pbDisplay010 .op5 {
 		-moz-opacity:					0.5;
 		opacity:						0.5;
-		filter:							alpha(opacity=50);
-		-ms-filter:						alpha(opacity=50);
 		*background-position-x:			-100px;
 		z-index:						5;				
+	}
+	.pbDisplay-ActiveX-enabled .op5 {
+		filter:							alpha(opacity=50);
+		-ms-filter:						alpha(opacity=50);		
 	}
 	html>/**/body .pbDisplay010 .op5 {
 		background-position-x/*\**/:	-100px\9;
@@ -374,10 +384,12 @@
 	.pbDisplay010 .op6 {
 		-moz-opacity:					0.6;
 		opacity:						0.6;
-		filter:							alpha(opacity=60);
-		-ms-filter:						alpha(opacity=60);
 		*background-position-x:			-80px;
 		z-index:						6;				
+	}
+	.pbDisplay-ActiveX-enabled .op6 {
+		filter:							alpha(opacity=60);
+		-ms-filter:						alpha(opacity=60);		
 	}
 	html>/**/body .pbDisplay010 .op6 {
 		background-position-x/*\**/:	-80px\9;
@@ -386,10 +398,12 @@
 	.pbDisplay010 .op7 {
 		-moz-opacity:					0.7;
 		opacity:						0.7;
-		filter:							alpha(opacity=70);
-		-ms-filter:						alpha(opacity=70);
 		*background-position-x:			-60px;
 		z-index:						7;			
+	}
+	.pbDisplay-ActiveX-enabled .op7 {
+		filter:							alpha(opacity=70);
+		-ms-filter:						alpha(opacity=70);		
 	}
 	html>/**/body .pbDisplay010 .op7 {
 		background-position-x/*\**/:	-60px\9;
@@ -398,10 +412,12 @@
 	.pbDisplay010 .op8 {
 		-moz-opacity:					0.8;
 		opacity:						0.8;
-		filter:							alpha(opacity=80);
-		-ms-filter:						alpha(opacity=80);
 		*background-position-x			-40px;
 		z-index:						8;			
+	}
+	.pbDisplay-ActiveX-enabled .op8 {
+		filter:							alpha(opacity=80);
+		-ms-filter:						alpha(opacity=80);		
 	}
 	html>/**/body .pbDisplay010 .op8 {
 		background-position-x/*\**/:	-40px\9;
@@ -410,10 +426,12 @@
 	.pbDisplay010 .op9 {
 		-moz-opacity:					0.9;
 		opacity:						0.9;
-		filter:							alpha(opacity=90);
-		-ms-filter:						alpha(opacity=90);
 		*background-position-x:			-20px;
 		z-index:						9;
+	}
+	.pbDisplay-ActiveX-enabled .op9 {
+		filter:							alpha(opacity=90);
+		-ms-filter:						alpha(opacity=90);		
 	}
 	html>/**/body .pbDisplay010 .op9 {
 		background-position-x/*\**/:	-20px\9;
@@ -448,46 +466,58 @@
 	.pbDisplay010 .CSR10,
 	.pbDisplay010 .CSR11 {
 		background-image:		url(pbfont_x3_0.1.0.gif); /* modern browser */
-		*background-image:		url(pbfont_x3_x10.png); /* ie7,8 ActiveX disabled */
 		/*\*/
 		_background-image:		url(pbfont_x3_x10.gif);/*  ie5.5,6 ActiveX disabled */
+		
 	}
-
+	html>body .pbDisplay010 .CSR00,
+	html>body .pbDisplay010 .CSR01,
+	html>body .pbDisplay010 .CSR02,
+	html>body .pbDisplay010 .CSR03,
+	html>body .pbDisplay010 .CSR04,
+	html>body .pbDisplay010 .CSR05,
+	html>body .pbDisplay010 .CSR06,
+	html>body .pbDisplay010 .CSR07,
+	html>body .pbDisplay010 .CSR08,
+	html>body .pbDisplay010 .CSR09,
+	html>body .pbDisplay010 .CSR10,
+	html>body .pbDisplay010 .CSR11 {
+		background-image/*\**/:			url(pbfont_x3_x10.png)\9; /* ie7,8 ActiveX disabled */
+	}
 /*   fake opacity for cursol when ActiveX disabled. (winIE)
 --------------------------------------------------------------------------------------*/
 	.pbDisplay010 .chrCS {
 		*background-position-y:			18px;
 		*background-image:				url(pbfont_x3_x10_cs.gif);
-		*z-index:						0;
 	}
-	html>/**/body .pbDisplay010-Container .chrCS {/* ie8(ie8 mode) */
+	
+	html>body .pbDisplay010-Container .chrCS { /* ie7,8 */
 		background-position-y/*\**/:	18px\9;
 		background-image/*\**/:			url(pbfont_x3_x10_cs.gif)\9;
 		z-index/*\**/:					0\9;
 	}
-/*   x10 image Opacity when ActiveX disabled. (winIE)
+
+/*   True Opacity by ActiveX. (winIE)
 --------------------------------------------------------------------------------------*/
-	.pbDisplay-ActiveX-enabled .op1,
-	.pbDisplay-ActiveX-enabled .op2,
-	.pbDisplay-ActiveX-enabled .op3,
-	.pbDisplay-ActiveX-enabled .op4,
-	.pbDisplay-ActiveX-enabled .op5,
-	.pbDisplay-ActiveX-enabled .op6,
-	.pbDisplay-ActiveX-enabled .op7,
-	.pbDisplay-ActiveX-enabled .op8,
-	.pbDisplay-ActiveX-enabled .op9 {
-		background-image:				url(pbfont_x3_0.1.0.gif);
-		background-position-x:			0;
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR00,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR01,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR02,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR03,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR04,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR05,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR06,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR07,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR08,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR09,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR10,
+	.pbDisplay-ActiveX-enabled .pbDisplay010 .CSR11 {
+		background-image:				url(pbfont_x3_0.1.0.gif) !important; /* !important is for ie7,8 */
+		background-position-x:			0 !important;
 	}
 	
 	/* override cursol */
 	.pbDisplay-ActiveX-enabled .chrCS {
-		*background-position-y:			-2700px;
-		*background-image:				url(pbfont_x3_0.1.0.gif);
-	}
-	html>/**/body .pbDisplay-ActiveX-enabled .chrCS {
-		background-position-y/*\**/:	-2700px\9;  /* ie8(ie8 mode) */
-		background-image/*\**/:			url(pbfont_x3_0.1.0.gif)\9;  /* ie8(ie8 mode) */
+		background-position-y:			-2700px !important;
 	}
 
 /*   image x10 Opacity for MacIE
@@ -526,4 +556,4 @@
 		z-index;			0 !important;
 	}
 	/**/
-	
+		
