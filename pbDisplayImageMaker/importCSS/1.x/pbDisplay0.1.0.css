@@ -375,7 +375,7 @@
 	}
 	.pbDisplay-ActiveX-enabled .op5 {
 		filter:							alpha(opacity=50);
-		-ms-filter:						alpha(opacity=50);		
+		-ms-filter:						alpha(opacity=50);
 	}
 	html>/**/body .pbDisplay010 .op5 {
 		background-position-x/*\**/:	-100px\9;

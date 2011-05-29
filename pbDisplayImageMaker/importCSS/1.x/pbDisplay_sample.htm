@@ -1,74 +1,91 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
 <head>
-<link rel="stylesheet" type="text/css" href="pbDisplay0.1.0.css" media="all">
-
+	<link rel="stylesheet" type="text/css" href="pbDisplay0.1.0.css" media="all">
 	<style type="text/css">
-		.pbDisplay010-Container .balloon,
-		.pbDisplay010-Container_ieJsEnable .balloon {
-			background:			#e3e3e3;
-			padding:			8px;
-			position:			absolute;
-			bottom:				50px;
-			opacity:			0.7;
-			filter:				alpha(opacity=70);
-			-ms-filter:			alpha(opacity=70);
-			display:			block;
-			border-radius:		5px;
-			-moz-border-radius:	5px;
-			margin-left:		-9px;
-			font-size:			12px;
-			text-decoration:	none;
-			color:				#333;
-			line-height:		1.3em;
+		.pbDisplay010-Container .balloon {
+			color:					#666;
+			*color:					#999;
+			opacity:				0.7;
+			-moz-opacity:			0.7;			
+			
+			font-size:				12px;
+			font-weight:			normal;
+			text-decoration:		none;
+			line-height:			1.3em;
+					
+			padding:				8px;
+			margin-left:			-9px;
+			position:				absolute;
+			bottom:					52px;
+			display:				block;
+			
+			border-radius:			5px;
+			-moz-border-radius:		5px;
+			-opera-border-radius:	5px;
+			-webkit-border-radius:	5px;
+
+			background-color:		#e3e3e3;
+			background/*\**/:		transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAAK/INwWK6QAAAANQTFRF4+PjQI5AzgAAAAF0Uk5TsxKOOlAAAAASSURBVHheBcCBCAAAAACg/amPAAIAAXQ7UkcAAAAASUVORK5CYII=")\9;
+			*background-color:		#e8e8e8;
 		}
 
-		.pbDisplay010-Container .balloon:active,
-		.pbDisplay010-Container_ieJsEnable .balloon:active {
-			outline:			0;
+		.ActiveX-Enabled .pbDisplay010-Container .balloon {
+			*background-color:		#e3e3e3;
+			*color:					#666;
+			*filter:				alpha(opacity=70); /* content don't work, when filter working @ie8 */
 		}
-		:focus { outline: 0;}
 		
-		.pbDisplay010-Container .balloon br,
-		.pbDisplay010-Container_ieJsEnable .balloon br { display: block !important;}
-		
-		.pbDisplay010-Container .balloon .arrow,
-		.pbDisplay010-Container_ieJsEnable .balloon .arrow {
-			width:				0; 
-			height:				0;
-			*width:				8px; 
-			*height:			8px;
-			line-height:		0;
-			border-top:			8px solid #e3e3e3;
-			border-left:		8px solid transparent; /* csr00-05 left csr06-11 right 少しづつ上下にずらす */
-			_border-left:		8px solid #B0C86E;
-			position:			absolute;
-			bottom:				-8px;
-			_bottom:			-12px;
-			opacity:			0.7;
-			filter:				alpha(opacity=70);
-			-ms-filter:			alpha(opacity=70);
-			left:				10px;
-			zoom:				1;
-			overflow:			visible;
+	/* arrow ie8 & modern browser */
+		.pbDisplay010-Container .balloon:after {
+			content:				".";
+			width:					0; 
+			height:					0;
+			position:				absolute;
+			bottom:					-8px;
+			left:					13px;	/* 少しづつ上下にずらす */			
+			border-top:				8px solid #e3e3e3;
+			border-right:			8px solid transparent;
+			border-top-color/*\**/:	#D2D9BF\9; /* pb-GREEN + 70%_#E3E3E3 */
 		}
-
+		
+	/* arrow for ie5.5,6,7 */
+		.pbDisplay010-Container .balloon {
+			*padding-left:			0;
+			*bottom:				44px;
+			_bottom:				63px;
+			*margin-left:			4px;
+			*border-left:			8px solid #e8e8e8;
+			*border-right:			1px solid #ccc;
+			*border-bottom:			8px solid transparent;
+			_border-bottom-color:	#fff;
+		}
+		
+	/* hover */
 		.pbDisplay010-Container .balloon:hover,
-		.pbDisplay010-Container_ieJsEnable .balloon:hover,
-		.pbDisplay010-Container .balloon:hover .arrow,
-		.pbDisplay010-Container_ieJsEnable .balloon:hover .arrow {
-			color:				#000;
-			opacity:			0.99;
-			filter:				alpha(opacity=99);
-			-ms-filter:			alpha(opacity=99);
-			z-index:			999;
+		.pbDisplay010-Container .balloon:active,
+		.pbDisplay010-Container .balloon:focus {
+			outline:				0;
+			color:					#000;
+			opacity:				0.9;
+			-moz-opacity:			0.9;
+			z-index:				999;
+			background-color:		#e3e3e3; /* for ie */
+			*border-left-color:		#e3e3e3;
+			box-shadow:				2px 2px 3px #030D31;
+			-moz-box-shadow:		2px 2px 3px #030D31;
+			-opera-box-shadow:		2px 2px 3px #030D31;
+			-webkit-box-shadow:		2px 2px 3px #030D31;
 		}
-
-		.pbDisplay010-Container .balloon:hover .arrow,
-		.pbDisplay010-Container_ieJsEnable .balloon:hover .arrow {
-			z-index:			9999;
-		}
-
+		.pbDisplay010-Container .balloon:hover { z-index: 9999;}
+		
+		.ActiveX-Enabled .pbDisplay010-Container .balloon:hover,
+		.ActiveX-Enabled .pbDisplay010-Container .balloon:active,
+		.ActiveX-Enabled .pbDisplay010-Container .balloon:focus { *filter: alpha(opacity=90);}
+		
+	/* */	
+		.pbDisplay010-Container .balloon br { display: block !important;} /* override display:none */
+		
 		.pbDisplay010-Container .CSR00 {left:19px !important}
 		.pbDisplay010-Container .CSR01 {left:33px !important}
 		.pbDisplay010-Container .CSR02 {left:47px !important}
@@ -82,50 +99,78 @@
 		.pbDisplay010-Container .CSR10 {left:159px !important}
 		.pbDisplay010-Container .CSR11 {left:173px !important}
 		
-		.pbDisplay010-Container_ieJsEnable .CSR00 {left:19px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR01 {left:33px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR02 {left:47px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR03 {left:61px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR04 {left:75px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR05 {left:89px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR06 {left:103px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR07 {left:117px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR08 {left:131px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR09 {left:145px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR10 {left:159px !important}
-		.pbDisplay010-Container_ieJsEnable .CSR11 {left:173px !important}
-		
 	</style>
 </head>
-<body>
- 
 
-<div class="pbDisplay010-Container PB-120" style="margin-top:50px;">
- <div class="pbDisplay010">
-  <span class="shift">S</span>
-  <span class="run">RUN</span>
-  <span class="deg">DEG</span>
-  <br>
-  <samp class="CSR00 chr20">A</samp>
-  <samp class="CSR01 chr51">r</samp>
-  <samp class="CSR02 chr44">e</samp>
-  <samp class="CSR04 chr38">Y</samp>
-  <samp class="CSR05 chr4E">o</samp>
-  <samp class="CSR06 chr54">u</samp>
-  <samp class="CSR08 chr2F">P</samp>
-  <samp class="CSR09 chr21">B</samp>
-  <samp class="CSR10 chr5C">?</samp>
-  <samp class="CSR11 chrCS">_</samp>
- </div>
-  <a href="#" class="balloon CSR00">
-   Hello! PB!!<br>III
-   <span class="arrow"><span class="tooltipAngleInner"></span></span>
-  </a>
-   <a href="#" class="balloon CSR04">
-   GoGoGoGoGo--.
-   <span class="arrow"><span class="tooltipAngleInner"></span></span>
-  </a>
-</div>
+<body class='activeX'>
+
+	<div class="pbDisplay010-Container PB-120" style="margin-top:50px;">
+		<div class="pbDisplay010">
+			<span class="shift">S</span>
+			<span class="run">RUN</span>
+			<span class="deg">DEG</span>
+			<samp class="CSR00 chr20">A</samp>
+			<samp class="CSR01 chr51">r</samp>
+			<samp class="CSR02 chr44">e</samp>
+			<samp class="CSR04 chr38">Y</samp>
+			<samp class="CSR05 chr4E">o</samp>
+			<samp class="CSR06 chr54">u</samp>
+			<samp class="CSR08 chr2F">P</samp>
+			<samp class="CSR09 chr21">B</samp>
+			<samp class="CSR10 chr5C">?</samp>
+			<samp class="CSR11 chrCS">_</samp>
+		</div>
+		<a href="#" class="balloon CSR00">Hello! PB!!<br>III</a>
+		<a href="#" class="balloon CSR04">GoGoGoGoGo</a>
+	</div>
+	
+	<div style="float:left;margin:2em 0 0 0;">
+		<div class="pbDisplay010-Container">
+			<div class="pbDisplay010">
+				<span class="run">RUN</span>
+				<span class="deg">DEG</span>
+				<span class="CSR00 chr79">■</span>
+				<span class="CSR01 chrCS op1">_</span>
+				<span class="CSR01 chr79 op9">■</span>
+				<span class="CSR02 chrCS op2">_</span>
+				<span class="CSR02 chr79 op8">■</span>
+				<span class="CSR03 chrCS op3">_</span>
+				<span class="CSR03 chr79 op7">■</span>
+				<span class="CSR04 chrCS op4">_</span>
+				<span class="CSR04 chr79 op6">■</span>
+				<span class="CSR05 chrCS op5">_</span>
+				<span class="CSR05 chr79 op5">■</span>
+				<span class="CSR06 chrCS op6">_</span>
+				<span class="CSR06 chr79 op4">■</span>
+				<span class="CSR07 chrCS op7">_</span>
+				<span class="CSR07 chr79 op3">■</span>
+				<span class="CSR08 chrCS op8">_</span>
+				<span class="CSR08 chr79 op2">■</span>
+				<span class="CSR09 chrCS op9">_</span>
+				<span class="CSR09 chr79 op1">■</span>
+				<span class="CSR10 chrCS">_</span>
+			</div>
+			<a href="#" class="balloon CSR00">Hello! PB!!<br>III</a>
+			<a href="#" class="balloon CSR04">GoGoGoGoGo----------------------------------</a>
+		</div>
+	</div>
+	
+	<!--[if lt IE 9]>
+		<script language="JavaScript">
+			(function(){
+				//http://allabout.co.jp/gm/gc/24117/2/
+				//window.onloadを待たずにDOM処理を開始する
+				var	b = document.body || (function(){document.write('<body>');return document.body;})(),
+					x = (function(){
+						try {var t = new ActiveXObject('DXImageTransform.Microsoft.gradient');}catch(e){}
+						return t ? 'ActiveX-Enabled' : null;
+					})();
+				if( x && !b.className.match(x)){
+					b.className += ( b.className.length === 0 ? '' : ' ') +x;
+				}
+			})();
+		</script>
+	<![endif]-->
 
 </body>
 </html>
