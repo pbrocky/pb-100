@@ -216,13 +216,9 @@ select{
 
 
 .printline span{
-		width:5px;/*_width:7px;*/
-		height:7px;
-		font-size:7px;line-height:7px;
-		border-top:3px solid #fff;
-		border-bottom:3px solid #fff;
-		border-right:1px solid #fff;
-		border-left:1px solid #fff;
+		width:7px;
+		height:13px;
+		font-size:13px;line-height:13px;
 		background-image:url(pbfont_mini_black.gif);
 		background-repeat: no-repeat;
 		display:block;
@@ -233,130 +229,130 @@ select{
 .tab5 { width: 33px !important;}
 .tab6 {	width: 40px !important;}
 
-.chr00	{background-position:0 0}
-.chr01	{background-position:0 -10px}
-.chr02	{background-position:0 -20px}
-.chr03	{background-position:0 -30px}
-.chr04	{background-position:0 -40px}
-.chr05	{background-position:0 -50px}
-.chr06 	{background-position:0 -60px}
-.chr07	{background-position:0 -70px}
-.chr08	{background-position:0 -80px}
-.chr09	{background-position:0 -90px}
-.chr0A	{background-position:0 -100px}
-.chr0B	{background-position:0	-110px}
-.chr0C	{background-position:0	-120px}
-.chr0D	{background-position:0	-130px}
-.chr0E	{background-position:0	-140px}
-.chr0F	{background-position:0	-150px}
-.chr10	{background-position:0	-160px}
-.chr11	{background-position:0	-170px}
-.chr12	{background-position:0	-180px}
-.chr13	{background-position:0	-190px}
-.chr14	{background-position:0	-200px}
-.chr15	{background-position:0	-210px}
-.chr16	{background-position:0	-220px}
-.chr17	{background-position:0	-230px}
-.chr18	{background-position:0	-240px}
-.chr19	{background-position:0	-250px}
-.chr1A	{background-position:0	-260px}
-.chr1B	{background-position:0	-270px}
-.chr1C	{background-position:0	-280px}
-.chr1D	{background-position:0	-290px}
-.chr1E	{background-position:0	-300px}
-.chr1F	{background-position:0	-310px}
-.chr20	{background-position:0	-320px}
-.chr21	{background-position:0	-330px}
-.chr22	{background-position:0	-340px}
-.chr23	{background-position:0	-350px}
-.chr24	{background-position:0	-360px}
-.chr25	{background-position:0	-370px}
-.chr26	{background-position:0	-380px}
-.chr27	{background-position:0	-390px}
-.chr28	{background-position:0	-400px}
-.chr29	{background-position:0	-410px}
-.chr2A	{background-position:0	-420px}
-.chr2B	{background-position:0	-430px}
-.chr2C	{background-position:0	-440px}
-.chr2D	{background-position:0	-450px}
-.chr2E	{background-position:0	-460px}
-.chr2F	{background-position:0	-470px}
-.chr30	{background-position:0	-480px}
-.chr31	{background-position:0	-490px}
-.chr32	{background-position:0	-500px}
-.chr33	{background-position:0	-510px}
-.chr34	{background-position:0	-520px}
-.chr35	{background-position:0	-530px}
-.chr36	{background-position:0	-540px}
-.chr37	{background-position:0	-550px}
-.chr38	{background-position:0	-560px}
-.chr39	{background-position:0	-570px}
+.chr00	{background-position:1px 0}
+.chr01	{background-position:1px -10px}
+.chr02	{background-position:1px -20px}
+.chr03	{background-position:1px -30px}
+.chr04	{background-position:1px -40px}
+.chr05	{background-position:1px -50px}
+.chr06 	{background-position:1px -60px}
+.chr07	{background-position:1px -70px}
+.chr08	{background-position:1px -80px}
+.chr09	{background-position:1px -90px}
+.chr0A	{background-position:1px -100px}
+.chr0B	{background-position:1px	-110px}
+.chr0C	{background-position:1px	-120px}
+.chr0D	{background-position:1px	-130px}
+.chr0E	{background-position:1px	-140px}
+.chr0F	{background-position:1px	-150px}
+.chr10	{background-position:1px	-160px}
+.chr11	{background-position:1px	-170px}
+.chr12	{background-position:1px	-180px}
+.chr13	{background-position:1px	-190px}
+.chr14	{background-position:1px	-200px}
+.chr15	{background-position:1px	-210px}
+.chr16	{background-position:1px	-220px}
+.chr17	{background-position:1px	-230px}
+.chr18	{background-position:1px	-240px}
+.chr19	{background-position:1px	-250px}
+.chr1A	{background-position:1px	-260px}
+.chr1B	{background-position:1px	-270px}
+.chr1C	{background-position:1px	-280px}
+.chr1D	{background-position:1px	-290px}
+.chr1E	{background-position:1px	-300px}
+.chr1F	{background-position:1px	-310px}
+.chr20	{background-position:1px	-320px}
+.chr21	{background-position:1px	-330px}
+.chr22	{background-position:1px	-340px}
+.chr23	{background-position:1px	-350px}
+.chr24	{background-position:1px	-360px}
+.chr25	{background-position:1px	-370px}
+.chr26	{background-position:1px	-380px}
+.chr27	{background-position:1px	-390px}
+.chr28	{background-position:1px	-400px}
+.chr29	{background-position:1px	-410px}
+.chr2A	{background-position:1px	-420px}
+.chr2B	{background-position:1px	-430px}
+.chr2C	{background-position:1px	-440px}
+.chr2D	{background-position:1px	-450px}
+.chr2E	{background-position:1px	-460px}
+.chr2F	{background-position:1px	-470px}
+.chr30	{background-position:1px	-480px}
+.chr31	{background-position:1px	-490px}
+.chr32	{background-position:1px	-500px}
+.chr33	{background-position:1px	-510px}
+.chr34	{background-position:1px	-520px}
+.chr35	{background-position:1px	-530px}
+.chr36	{background-position:1px	-540px}
+.chr37	{background-position:1px	-550px}
+.chr38	{background-position:1px	-560px}
+.chr39	{background-position:1px	-570px}
 
-.chr40	{background-position:0	-640px}
-.chr41	{background-position:0	-650px}
-.chr42	{background-position:0	-660px}
-.chr43	{background-position:0	-670px}
-.chr44	{background-position:0	-680px}
-.chr45	{background-position:0	-690px}
-.chr46	{background-position:0	-700px}
-.chr47	{background-position:0	-710px}
-.chr48	{background-position:0	-720px}
-.chr49	{background-position:0	-730px}
-.chr4A	{background-position:0	-740px}
-.chr4B	{background-position:0	-750px}
-.chr4C	{background-position:0	-760px}
-.chr4D	{background-position:0	-770px}
-.chr4E	{background-position:0	-780px}
-.chr4F	{background-position:0	-790px}
-.chr50	{background-position:0	-800px}
-.chr51	{background-position:0	-810px}
-.chr52	{background-position:0	-820px}
-.chr53	{background-position:0	-830px}
-.chr54	{background-position:0	-840px}
-.chr55	{background-position:0	-850px}
-.chr56	{background-position:0	-860px}
-.chr57	{background-position:0	-870px}
-.chr58	{background-position:0	-880px}
-.chr59	{background-position:0	-890px}
+.chr40	{background-position:1px	-640px}
+.chr41	{background-position:1px	-650px}
+.chr42	{background-position:1px	-660px}
+.chr43	{background-position:1px	-670px}
+.chr44	{background-position:1px	-680px}
+.chr45	{background-position:1px	-690px}
+.chr46	{background-position:1px	-700px}
+.chr47	{background-position:1px	-710px}
+.chr48	{background-position:1px	-720px}
+.chr49	{background-position:1px	-730px}
+.chr4A	{background-position:1px	-740px}
+.chr4B	{background-position:1px	-750px}
+.chr4C	{background-position:1px	-760px}
+.chr4D	{background-position:1px	-770px}
+.chr4E	{background-position:1px	-780px}
+.chr4F	{background-position:1px	-790px}
+.chr50	{background-position:1px	-800px}
+.chr51	{background-position:1px	-810px}
+.chr52	{background-position:1px	-820px}
+.chr53	{background-position:1px	-830px}
+.chr54	{background-position:1px	-840px}
+.chr55	{background-position:1px	-850px}
+.chr56	{background-position:1px	-860px}
+.chr57	{background-position:1px	-870px}
+.chr58	{background-position:1px	-880px}
+.chr59	{background-position:1px	-890px}
 
-.chr5A	{background-position:0	-900px}
-.chr5B	{background-position:0	-910px}
+.chr5A	{background-position:1px	-900px}
+.chr5B	{background-position:1px	-910px}
 
-.chr5C	{background-position:0	-920px}
-.chr5D	{background-position:0	-930px}
-.chr5E	{background-position:0	-940px}
-.chr5F	{background-position:0	-950px}
-.chr60	{background-position:0	-960px}
-.chr61	{background-position:0	-970px}
-.chr62	{background-position:0	-980px}
-.chr63	{background-position:0	-990px}
-.chr64	{background-position:0	-1000px}
-.chr65	{background-position:0	-1010px}
-.chr66	{background-position:0	-1020px}
-.chr67	{background-position:0	-1030px}
-.chr68	{background-position:0	-1040px}
-.chr69	{background-position:0	-1050px}
-.chr6A	{background-position:0	-1060px}
-.chr6B	{background-position:0	-1070px}
-.chr6C	{background-position:0	-1080px}
-.chr6D	{background-position:0	-1090px}
-.chr6E	{background-position:0	-1100px}
-.chr6F	{background-position:0	-1110px}
-.chr70	{background-position:0	-1120px}
-.chr71	{background-position:0	-1130px}
-.chr72	{background-position:0	-1140px}
-.chr73	{background-position:0	-1150px}
-.chr74	{background-position:0	-1160px}
-.chr75	{background-position:0	-1170px}
-.chr76	{background-position:0	-1180px}
-.chr77	{background-position:0	-1190px}
-.chr78	{background-position:0	-1200px}
-.chr79	{background-position:0	-1210px}
-.chr7A	{background-position:0	-1220px}
-.chr7B	{background-position:0	-1230px}
+.chr5C	{background-position:1px	-920px}
+.chr5D	{background-position:1px	-930px}
+.chr5E	{background-position:1px	-940px}
+.chr5F	{background-position:1px	-950px}
+.chr60	{background-position:1px	-960px}
+.chr61	{background-position:1px	-970px}
+.chr62	{background-position:1px	-980px}
+.chr63	{background-position:1px	-990px}
+.chr64	{background-position:1px	-1000px}
+.chr65	{background-position:1px	-1010px}
+.chr66	{background-position:1px	-1020px}
+.chr67	{background-position:1px	-1030px}
+.chr68	{background-position:1px	-1040px}
+.chr69	{background-position:1px	-1050px}
+.chr6A	{background-position:1px	-1060px}
+.chr6B	{background-position:1px	-1070px}
+.chr6C	{background-position:1px	-1080px}
+.chr6D	{background-position:1px	-1090px}
+.chr6E	{background-position:1px	-1100px}
+.chr6F	{background-position:1px	-1110px}
+.chr70	{background-position:1px	-1120px}
+.chr71	{background-position:1px	-1130px}
+.chr72	{background-position:1px	-1140px}
+.chr73	{background-position:1px	-1150px}
+.chr74	{background-position:1px	-1160px}
+.chr75	{background-position:1px	-1170px}
+.chr76	{background-position:1px	-1180px}
+.chr77	{background-position:1px	-1190px}
+.chr78	{background-position:1px	-1200px}
+.chr79	{background-position:1px	-1210px}
+.chr7A	{background-position:1px	-1220px}
+.chr7B	{background-position:1px	-1230px}
 
-.PB-120 .chr32	{background-position:0	-590px}
-.PB-120 .chr67	{background-position:0	-600px}
-.PB-120 .chr69	{background-position:0	-610px}
-.PB-120 .chr6A	{background-position:0	-620px}
-.PB-120 .chr6B	{background-position:0	-630px}
+.PB-120 .chr32	{background-position:1px	-590px}
+.PB-120 .chr67	{background-position:1px	-600px}
+.PB-120 .chr69	{background-position:1px	-610px}
+.PB-120 .chr6A	{background-position:1px	-620px}
+.PB-120 .chr6B	{background-position:1px	-630px}
