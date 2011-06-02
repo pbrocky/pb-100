@@ -15,30 +15,30 @@
 <ul id="tabNavi">
 <!--  input  -->
 	<li id="input" class="focus">
-		<a href="#input" onclick="moveTab('input'); return false;" class="tab">input</a>
+		<a href="#input" onclick="pbListImageMaker.tab('input'); return false;" class="tab">input</a>
 		<div class="tabContent">
 			<form name="dataTypeSetting">
 				<div class="caption">File Type</div>
 				<div class="u" style="width:400px;">
-					<input type="radio" name="dataType" value="basic" onclick="changeTextareaDemo('basic')" id="basic" checked="checked" />
+					<input type="radio" name="dataType" value="basic" onclick="pbListImageMaker.changeSample('basic')" id="basic" checked="checked" />
 						<label for="basic">BASIC</label>
-					<input type="radio" name="dataType" value="databank" onclick="changeTextareaDemo('databank')" id="databank" />
+					<input type="radio" name="dataType" value="databank" onclick="pbListImageMaker.changeSample('databank')" id="databank" />
 						<label for="databank">DATA BANK</label>
-					<input type="radio" name="dataType" value="values" onclick="changeTextareaDemo('value')" id="values" />
+					<input type="radio" name="dataType" value="values" onclick="pbListImageMaker.changeSample('value')" id="values" />
 						<label for="values">Value Table</label>
-					<input type="radio" name="dataType" value="output" onclick="changeTextareaDemo('output')" id="output" />
+					<input type="radio" name="dataType" value="output" onclick="pbListImageMaker.changeSample('output')" id="output" />
 						<label for="output">Program Output</label>
 				</div>
 			</form>
 			<input value="Title" type="text" id="listTitle" /><br>
-			<textarea rows=20 name="input" id="listTextarea" onclick="editStart()" style="font-size:14px">
+			<textarea rows=20 name="input" id="listTextarea" onclick="pbListImageMaker.editStart()" style="font-size:14px">
 Wellcome to PB List Maker!
 			</textarea>
 		</div>
 	</li>
 <!--  Preview  -->
 	<li id="preview">
-		<a href="#preview" onclick="moveTab('preview'); return false;" class="tab">Preview</a>
+		<a href="#preview" onclick="pbListImageMaker.tab('preview'); return false;" class="tab">Preview</a>
 		<div class="tabContent">
 			<form name="outputSetting">
 				<table width="400">
@@ -46,18 +46,18 @@ Wellcome to PB List Maker!
 						<td width="200">
 							<div class="caption">Charactor Set</div>
 							<div class="u">
-								<input type="radio" name="fontSet" value="PB-100" onclick="setFontSet('PB-100')" id="PB-100" checked="checked" />
+								<input type="radio" name="fontSet" value="PB-100" onclick="pbListImageMaker.setting.setFontSet('PB-100')" id="PB-100" checked="checked" />
 									<label for="PB-100">PB-100</label>
-								<input type="radio" name="fontSet" value="PB-120" onclick="setFontSet('PB-120')" id="PB-120" />
+								<input type="radio" name="fontSet" value="PB-120" onclick="pbListImageMaker.setting.setFontSet('PB-120')" id="PB-120" />
 									<label for="PB-120">PB-120</label>
 							</div>							
 						</td>
 						<td>
 							<div class="caption">Printer</div>
 							<div class="u">
-								<input type="radio" name="printer" value="FP-12T" onclick="setPrinter('FP-12T')" id="FP-12T" checked="checked" />
+								<input type="radio" name="printer" value="FP-12T" onclick="pbListImageMaker.setting.setPrinter('FP-12T')" id="FP-12T" checked="checked" />
 									<label for="FP-12T">FP-12T</label>
-								<input type="radio" name="printer" value="FP-40T" onclick="setPrinter('FP-40T')" id="FP-40T" />
+								<input type="radio" name="printer" value="FP-40T" onclick="pbListImageMaker.setting.setPrinter('FP-40T')" id="FP-40T" />
 									<label for="FP-40T">FP-40T</label>
 							</div>							
 						</td>
@@ -66,9 +66,9 @@ Wellcome to PB List Maker!
 						<td>
 							<div class="caption">Desine</div>
 							<div class="u">
-								<input type="radio" name="desine" value="magazine" onclick="setDesine('magazine')" id="magazine" checked="checked" />
+								<input type="radio" name="desine" value="magazine" onclick="pbListImageMaker.setting.setDesine('magazine')" id="magazine" checked="checked" />
 									<label for="magazine">Magazine Style</label>
-								<input type="radio" name="desine" value="printer" onclick="setDesine('printer')" id="printer" />
+								<input type="radio" name="desine" value="printer" onclick="pbListImageMaker.setting.setDesine('printer')" id="printer" />
 									<label for="printer">Print Style</label>
 							</div>							
 						</td>
@@ -76,7 +76,7 @@ Wellcome to PB List Maker!
 							<div id='selectMagazine'>
 								<div class="caption">Magazine</div>
 								<div class="u">
-									 <select name="selectMagazine" onclick="setMagazin()">
+									 <select name="selectMagazine" onclick="pbListImageMaker.setting.setMagazin()">
 										<option value="style_pj" selected>ポケコンジャーナル風</option>
 										<option value="style_bm">マイコンBASICマガジン</option>
 										<option value="style_pp">プログラムポシェット</option>
@@ -90,14 +90,14 @@ Wellcome to PB List Maker!
 						<td id='sheetCount'>							
 							<div class="caption">Sheets</div>
 							<div class="u">
-								 <select name="sheetCountFP12" onclick="setSheetCount()" id="useFP-12T"><!-- FP-12T -->
+								 <select name="sheetCountFP12" onclick="pbListImageMaker.setting.setSheetCount()" id="useFP-12T"><!-- FP-12T -->
 									<option value="1">1 Sheet</option>
 									<option value="2">2 sheets</option>
 									<option value="3" selected>3 sheets</option>
 									<option value="4">4 sheets</option>
 									<option value="5">5 sheets</option>
 								</select>
-								<select name="sheetCountFP40" onclick="setSheetCount()" id="useFP-40T"><!-- FP-40T -->
+								<select name="sheetCountFP40" onclick="pbListImageMaker.setting.setSheetCount()" id="useFP-40T"><!-- FP-40T -->
 									<option value="1" selected>1 Sheet</option>
 									<option value="2">2 sheets</option>
 								</select>
@@ -106,7 +106,7 @@ Wellcome to PB List Maker!
 						<td>
 							<div class="caption">Count Program Steps</div>
 							<div class="u">
-								<input type="checkbox" name="countSteps" value="enable" onclick="changeCountSteps( this.value)" id="countSteps" />
+								<input type="checkbox" name="countSteps" value="enable" onclick="pbListImageMaker.setting.changeCountSteps( this.value)" id="countSteps" />
 									<label for="countSteps">Enable</label>
 							</div>
 						</td>	
@@ -126,7 +126,7 @@ Wellcome to PB List Maker!
 	</li>
 <!--  PB-SIM  -->
 	<li id="embed">
-		<a href="#embed" onclick="moveTab('embed'); return false;" class="tab">PB-Sim</a>
+		<a href="#embed" onclick="pbListImageMaker.tab('embed'); return false;" class="tab">PB-Sim</a>
 		<div class="tabContent">
 			<h2>File Name</h2>
 			<input type="text" value="file name">
@@ -138,7 +138,7 @@ Wellcome to PB List Maker!
 	</li>
 <!--  html  -->
 	<li id="html">
-		<a href="#html" onclick="moveTab('html'); return false;" class="tab">HTML</a>
+		<a href="#html" onclick="pbListImageMaker.tab('html'); return false;" class="tab">HTML</a>
 		<div class="tabContent">
 			<h2>Get HTML</h2>
 			<textarea rows=20 cols=62 id="getHtml" onclick="this.focus(); this.select();"></textarea>
@@ -146,7 +146,7 @@ Wellcome to PB List Maker!
 	</li>
 <!--  help  -->
 	<li id="help" style="width:24px;">
-		<a href="#help" onclick="moveTab('help'); return false;" class="tab">?</a>
+		<a href="#help" onclick="pbListImageMaker.tab('help'); return false;" class="tab">?</a>
 		<div class="tabContent">
 			<h2>help</h2>
 			<p>
@@ -156,7 +156,7 @@ Wellcome to PB List Maker!
 	</li>
 <!--  information  -->
 	<li id="infomation" style="width:24px;">
-		<a href="#information" onclick="moveTab('infomation'); return false;" class="tab">i</a>
+		<a href="#information" onclick="pbListImageMaker.tab('infomation'); return false;" class="tab">i</a>
 		<div class="tabContent">
 			<h2>PB List Image Maker ver0.1.0</h2>
 			<p>
