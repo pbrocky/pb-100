@@ -1,20 +1,20 @@
 /**
  *  PB List Image Maker main.js
  * 
- *  version 0.21
+ *  version 0.22
  * 
  * -- Tested browser --
  * 
  * -- history --
  *  v0.21
- *    fixed. >> c += printLine.replace( 'タ', '').length;
+ *    fixed. >> c += printLine.replace( TAB_CODE, '').length;
  *    rewright to class-style.
  * 
  * 
  */
 
 	var pbListImageMaker = ( function(){
-		var linefeedCode = '';
+		var linefeedCode, TAB_CODE = '\t';
 		
 		var steps = 0;
 		var numSeparete = 3;
@@ -213,9 +213,9 @@
 						printLine = parseInt( lineString) > 0 ? // 行番号で始まる
 									c === 0 ? 
 										lineString.substr( 0, ( !isFP40T) ? 20 : 40) : //一行を20(40)文字づつに分ける
-										'タ' + lineString.substr( c, ( !isFP40T) ? 15 : 34) : //一行を20(40)文字づつに分けて、5(6)マス分のtabも追加
+										TAB_CODE + lineString.substr( c, ( !isFP40T) ? 15 : 34) : //一行を20(40)文字づつに分けて、5(6)マス分のtabも追加
 									lineString.substr( c, ( !isFP40T) ? 20 : 40)// 行番号で始まらない
-						c += printLine.replace( 'タ', '').length;
+						c += printLine.replace( TAB_CODE, '').length;
 						
 						objline = ORIGIN_LINE_ELM.cloneNode( true);
 						n = printLine.length;
@@ -283,7 +283,7 @@
 							ret.appendChild( document.createTextNode( String.fromCharCode(9827)));break;
 						case "ダ":
 							ret.appendChild( document.createTextNode( String.fromCharCode(9830)));break;
-						case "タ":
+						case TAB_CODE:
 							chr = '\t';
 						default:
 							ret.appendChild( document.createTextNode( chr));					
@@ -294,7 +294,7 @@
 						var h = '0123456789ABCDEF';
 						ret.className = 'chr' +h.charAt( x /16) +h.charAt( x %16);
 						
-					} else if( chr === '\t'){
+					} else if( chr === TAB_CODE){
 						ret.className = ( isFP40T === false) ? 'tab5' : 'tab6';
 					} else {
 						ret.className = 'none';
@@ -309,6 +309,13 @@
 
 /*
  * PB List Class
+ * 
+ * - example -
+ *  listArray = [ '10 VAC', '20 A=10:PRINT A;']
+ *  
+ *  getFormattedList:
+ *    Insert(delete) Space looks like Output by FP-12T(FP-40T). 
+ * 
  */
 
 	var pbListFactory = function( _listArray){
@@ -392,26 +399,26 @@
 				for (var j = 0; j < m; j++) {
 					chr = lineString.charAt( j);
 					if (outOfQuot === true) { // ダブルコーテーション外の場合、不等号記号の置き換え、スペースの削除
-						switch ( chr + lineString.charAt( j + 1)) {
+						switch ( lineString.substr( j, 2)) {
 							case '>=':
 							case '=>':
 								chr = "≧";
-								i++;
+								j++;
 								break;
 							case '<=':
 							case '=<':
 								chr = "≦";
-								i++;
+								j++;
 								break;
 							case '<>':
 							case '><':
 							case '!=':
 								chr = "≠";
-								i++;
+								j++;
 								break;
 							case '==':
 								chr = '=';
-								i++;
+								j++;
 								break;
 						}
 						chr = (chr === ' ') ? '' : chr;
@@ -481,4 +488,4 @@
 /* ------------------------------------------
  DOM Ready 
 ------------------------------------------ */
-$(document).ready( pbListImageMaker.init);
+	$(document).ready( pbListImageMaker.init);
