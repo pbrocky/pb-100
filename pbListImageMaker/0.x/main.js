@@ -1,12 +1,12 @@
 /**
  *  PB List Image Maker main.js
  * 
- *  version 0.22
+ *  version 0.2.3
  * 
  * -- Tested browser --
  * 
  * -- history --
- *  v0.21
+ *  v0.2.1
  *    fixed. >> c += printLine.replace( TAB_CODE, '').length;
  *    rewright to class-style.
  * 
@@ -17,7 +17,7 @@
 		var linefeedCode, TAB_CODE = '\t';
 		
 		var steps = 0;
-		var numSeparete = 3;
+		var numPartition  = 3;
 		var isFP40T = false;
 		var editStarted = false;
 		var countSteps = true;
@@ -113,15 +113,15 @@
 				setSheetCount: function (){
 					var o = document.outputSetting;
 					if( $('#outputPrinter').hasClass( 'FP-12T')){
-						numSeparete = o.sheetCountFP12.selectedIndex +1;
+						numPartition  = o.sheetCountFP12.selectedIndex +1;
 						isFP40T = false;
 					}
 					if( $('#outputPrinter').hasClass( 'FP-40T')){
-						numSeparete = o.sheetCountFP40.selectedIndex +1;
+						numPartition  = o.sheetCountFP40.selectedIndex +1;
 						isFP40T = true;
 					}
 					$('#outputSheetCount').removeClass();
-					$('#outputSheetCount').addClass( 'separeteNum'+numSeparete);
+					$('#outputSheetCount').addClass( 'separeteNum'+numPartition );
 					
 					pbListImageMaker.text2pbfont();
 				},
@@ -163,8 +163,8 @@
 				var sheetIndex = steps = 0; // Stepの初期化
 				var numLine = 0;
 				
-				var objlist = document.createElement( 'DIV');
-				var objline, objSheet;
+				var _listElm = document.createElement( 'DIV');
+				var printLineElm, sheetElm;
 	
 			/*
 			 * spacer, line, sheet
@@ -184,7 +184,7 @@
 			 */	
 				list.setList( $('#listTextarea').val().split( linefeedCode));//行に区切る line[]に格納
 				var formattedList = list.getFormattedList();
-				var REG_PROGRAM_AREA = /^[<\[\{]?P{\d}[>\]\}]?/i;
+				var REG_PROGRAM_AREA = /^\[?P\d\]?/i;
 				var i,l = formattedList.length, m, n;
 				var lineString, printLine;
 				
@@ -193,7 +193,7 @@
 					
 					//プログラムエリアの上に空き行（一番↑以外）
 					if ( lineString.match( REG_PROGRAM_AREA) && i !== 0){
-						objlist.appendChild( ORIGN_SPACER_ELM.cloneNode( true));
+						_listElm.appendChild( ORIGN_SPACER_ELM.cloneNode( true));
 						numLine++;
 					}
 					
@@ -217,42 +217,39 @@
 									lineString.substr( c, ( !isFP40T) ? 20 : 40)// 行番号で始まらない
 						c += printLine.replace( TAB_CODE, '').length;
 						
-						objline = ORIGIN_LINE_ELM.cloneNode( true);
+						printLineElm = ORIGIN_LINE_ELM.cloneNode( true);
 						n = printLine.length;
 						for (var j = 0; j < n; j++) {
-							objline.appendChild( createPBCharElm( printLine.charAt( j)));//一文字格納
+							printLineElm.appendChild( createPBCharElm( printLine.charAt( j)));//一文字格納
 						}
-						objlist.appendChild( objline);//一行格納
+						_listElm.appendChild( printLineElm);//一行格納
 						numLine++;
-						objline = null;
+						printLineElm = null;
 					}
 				}
 			
 			//------------------------------------------
 			//	行をシートに配置
 			//------------------------------------------
-				var h = Math.floor( numLine /numSeparete) +( numLine %numSeparete === 0 ? 0 : 1);
+				var h = Math.floor( numLine /numPartition ) +( numLine %numPartition  === 0 ? 0 : 1);
 	
-				l = h * numSeparete;
+				l = h * numPartition ;
 				for (i=0; i<l; i++){
-					objline = objlist.childNodes[i];
-					
 					if ( h * sheetIndex === i){
-						objSheet = ORIGIN_SHEET_ELM.cloneNode( true);
+						sheetElm = ORIGIN_SHEET_ELM.cloneNode( true); // new sheet
 						if( i === 0){
-							objSheet.className += ' first';
+							sheetElm.className += ' first';
 						}			
-						outputBody.append( objSheet);
+						outputBody.append( sheetElm);
 						sheetIndex++;
 						
-						if( i < numLine && objline.className === ORIGN_SPACER_ELM.className){// 頭がspacerにならないようにする
-							objlist.removeChild( objline);
-							numLine--;			
-						}
+						if( i < numLine && _listElm.childNodes[i].className === ORIGN_SPACER_ELM.className){// 頭がspacerにならないようにする
+							_listElm.removeChild( _listElm.childNodes[ i]);
+							numLine--;	
+						}							
 					}
-					objSheet.appendChild(
-						(i < numLine ? objline : ORIGN_SPACER_ELM).cloneNode( true)
-					);
+					printLineElm = _listElm.childNodes[i] || ORIGN_SPACER_ELM;
+					sheetElm.appendChild( printLineElm.cloneNode( true));
 				}
 				
 			/*
@@ -263,34 +260,17 @@
 				
 				function createPBCharElm( chr){
 					var ret = document.createElement( 'SPAN');
+					ret.appendChild( document.createTextNode( chr.entitize()));
 					
-					switch( chr){
-						case "エ":
-							var sub = document.createElement( 'SUB');
-							sub.appendChild( document.createTextNode( 'E'));
-							ret.appendChild( sub);
-							break;
-						case "ェ":
-							var sub = document.createElement( 'SUB');
-							sub.appendChild( document.createTextNode( 'E-'));
-							ret.appendChild( sub);
-							break;
-						case "ス":
-							ret.appendChild( document.createTextNode( String.fromCharCode(9824)));break;
-						case "ハ":
-							ret.appendChild( document.createTextNode( String.fromCharCode(9829)));break;
-						case "ク":
-							ret.appendChild( document.createTextNode( String.fromCharCode(9827)));break;
-						case "ダ":
-							ret.appendChild( document.createTextNode( String.fromCharCode(9830)));break;
-						case TAB_CODE:
-							chr = '\t';
-						default:
-							ret.appendChild( document.createTextNode( chr));					
-					}
-					
-					var x = chara_table.indexOf( chr, 0);
-					if ( x > 0) {
+					var x = ( function(){
+						for(var i=0; i<chara_table.length; i++){
+							if( chara_table[ i] === chr){
+								return i;
+							}
+						}
+						return -1;
+					})();
+					if ( x > -1) {
 						var h = '0123456789ABCDEF';
 						ret.className = 'chr' +h.charAt( x /16) +h.charAt( x %16);
 						
@@ -306,6 +286,22 @@
 		}
 	})();
 
+/*
+ * http://serennz.sakura.ne.jp/sb/log/eid73.html
+ */
+	String.prototype.entitize = function(){
+	  var str = "" + this;
+	  str = str.split("&").join("&amp;amp;")
+	  			.split("<").join("&amp;lt;")
+				.split(">").join("&amp;gt;")
+				.split('"').join("&amp;quot;");
+	  str = str.charCodeAt(0) === 92 ? "&amp;yen;" : str;
+	  str = str.charCodeAt(0) === 9824 ? "&amp;spades;" : str;
+	  str = str.charCodeAt(0) === 9827 ? "&amp;clubs;" : str;
+	  str = str.charCodeAt(0) === 9829 ? "&amp;hearts;" : str;
+	  str = str.charCodeAt(0) === 9830 ? "&amp;diams;" : str;
+	  return str;
+	}
 
 /*
  * PB List Class
@@ -323,7 +319,20 @@
 		var updated = true;
 		var formattedList;
 		
-		var CHARA_TABLE = " +-*/↑!”#$>≧=≦<≠0123456789.π)(ェエABCDEFGHIJKLMNOPQRSTUVWXYZ++++++abcdefghijklmnopqrstuvwxyz  ?,;:○∑°△@×÷ス←ハダクμΩ↓→%￥□[&_'・]■＼";
+		var CHARA_TABLE = [
+			' ',	'+',	'-',	'*',	'/',	'↑',	'!',	'"',	'#',	'$',	'>',	'≧',	'=',	'≦',	'<',	'≠',
+			'0',	'1',	'2',	'3',	'4',	'5',	'6',	'7',	'8',	'9',	'.',	'π',	')',	'(',	'~E-',	'~E',
+			'A',	'B',	'C',	'D',	'E',	'F',	'G',	'H',	'I',	'J',	'K',	'L',	'M',	'N',	'O',	'P',
+			'Q',	'R',	'S',	'T',	'U',	'V',	'W',	'X',	'Y',	'Z',	'',		'',		'',		'',		'',		'',
+			'a',	'b',	'c',	'd',	'e',	'f',	'g',	'h',	'i',	'j',	'k',	'l',	'm',	'n',	'o',	'p',
+			'q',	'r',	's',	't',	'u',	'v',	'w',	'x',	'y',	'z',	'',		'',		'?',	',',	';',	':',
+			'○',	'∑',	'°',	'△',	'@',	'×',	'÷',
+				String.fromCharCode(9824),	'←',	String.fromCharCode(9829),	String.fromCharCode(9830),	String.fromCharCode(9827),
+																											'μ',	'Ω',	'↓',	'→',
+			'%',	'￥',	'□',	'[',	'&',	'_',	"'",	'・',	']',	'■',	'＼'	
+		]
+		var CHARA_STRING = CHARA_TABLE.join( '');
+		var CHARA_QUOT = CHARA_TABLE[ 7];
 		var BASIC_TABLE = [
 			{ regexp:	/(FOR)/gi,		newstring: '$1 ',	t:	0, l: 3},// t:(command=0) or(function=1)
 			{ regexp:	/(NEXT)/gi,		newstring: '$1 ',	t:	0, l: 4},// l = length
@@ -388,8 +397,9 @@
 			formattedList = [];
 			var outOfQuot; // ダブルコーテーション外
 			var lineString, newLineString, chr;
-			var numLine, newLineSeparateByQuot, _newLineSeparateByQuot;
-			var i, j, l = listArray.length, m;
+			var numLine, newLineSplitByQuot, _newLineSplitByQuot;
+			var i, j, k, l = listArray.length, m, n = BASIC_TABLE.length;
+			var REG_SPACE_X2 = /  /;
 			
 			for (i = 0; i < l; i++) {
 				lineString = listArray[ i];
@@ -402,57 +412,54 @@
 						switch ( lineString.substr( j, 2)) {
 							case '>=':
 							case '=>':
-								chr = "≧";
+								chr = CHARA_TABLE[ 11]; // ≧
 								j++;
 								break;
 							case '<=':
 							case '=<':
-								chr = "≦";
+								chr = CHARA_TABLE[ 13]; // ≦
 								j++;
 								break;
 							case '<>':
 							case '><':
 							case '!=':
-								chr = "≠";
+								chr = CHARA_TABLE[ 15]; // ≠
 								j++;
 								break;
 							case '==':
-								chr = '=';
+								chr = CHARA_TABLE[ 12]; // =
 								j++;
 								break;
 						}
 						chr = (chr === ' ') ? '' : chr;
 					}
 					switch ( chr) {// ダブルクォーテーションの処理
-						case '"':
-							chr = "”";
 						case '”':
+							chr = CHARA_QUOT;
+						case CHARA_QUOT: // "
 							outOfQuot = !outOfQuot;
 							break;
-						case '\\':
-							chr = "￥";
-							break;
 						case '^':
-							chr = "↑";
+							chr = CHARA_TABLE[ 5]; // ↑
 							break;
 					}
-					newLineString += (CHARA_TABLE.indexOf(chr, 0) >= 0) ? chr : ''; // match( chr)
+					newLineString += ( CHARA_STRING.indexOf( chr, 0) >= 0) ? chr : ''; // match( chr)
 				}
 			/*
 			 * BASIC
 			 */				
-				newLineSeparateByQuot = newLineString.split('”');
-				m = newLineSeparateByQuot.length;
-				for (j = 0; j < m; j++) {
+				newLineSplitByQuot = newLineString.split( CHARA_QUOT);
+				m = newLineSplitByQuot.length;
+				for (j = 0; j<m; j++) {
 					if (j % 2 === 0) { // out of quot
-						_newLineSeparateByQuot = newLineSeparateByQuot[ j];
-						for (var k in BASIC_TABLE) {
-							_newLineSeparateByQuot = _newLineSeparateByQuot.replace( BASIC_TABLE[ k].regexp, BASIC_TABLE[ k].newstring);
+						_newLineSplitByQuot = newLineSplitByQuot[ j];
+						for ( k=0; k < n; k++) { // n = BASIC_TABLE.length
+							_newLineSplitByQuot = _newLineSplitByQuot.replace( BASIC_TABLE[ k].regexp, BASIC_TABLE[ k].newstring);
 						}
-						newLineSeparateByQuot[ j] = _newLineSeparateByQuot.replace( /  /, '');
+						newLineSplitByQuot[ j] = _newLineSplitByQuot.replace( REG_SPACE_X2, '');
 					}
 				}
-				formattedList.push( newLineSeparateByQuot.join( '”'));
+				formattedList.push( newLineSplitByQuot.join( CHARA_QUOT));
 			}
 			return formattedList;
 		}
