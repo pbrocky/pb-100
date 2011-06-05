@@ -6,6 +6,7 @@
  * -- Tested browser --
  * 
  * -- history --
+ * 
  *  v0.2.1
  *    fixed. >> c += printLine.replace( TAB_CODE, '').length;
  *    rewright to class-style.
@@ -185,42 +186,41 @@
 				list.setList( $('#listTextarea').val().split( linefeedCode));//行に区切る line[]に格納
 				var formattedList = list.getFormattedList();
 				var REG_PROGRAM_AREA = /^\[?P\d\]?/i;
-				var i,l = formattedList.length, m, n;
+				var i, j, k, l = formattedList.length, m, n, isBasicLine;
 				var lineString, printLine;
 				
 				for (i=0; i<l; i++){
 					lineString = formattedList[ i];
 					
-					//プログラムエリアの上に空き行（一番↑以外）
-					if ( lineString.match( REG_PROGRAM_AREA) && i !== 0){
+					if ( lineString.match( REG_PROGRAM_AREA) && i !== 0){//プログラムエリアの上に空き行（一番↑以外）
 						_listElm.appendChild( ORIGN_SPACER_ELM.cloneNode( true));
 						numLine++;
 					}
 					
 					m = parseInt( lineString);
-					if ( m > 0) {
+					isBasicLine = false;
+					if ( 0 < m && m < 10000) { // Max Line Number PB-100 < 1000, PB-120 < 10000
 						m = '' + m;
 						lineString = [
 							'    '.substr( 0, ( isFP40T ? 5 : 4) - m.length),// insert space before line-number.
 							m,
 							' ', // insert space after line-number.
 							lineString.substr( m.length)
-						].join( '');	
+						].join( '');
+						isBasicLine = true;	
 					}
 				
 					m = lineString.length;
-					for (var c = 0; c < m;){//印字行数分のループ
-						printLine = parseInt( lineString) > 0 ? // 行番号で始まる
-									c === 0 ? 
-										lineString.substr( 0, ( !isFP40T) ? 20 : 40) : //一行を20(40)文字づつに分ける
-										TAB_CODE + lineString.substr( c, ( !isFP40T) ? 15 : 34) : //一行を20(40)文字づつに分けて、5(6)マス分のtabも追加
-									lineString.substr( c, ( !isFP40T) ? 20 : 40)// 行番号で始まらない
-						c += printLine.replace( TAB_CODE, '').length;
+					for (var j = 0; j < m;){//印字行数分のループ
+						printLine = ( isBasicLine === true && j > 0) ?
+										TAB_CODE + lineString.substr( j, ( !isFP40T) ? 15 : 34) : //一行を15(34)文字づつに分けて、5(6)マス分のtabも追加
+										lineString.substr( j, ( !isFP40T) ? 20 : 40);
+						j += printLine.replace( TAB_CODE, '').length;
 						
 						printLineElm = ORIGIN_LINE_ELM.cloneNode( true);
 						n = printLine.length;
-						for (var j = 0; j < n; j++) {
-							printLineElm.appendChild( createPBCharElm( printLine.charAt( j)));//一文字格納
+						for (var k = 0; k < n; k++) {
+							printLineElm.appendChild( createPBCharElm( printLine.charAt( k)));//一文字格納
 						}
 						_listElm.appendChild( printLineElm);//一行格納
 						numLine++;
@@ -243,13 +243,12 @@
 						outputBody.append( sheetElm);
 						sheetIndex++;
 						
-						if( i < numLine && _listElm.childNodes[i].className === ORIGN_SPACER_ELM.className){// 頭がspacerにならないようにする
+						while( _listElm.childNodes[i] && _listElm.childNodes[i].className === ORIGN_SPACER_ELM.className){// 頭がspacerにならないようにする
 							_listElm.removeChild( _listElm.childNodes[ i]);
-							numLine--;	
-						}							
+							// numLine--;							
+						}
 					}
-					printLineElm = _listElm.childNodes[i] || ORIGN_SPACER_ELM;
-					sheetElm.appendChild( printLineElm.cloneNode( true));
+					sheetElm.appendChild( ( _listElm.childNodes[i] || ORIGN_SPACER_ELM).cloneNode( true));
 				}
 				
 			/*
@@ -257,7 +256,10 @@
 			 */
 				$('#outputTop').text( $('#listTitle').val())
 				$('#getHtml').val( $('#outputBody').html());
-				
+			
+			/*
+			 * Create PB Chara SPAN
+			 */	
 				function createPBCharElm( chr){
 					var ret = document.createElement( 'SPAN');
 					ret.appendChild( document.createTextNode( chr.entitize()));
