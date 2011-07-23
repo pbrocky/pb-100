@@ -1,7 +1,7 @@
 /**
  *  PB List Image Maker main.js
  * 
- *  version 0.2.3
+ *  version 0.2.31
  * 
  * -- Tested browser --
  * 
@@ -161,12 +161,13 @@
 				var outputBody = $('#outputBody');
 				outputBody.html( '');
 				
-				var sheetIndex = steps = 0; // Stepの初期化
+				var sheetIndex = 0;
 				var numLine = 0;
 				
 				var _listElm = document.createElement( 'DIV');
-				var printLineElm, sheetElm;
-	
+				var sheetElm;
+				
+				var HEX = '0123456789ABCDEF';
 			/*
 			 * spacer, line, sheet
 			 */			
@@ -181,13 +182,13 @@
 				ORIGIN_SHEET_ELM.className = 'sheet';
 				
 			/*
-			 * 
+			 * Printer Controler
 			 */	
 				list.setList( $('#listTextarea').val().split( linefeedCode));//行に区切る line[]に格納
 				var formattedList = list.getFormattedList();
 				var REG_PROGRAM_AREA = /^\[?P\d\]?/i;
 				var i, j, k, l = formattedList.length, m, n, isBasicLine;
-				var lineString, printLine;
+				var lineString, printLine, printLineElm;
 				
 				for (i=0; i<l; i++){
 					lineString = formattedList[ i];
@@ -211,7 +212,7 @@
 					}
 				
 					m = lineString.length;
-					for (var j = 0; j < m;){//印字行数分のループ
+					for ( j = 0; j < m;){//印字行数分のループ
 						printLine = ( isBasicLine === true && j > 0) ?
 										TAB_CODE + lineString.substr( j, ( !isFP40T) ? 15 : 34) : //一行を15(34)文字づつに分けて、5(6)マス分のtabも追加
 										lineString.substr( j, ( !isFP40T) ? 20 : 40);
@@ -219,7 +220,7 @@
 						
 						printLineElm = ORIGIN_LINE_ELM.cloneNode( true);
 						n = printLine.length;
-						for (var k = 0; k < n; k++) {
+						for ( k = 0; k < n; k++) {
 							printLineElm.appendChild( createPBCharElm( printLine.charAt( k)));//一文字格納
 						}
 						_listElm.appendChild( printLineElm);//一行格納
@@ -228,9 +229,9 @@
 					}
 				}
 			
-			//------------------------------------------
-			//	行をシートに配置
-			//------------------------------------------
+			//
+			// Print
+			//
 				var h = Math.floor( numLine /numPartition ) +( numLine %numPartition  === 0 ? 0 : 1);
 	
 				l = h * numPartition ;
@@ -259,7 +260,7 @@
 			
 			/*
 			 * Create PB Chara SPAN
-			 */	
+			 */
 				function createPBCharElm( chr){
 					var ret = document.createElement( 'SPAN');
 					ret.appendChild( document.createTextNode( chr.entitize()));
@@ -273,9 +274,7 @@
 						return -1;
 					})();
 					if ( x > -1) {
-						var h = '0123456789ABCDEF';
-						ret.className = 'chr' +h.charAt( x /16) +h.charAt( x %16);
-						
+						ret.className = 'chr' +HEX.charAt( x /16) +HEX.charAt( x %16);
 					} else if( chr === TAB_CODE){
 						ret.className = ( isFP40T === false) ? 'tab5' : 'tab6';
 					} else {
@@ -305,6 +304,22 @@
 	  return str;
 	}
 
+
+/*
+ * http://d.hatena.ne.jp/hir90/20080620/1213987444
+ */
+	String.prototype.repeat = function( str, num){
+		var ans = '';
+		if( num < 0) return 'error';
+		while( num){
+			if( num&1) ans += str;
+			num = num>>1;
+			str += str;
+		}
+		return ans;
+	}
+
+
 /*
  * PB List Class
  * 
@@ -312,14 +327,22 @@
  *  listArray = [ '10 VAC', '20 A=10:PRINT A;']
  *  
  *  getFormattedList:
- *    Insert(delete) Space looks like Output by FP-12T(FP-40T). 
+ *    Insert(delete) Space looks like Output by FP-12T(FP-40T).
+ *    
+ *  getCodeHilightMap:
+ *  
+ *  getIntermediateCode
+ *  
+ *  getTotalSteps:
+ *    
+ *  getBasicVersion:
  * 
  */
 
 	var pbListFactory = function( _listArray){
 		var listArray = _listArray || [];
 		var updated = true;
-		var formattedList;
+		var formattedList, codeHilightMap;
 		
 		var CHARA_TABLE = [
 			' ',	'+',	'-',	'*',	'/',	'↑',	'!',	'"',	'#',	'$',	'>',	'≧',	'=',	'≦',	'<',	'≠',
@@ -333,137 +356,198 @@
 																											'μ',	'Ω',	'↓',	'→',
 			'%',	'￥',	'□',	'[',	'&',	'_',	"'",	'・',	']',	'■',	'＼'	
 		]
-		var CHARA_STRING = CHARA_TABLE.join( '');
+		var CHARA_ALL = CHARA_TABLE.join( '');
 		var CHARA_QUOT = CHARA_TABLE[ 7];
+
+		var REG_REPLACE_OUTOFQUOT = [
+			{ replace: /(>=|=>)/,		newString: CHARA_TABLE[ 11]},	// ≧
+			{ replace: '==',			newString: CHARA_TABLE[ 12]},	// =
+			{ replace: /(=<|<=)/,		newString: CHARA_TABLE[ 13]},	// ≦
+			{ replace: /(<>|><|!=)/,	newString: CHARA_TABLE[ 15]}	// ≠
+		]
+		
+		var TYPE_M__ = 1;
+		var TYPE__P_ = 2;
+		var TYPE_MP_ = 3;
+		var TYPE___F = 4;
+		
+		var VER_1__ = 1;
+		var VER__2a = 6;
+		var VER___a = 4;
+		var VER_12a = 7;
+		
+		
+		// 中間コード、BASIC version, type(manual,program,function), description,hardwere(printer,caset-if),displayname
+		
 		var BASIC_TABLE = [
-			{ regexp:	/(FOR)/gi,		newstring: '$1 ',	t:	0, l: 3},// t:(command=0) or(function=1)
-			{ regexp:	/(NEXT)/gi,		newstring: '$1 ',	t:	0, l: 4},// l = length
-			{ regexp:	/(GOTO)/gi,		newstring: '$1 ',	t:	0, l: 4},// i = insert Space[ front, end]
-			{ regexp:	/(GOSUB)/gi,	newstring: '$1 ',	t:	0, l: 5},
-			{ regexp:	/(RETURN)/gi,	newstring: '$1 ',	t:	0, l: 6},
-			{ regexp:	/(PRINT)/gi,	newstring: '$1 ',	t:	0, l: 5},
-			{ regexp:	/(MODE)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(STOP)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(END)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(VAC)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(SET)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(GET)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(DEFM)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(SAVE)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(LOAD)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(RUN)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(CLEAR)/gi,	newstring: '$1 ',	t:	0, l: 5},
-			{ regexp:	/(BEEP)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(LET)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(ON)/gi,		newstring: '$1 ',	t:	0, l: 2},
-			{ regexp:	/(READ)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(RESTORE)/gi,	newstring: '$1 ',	t:	0, l: 7},
-			{ regexp:	/(DATA)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(REM)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(NEW)/gi,		newstring: '$1 ',	t:	0, l: 3},
-			{ regexp:	/(PASS)/gi,		newstring: '$1 ',	t:	0, l: 4},
-			{ regexp:	/(FRAC)/gi,		newstring: '$1 ',	t:	1, l: 4},
-			{ regexp:	/(SIN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(COS)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(TAN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(ASN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(ACS)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(ATN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(LOG)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(LN)/gi,		newstring: '$1 ',	t:	1, l: 2},
-			{ regexp:	/(EXP)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(SQR)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(ABS)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(SGN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(LEN)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(VAL)/gi,		newstring: '$1 ',	t:	1, l: 3},
-			{ regexp:	/(CSR)/gi,		newstring: '$1',	t:	0, l: 3},
-			{ regexp:	/(INPUT)/gi,	newstring: '$1 ',	t:	0, l: 5},
-			{ regexp:	/(VERIFY)/gi,	newstring: '$1 ',	t:	0, l: 6},
-			{ regexp:	/(STEP)/gi,		newstring: ' $1 ',	t:	0, l: 4},
-			{ regexp:	/(THEN)/gi,		newstring: ' $1 ',	t:	0, l: 4},
-			{ regexp:	/(KEY)/gi,		newstring: '$1',	t:	1, l: 3},
-			{ regexp:	/(DEG\()/gi,	newstring: '$1 ',	t:	1, l: 4},
-			{ regexp:	/(DMS\()/gi,	newstring: '$1 ',	t:	1, l: 4},
-			{ regexp:	/(STR\()/gi,	newstring: '$1 ',	t:	1, l: 4},
-			{ regexp:	/(MID\()/gi,	newstring: '$1',	t:	1, l: 3},
-			{ regexp:	/(RAN#)/gi,		newstring: '$1',	t:	1, l: 4},
-			{ regexp:	/(VER)([^IFY])/gi,		newstring: '$1 $2',		t:	0, l: 3},
-			{ regexp:	/([^P][^R])(INT)/gi,	newstring: '$1$2 ',		t:	1, l: 3},
-			{ regexp:	/([:; \d])(PUT)/gi,		newstring: '$1$2 ',		t:	0, l: 3}, //\d は行番号
-			{ regexp:	/([:; \d])(IF)/gi,		newstring: '$1$2 ',		t:	0, l: 2},
-			{ regexp:	/(FOR[^:]*?)(TO)/gi,	newstring: '$1 $2 ',	t:	0, l: 2} //stop goto restore
+			{ regexp:	/(VAC)/gi,				newstring: '$1 ',	type: TYPE_MP_, l: 3},
+			{ regexp:	/(CLEAR)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 5},
+			{ regexp:	/(NEW)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(RUN)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(LIST)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(PASS)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(SAVE)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(LOAD)/gi,				newstring: '$1 ',	type: TYPE_M__, l: 3},
+			{ regexp:	/(VER)([^IFY])/gi,		newstring: '$1 $2',	type: TYPE_M__, l: 3},
+			{ regexp:	/(VERIFY)/gi,			newstring: '$1 ',	type: TYPE_M__, l: 6},
+			{ regexp:	/(END)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 3},	
+			{ regexp:	/(STOP)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(LET)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(REM)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 3},
+			{ regexp:	/(INPUT)/gi,			newstring: '$1 ',	type: TYPE__P_, l: 5},
+			{ regexp:	/(KEY)/gi,				newstring: '$1',	type: TYPE___F, l: 3},
+			{ regexp:	/(KEY\$)/gi,			newstring: '$1',	type: TYPE___F, l: 3},
+			{ regexp:	/(PRINT)/gi,			newstring: '$1 ',	type: TYPE__P_, l: 5},
+			{ regexp:	/(CSR)/gi,				newstring: '$1',	type: TYPE__P_, l: 3},
+			{ regexp:	/(GOTO)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(ON)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 2},
+			{ regexp:	/([:; \d])(IF)/gi,		newstring: '$1$2 ',	type: TYPE__P_, l: 2},
+			{ regexp:	/(THEN)/gi,				newstring: ' $1 ',	type: TYPE__P_, l: 4}, // then の後に命令は来ない(v1)
+			{ regexp:	/(FOR[^:]*?)(TO)/gi,	newstring: '$1 $2 ',type: TYPE__P_, l: 2}, //stop goto restore
+			{ regexp:	/(STEP)/gi,				newstring: ' $1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(NEXT)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(GOSUB)/gi,			newstring: '$1 ',	type: TYPE__P_, l: 5},
+			{ regexp:	/(RETURN)/gi,			newstring: '$1 ',	type: TYPE__P_, l: 6},
+			// on gosub
+			{ regexp:	/(DATA)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(READ)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(RESTORE)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 7},
+			{ regexp:	/([:; \d])(PUT)/gi,		newstring: '$1$2 ',	type: TYPE_MP_, l: 3}, //\d は行番号
+			{ regexp:	/(GET)/gi,				newstring: '$1 ',	type: TYPE_MP_, l: 3},
+			{ regexp:	/(BEEP)/gi,				newstring: '$1 ',	type: TYPE_MP_, l: 4},
+			{ regexp:	/(DEFM)/gi,				newstring: '$1 ',	type: TYPE_M__, ver: VER_1__, l: 4},
+			{ regexp:	/(DEFM)/gi,				newstring: '$1 ',	type: TYPE_MP_, ver: VER__2a, l: 4},
+			{ regexp:	/(MODE)/gi,				newstring: '$1 ',	type: TYPE__P_, l: 4},
+			{ regexp:	/(SET)/gi,				newstring: '$1 ',	type: TYPE_MP_, l: 3},
+			{ regexp:	/(LEN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(MID\()/gi,			newstring: '$1',	type: TYPE___F, l: 3},
+			{ regexp:	/(MID\$\()/gi,			newstring: '$1',	type: TYPE___F, l: 3},
+			{ regexp:	/(VAL)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(STR\()/gi,			newstring: '$1 ',	type: TYPE___F, l: 4},
+			{ regexp:	/(SIN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(COS)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(TAN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},			
+			{ regexp:	/(ASN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(ACS)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(ATN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(LOG)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(LN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 2},
+			{ regexp:	/(EXP)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(SQR)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(ABS)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},
+			{ regexp:	/(SGN)/gi,				newstring: '$1 ',	type: TYPE___F, l: 3},			
+			{ regexp:	/([^P][^R])(INT)/gi,	newstring: '$1$2 ',	type: TYPE___F, l: 3},			
+			{ regexp:	/(FRAC)/gi,				newstring: '$1 ',	type: TYPE___F, l: 4},
+			{ regexp:	/(RND\()/gi,			newstring: '$1 ',	type: TYPE___F, l: 4},
+			{ regexp:	/(RAN#)/gi,				newstring: '$1',	type: TYPE___F, l: 4},
+			{ regexp:	/(DEG\()/gi,			newstring: '$1 ',	type: TYPE___F, l: 4},
+			{ regexp:	/(DMS\()/gi,			newstring: '$1 ',	type: TYPE___F, l: 4},			
+			{ regexp:	/(NEW#)/gi,				newstring: '$1 ',	type: TYPE_MP_, l: 3},
+			{ regexp:	/(LIST#)/gi,			newstring: '$1 ',	type: TYPE___F, l: 4},
+			{ regexp:	/(SAVE#)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 4},
+			{ regexp:	/(LOAD#)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 4},
+			{ regexp:	/(READ#)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 4},
+			{ regexp:	/(RESTORE#)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 4},
+			{ regexp:	/(WRITE#)/gi,			newstring: '$1 ',	type: TYPE_MP_, l: 4}		
+
 		];
 		
 		function formatList(){
 			formattedList = [];
 			var outOfQuot; // ダブルコーテーション外
 			var lineString, newLineString, chr;
-			var numLine, newLineSplitByQuot, _newLineSplitByQuot;
-			var i, j, k, l = listArray.length, m, n = BASIC_TABLE.length;
+			var newLineSplitByQuot, _newLineSplitByQuot;
+			var i, j, k, l = listArray.length, m, n = BASIC_TABLE.length, o = REG_REPLACE_OUTOFQUOT.length;
 			var REG_SPACE_X2 = /  /;
-			
-			for (i = 0; i < l; i++) {
+
+			for( i = 0; i < l; i++) {
 				lineString = listArray[ i];
 				outOfQuot = true;
 				newLineString = '';
 				m = lineString.length;
-				for (var j = 0; j < m; j++) {
+				for( j = 0; j < m; j++) {
 					chr = lineString.charAt( j);
-					if (outOfQuot === true) { // ダブルコーテーション外の場合、不等号記号の置き換え、スペースの削除
-						switch ( lineString.substr( j, 2)) {
-							case '>=':
-							case '=>':
-								chr = CHARA_TABLE[ 11]; // ≧
+					if( outOfQuot === true) { // ダブルコーテーション外の場合、不等号記号の置き換え、
+						for( k=0; k < o; k++){
+							if( lineString.substr( j, 2).match( REG_REPLACE_OUTOFQUOT[ k].replace)){
+								chr = REG_REPLACE_OUTOFQUOT[ k].newString;
 								j++;
 								break;
-							case '<=':
-							case '=<':
-								chr = CHARA_TABLE[ 13]; // ≦
-								j++;
-								break;
-							case '<>':
-							case '><':
-							case '!=':
-								chr = CHARA_TABLE[ 15]; // ≠
-								j++;
-								break;
-							case '==':
-								chr = CHARA_TABLE[ 12]; // =
-								j++;
-								break;
+							}
 						}
-						chr = (chr === ' ') ? '' : chr;
+						chr = (chr === ' ') ? '' : chr; //スペースの削除
 					}
-					switch ( chr) {// ダブルクォーテーションの処理
-						case '”':
-							chr = CHARA_QUOT;
-						case CHARA_QUOT: // "
-							outOfQuot = !outOfQuot;
-							break;
-						case '^':
-							chr = CHARA_TABLE[ 5]; // ↑
-							break;
-					}
-					newLineString += ( CHARA_STRING.indexOf( chr, 0) >= 0) ? chr : ''; // match( chr)
+					chr = ( chr === '^') ? CHARA_TABLE[ 5] : chr;// ↑
+					outOfQuot = ( chr === CHARA_QUOT) ? !outOfQuot : outOfQuot;// ダブルクォーテーションの処理
+					
+					newLineString += ( CHARA_ALL.indexOf( chr, 0) >= 0) ? chr : ''; // match( chr)
 				}
 			/*
 			 * BASIC
-			 */				
-				newLineSplitByQuot = newLineString.split( CHARA_QUOT);
-				m = newLineSplitByQuot.length;
-				for (j = 0; j<m; j++) {
-					if (j % 2 === 0) { // out of quot
-						_newLineSplitByQuot = newLineSplitByQuot[ j];
-						for ( k=0; k < n; k++) { // n = BASIC_TABLE.length
-							_newLineSplitByQuot = _newLineSplitByQuot.replace( BASIC_TABLE[ k].regexp, BASIC_TABLE[ k].newstring);
+			 */
+				if( newLineString.length !== 0){
+					newLineSplitByQuot = newLineString.split( CHARA_QUOT);
+					m = newLineSplitByQuot.length;
+					for (j = 0; j<m; j++) {
+						if (j % 2 === 0) { // out of quot
+							_newLineSplitByQuot = newLineSplitByQuot[ j];
+							for ( k=0; k < n; k++) { // n = BASIC_TABLE.length
+								_newLineSplitByQuot = _newLineSplitByQuot.replace( BASIC_TABLE[ k].regexp, BASIC_TABLE[ k].newstring);
+							}
+							newLineSplitByQuot[ j] = _newLineSplitByQuot.toUpperCase().replace( REG_SPACE_X2, '');
 						}
-						newLineSplitByQuot[ j] = _newLineSplitByQuot.replace( REG_SPACE_X2, '');
 					}
+					formattedList.push( newLineSplitByQuot.join( CHARA_QUOT));					
 				}
-				formattedList.push( newLineSplitByQuot.join( CHARA_QUOT));
 			}
 			return formattedList;
+		}
+		
+		function codeHilight(){
+			codeHilightMap = [];
+			var HL_NONE = '0';
+			var HL_STRING = '1';
+			var HL_COMMAND = '2';
+			var HL_FUNCTION = '3';
+			
+			var outOfQuot; // ダブルコーテーション外
+			var lineString, newLineString, basic, matchObj, index, strLen;
+			var lineSplitByQuot, _lineSplitByQuot;
+			var i, j, k, l = formattedList.length, m, n = BASIC_TABLE.length;
+			
+			for( i = 0; i < l; i++) {
+				lineString = formattedList[ i];
+				lineSplitByQuot = lineString.split( CHARA_QUOT);
+				m = lineSplitByQuot.length;
+				for( j=0; j<m; j++) {
+					_lineSplitByQuot = lineSplitByQuot[ j];
+					if (j % 2 === 0) { // out of quot
+						newLineString = String.repeat( HL_NONE, _lineSplitByQuot.length);
+						for ( k=0; k < n; k++) { // n = BASIC_TABLE.length
+							basic = BASIC_TABLE[ k];
+							
+							_lineSplitByQuot.replace( basic.regexp, function( _all, m1, m2){
+								index = matchObj.index;
+								strLen = matchObj[ 0].length;
+
+								_lineSplitByQuot = [
+									_lineSplitByQuot.substr( 0, index),
+									String.repeat( ( basic.type === TYPE___F) ? HL_FUNCTION : HL_COMMAND, strLen),
+									_lineSplitByQuot.substr( index +strLen)
+								].join( '');
+								
+								return ( m2) ? m1 +String.repeat( '|', m2.length) : String.repeat( '|', m1.length);
+							});
+						}
+						lineSplitByQuot[ j] = newLineString;
+					} else {
+						lineSplitByQuot[ j] = String.repeat( HL_STRING, _lineSplitByQuot.length);
+					}
+					
+				}
+				codeHilightMap.push( lineSplitByQuot.join( HL_STRING));					
+			}
+			return codeHilightMap;
 		}
 		
 		return {
@@ -490,9 +574,16 @@
 			getCharaTable: CHARA_TABLE,
 			getFormattedList: function(){
 				return formatList();//( updated === false && formattedList) ? formattedList : 
+			},
+			getCodeHilightMap: function(){
+				
 			}
 		}
 	}
+	
+	/*
+	 * printer.output printer.clear, printer.hardwere, printer.FP-12T, printer.FP-40T, printer.partation, printer.init( _output, _partation, _hardwere, stepCount, colorHilight)
+	 */
 
 /* ------------------------------------------
  DOM Ready 
