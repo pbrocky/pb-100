@@ -1,3 +1,6 @@
+try { //http://archiva.jp/web/html-css/ie6_background_flickr.html
+	document.execCommand('BackgroundImageCache', false, true);
+} catch(e) {}
 
 	var csr = 0;
 //=======================================================
