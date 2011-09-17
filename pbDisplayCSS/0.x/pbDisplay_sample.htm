@@ -1,109 +1,17 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
 <head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="imagetoolbar" content="no">
+	<title>PB Display CSS 0.x Sample</title>
+	<link href='../../favicon.ico' rel='shortcut icon'>
 	<link rel="stylesheet" type="text/css" href="pbDisplay0.1.0.css" media="all">
-	<style type="text/css">
-		.pbDisplay010-Container .balloon {
-			color:					#666;
-			*color:					#999;
-			opacity:				0.7;
-			-moz-opacity:			0.7;			
-			
-			font-size:				12px;
-			font-weight:			normal;
-			text-decoration:		none;
-			line-height:			1.3em;
-					
-			padding:				8px;
-			margin-left:			-9px;
-			position:				absolute;
-			bottom:					52px;
-			display:				block;
-			
-			border-radius:			5px;
-			-moz-border-radius:		5px;
-			-opera-border-radius:	5px;
-			-webkit-border-radius:	5px;
-
-			background-color:		#e3e3e3;
-			background/*\**/:		transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABGdBTUEAAK/INwWK6QAAAANQTFRF4+PjQI5AzgAAAAF0Uk5TsxKOOlAAAAASSURBVHheBcCBCAAAAACg/amPAAIAAXQ7UkcAAAAASUVORK5CYII=")\9;
-			*background-color:		#e8e8e8;
-		}
-
-		.ActiveX-Enabled .pbDisplay010-Container .balloon {
-			*background-color:		#e3e3e3;
-			*color:					#666;
-			*filter:				alpha(opacity=70); /* content don't work, when filter working @ie8 */
-		}
-		
-	/* arrow ie8 & modern browser */
-		.pbDisplay010-Container .balloon:after {
-			content:				".";
-			width:					0; 
-			height:					0;
-			position:				absolute;
-			bottom:					-8px;
-			left:					13px;	/* 少しづつ上下にずらす */			
-			border-top:				8px solid #e3e3e3;
-			border-right:			8px solid transparent;
-			border-top-color/*\**/:	#D2D9BF\9; /* pb-GREEN + 70%_#E3E3E3 */
-		}
-		
-	/* arrow for ie5.5,6,7 */
-		.pbDisplay010-Container .balloon {
-			*padding-left:			0;
-			*bottom:				44px;
-			_bottom:				63px;
-			*margin-left:			4px;
-			*border-left:			8px solid #e8e8e8;
-			*border-right:			1px solid #ccc;
-			*border-bottom:			8px solid transparent;
-			_border-bottom-color:	#fff;
-		}
-		
-	/* hover */
-		.pbDisplay010-Container .balloon:hover,
-		.pbDisplay010-Container .balloon:active,
-		.pbDisplay010-Container .balloon:focus {
-			outline:				0;
-			color:					#000;
-			opacity:				0.9;
-			-moz-opacity:			0.9;
-			z-index:				999;
-			background-color:		#e3e3e3; /* for ie */
-			*border-left-color:		#e3e3e3;
-			box-shadow:				2px 2px 3px #030D31;
-			-moz-box-shadow:		2px 2px 3px #030D31;
-			-opera-box-shadow:		2px 2px 3px #030D31;
-			-webkit-box-shadow:		2px 2px 3px #030D31;
-		}
-		.pbDisplay010-Container .balloon:hover { z-index: 9999;}
-		
-		.ActiveX-Enabled .pbDisplay010-Container .balloon:hover,
-		.ActiveX-Enabled .pbDisplay010-Container .balloon:active,
-		.ActiveX-Enabled .pbDisplay010-Container .balloon:focus { *filter: alpha(opacity=90);}
-		
-	/* */	
-		.pbDisplay010-Container .balloon br { display: block !important;} /* override display:none */
-		
-		.pbDisplay010-Container .CSR00 {left:19px !important}
-		.pbDisplay010-Container .CSR01 {left:33px !important}
-		.pbDisplay010-Container .CSR02 {left:47px !important}
-		.pbDisplay010-Container .CSR03 {left:61px !important}
-		.pbDisplay010-Container .CSR04 {left:75px !important}
-		.pbDisplay010-Container .CSR05 {left:89px !important}
-		.pbDisplay010-Container .CSR06 {left:103px !important}
-		.pbDisplay010-Container .CSR07 {left:117px !important}
-		.pbDisplay010-Container .CSR08 {left:131px !important}
-		.pbDisplay010-Container .CSR09 {left:145px !important}
-		.pbDisplay010-Container .CSR10 {left:159px !important}
-		.pbDisplay010-Container .CSR11 {left:173px !important}
-		
-	</style>
 </head>
 
-<body class='activeX'>
-
+<body>
+	<!--[if lt IE 9]><script language="JavaScript" src="checkActiveX.js"></script><![endif]-->
+	
 	<div class="pbDisplay010-Container PB-120" style="margin-top:50px;">
 		<div class="pbDisplay010">
 			<span class="shift">S</span>
@@ -120,8 +28,6 @@
 			<samp class="CSR10 chr5C">?</samp>
 			<samp class="CSR11 chrCS">_</samp>
 		</div>
-		<a href="#" class="balloon CSR00">Hello! PB!!<br>III</a>
-		<a href="#" class="balloon CSR04">GoGoGoGoGo</a>
 	</div>
 	
 	<div style="float:left;margin:2em 0 0 0;">
@@ -150,28 +56,8 @@
 				<span class="CSR09 chr79 op1">■</span>
 				<span class="CSR10 chrCS">_</span>
 			</div>
-			<a href="#" class="balloon CSR00">Hello! PB!!<br>III</a>
-			<a href="#" class="balloon CSR04">GoGoGoGoGo----------------------------------</a>
 		</div>
 	</div>
-	
-	<!--[if lt IE 9]>
-		<script language="JavaScript">
-			(function(){
-				//http://allabout.co.jp/gm/gc/24117/2/
-				//window.onloadを待たずにDOM処理を開始する
-				var	b = document.body || (function(){document.write('<body>');return document.body;})(),
-					x = (function(){
-						try {var t = new ActiveXObject('DXImageTransform.Microsoft.gradient');}catch(e){}
-						return t ? 'ActiveX-Enabled' : null;
-					})();
-				if( x && !b.className.match(x)){
-					b.className += ( b.className.length === 0 ? '' : ' ') +x;
-				}
-			})();
-		</script>
-	<![endif]-->
-
 </body>
 </html>
 
