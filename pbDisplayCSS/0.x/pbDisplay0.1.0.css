@@ -1,22 +1,25 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*
  * CSS Document
  * 
- * PB Display Image
- * version 0.1.42
+ * PB Display CSS
+ * version 0.x
  * 
  * -- Supported Rendering mode --
  *   standard & quirks
  *  
  * -- Full Supported browser -- 
- *   firefox3.6, Iron8, Safari3.2, Opera9,10,11
+ *   firefox3.6+, Iron5+, Safari3.2+, Opera9+
  *   IE7,8(Use big-png when ActiveX disabled)
  * 
  * -- Part Supported browser --
  *   IE5.5, 6(Fake Opacity when ActiveX disabled)
- *   MacIE5.2(cursol don't work Opacity)
+ *   MacIE5.2(don't work Opacity for Curor)
  *   
  * -- history --
+ *  ver 0.1.5
+ *    The check on ActiveX uses js instead of htc.
+ * 
  *  ver 0.1.4
  *    The check on ActiveX uses htc instead of css-expression.
  *    MacIE uses png-font x10. 
@@ -41,13 +44,7 @@
 		width:					202px;
 		height:					63px;
 		position:				relative;
-		behavior:				url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
-		-ms-behavior:			url('http://casio-pb-100.googlecode.com/svn/trunk/pbDisplayImageMaker/importCSS/1.x/checkActiveX.htc');
 	}
-	/*
-		.htcは自ドメインに置かないと機能しない．
-		pathはcssからの相対pathでなく、htmlからの相対pathとする。または絶対pathを使用する。
-	*/
 	
 	/* Reset CSS for the case Embed to other Web Page */
 	.pbDisplay010-Container span,
@@ -55,7 +52,6 @@
 		margin:					0;
 		padding:				0;
 	    border:					none;
-		z-index:				0;
 	}
 	.pbDisplay010-Container br {
 		display:				none;
@@ -315,7 +311,7 @@
 		-moz-opacity:					0.1;
 		opacity:						0.1;
 		*background-position-x:			-180px;
-		z-index:						1; /* ie5.5,6 & MacIE */		
+		z-index:						1001; /* ie5.5,6 & MacIE */		
 	}
 	.pbDisplay-ActiveX-enabled .op1 {
 		filter:							alpha(opacity=10);
@@ -329,7 +325,7 @@
 		-moz-opacity:					0.2;
 		opacity:						0.2;
 		*background-position-x:			-160px;
-		z-index:						2;				
+		z-index:						1002;				
 	}
 	.pbDisplay-ActiveX-enabled .op2 {
 		filter:							alpha(opacity=20);
@@ -343,7 +339,7 @@
 		-moz-opacity:					0.3;
 		opacity:						0.3;
 		*background-position-x:			-140px;
-		z-index:						3;				
+		z-index:						1003;				
 	}
 	.pbDisplay-ActiveX-enabled .op3 {
 		filter:							alpha(opacity=30);
@@ -357,7 +353,7 @@
 		-moz-opacity:					0.4;
 		opacity:						0.4;
 		*background-position-x:			-120px;
-		z-index:						4;				
+		z-index:						1004;				
 	}
 	.pbDisplay-ActiveX-enabled .op4 {
 		filter:							alpha(opacity=40);
@@ -371,7 +367,7 @@
 		-moz-opacity:					0.5;
 		opacity:						0.5;
 		*background-position-x:			-100px;
-		z-index:						5;				
+		z-index:						1005;				
 	}
 	.pbDisplay-ActiveX-enabled .op5 {
 		filter:							alpha(opacity=50);
@@ -385,7 +381,7 @@
 		-moz-opacity:					0.6;
 		opacity:						0.6;
 		*background-position-x:			-80px;
-		z-index:						6;				
+		z-index:						1006;				
 	}
 	.pbDisplay-ActiveX-enabled .op6 {
 		filter:							alpha(opacity=60);
@@ -399,7 +395,7 @@
 		-moz-opacity:					0.7;
 		opacity:						0.7;
 		*background-position-x:			-60px;
-		z-index:						7;			
+		z-index:						1007;			
 	}
 	.pbDisplay-ActiveX-enabled .op7 {
 		filter:							alpha(opacity=70);
@@ -413,7 +409,7 @@
 		-moz-opacity:					0.8;
 		opacity:						0.8;
 		*background-position-x			-40px;
-		z-index:						8;			
+		z-index:						1008;			
 	}
 	.pbDisplay-ActiveX-enabled .op8 {
 		filter:							alpha(opacity=80);
@@ -427,7 +423,7 @@
 		-moz-opacity:					0.9;
 		opacity:						0.9;
 		*background-position-x:			-20px;
-		z-index:						9;
+		z-index:						1009;
 	}
 	.pbDisplay-ActiveX-enabled .op9 {
 		filter:							alpha(opacity=90);
@@ -552,7 +548,7 @@
 		background-image:	url(pbfont_x3_90pct.png) !important;
 	}
 	.pbDisplay010 .chrCS {
-		background-image:	url(pbfont_x3_0.1.0.gif) !important;
+		background-image:	url(pbfont_x3.gif) !important;
 		z-index;			0 !important;
 	}
 	/**/
