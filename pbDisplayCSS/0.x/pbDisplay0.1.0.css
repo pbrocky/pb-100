@@ -1,5 +1,5 @@
 ﻿@charset "utf-8";
-/*
+/* 
  * CSS Document
  * 
  * PB Display CSS
@@ -10,13 +10,18 @@
  *  
  * -- Full Supported browser -- 
  *   firefox3.6+, Iron5+, Safari3.2+, Opera9+
- *   IE7,8(Use big-png when ActiveX disabled)
+ *   IE9,IE7,8(Use big-png when ActiveX disabled)
  * 
  * -- Part Supported browser --
  *   IE5.5, 6(Fake Opacity when ActiveX disabled)
- *   MacIE5.2(don't work Opacity for Curor)
+ *   MacIE5.2, Opera8(don't work Opacity for Curor)
  *   
  * -- history --
+ * 
+ *  ver 0.1.6
+ *    bug fixes -ms-filter.
+ *    start to support IE9. add -khtml-opacity.
+ *    
  *  ver 0.1.5
  *    The check on ActiveX uses js instead of htc.
  * 
@@ -37,39 +42,38 @@
  *    Support MacIE5.2(don't work Opacity)
  */
 
-
 /*  Container
 --------------------------------------------------------------------------------------*/
 	.pbDisplay010-Container {
-		width:					202px;
-		height:					63px;
-		position:				relative;
+		width    : 202px;
+		height   : 63px;
+		position : relative;
+		page-break-inside  : avoid;
 	}
-	
+
 	/* Reset CSS for the case Embed to other Web Page */
 	.pbDisplay010-Container span,
 	.pbDisplay010-Container div {
-		margin:					0;
-		padding:				0;
-	    border:					none;
+		margin                : 0;
+		padding               : 0;
+	    border                : none;
 	}
 	.pbDisplay010-Container br {
-		display:				none;
+		display               : none;
 	}
-	
 	.pbDisplay010 {
-		padding:				5px 9px;
-		text-indent:			-9999px;
-		height:					100%;
-		background-color:		#030D31;
-		background-position:	9px -13px;
-		background-repeat:		no-repeat; /* for IE6 */
+		padding               : 5px 9px;
+		text-indent           : -9999px;
+		height                : 100%;
+		background-color      : #030D31;
+		background-position   : 9px -13px;
+		background-repeat     : no-repeat; /* for IE6 */
 		/*\*/	
-		-webkit-border-radius:	7px;
-		-opera-border-radius:	7px;
-		-moz-border-radius:		7px;
-		border-radius:			7px;
-		_overflow:				hidden; /* for IE6 */
+		-webkit-border-radius : 7px;
+		-opera-border-radius  : 7px;
+		-moz-border-radius    : 7px;
+		border-radius         : 7px;
+		_overflow             : hidden; /* for IE6 */
 	}
 
 /*  PB Display:Conditions
@@ -85,19 +89,19 @@
 	.pbDisplay010 .trace,
 	.pbDisplay010 .prt,
 	.pbDisplay010 .stop {
-		display:			block;
-		_width:				1px; /* for MacIE5 */
-		height:				13px;
-		line-height:		13px;	
-		background-repeat:	no-repeat;
-		background-color:	transparent;
-		position:			absolute;
-		top:				12px;	
+		display           :	block;
+		_width            :	1px; /* for MacIE5 */
+		height            :	13px;
+		line-height       : 13px;	
+		background-repeat :	no-repeat;
+		background-color  :	transparent;
+		position          :	absolute;
+		top               :	12px;	
 	}
 		.pbDisplay010 .ext {
-			width: 11px;
-			left: 15px;
-			background-position:0 0;
+			width               : 11px;
+			left                : 15px;
+			background-position : 0 0;
 		}
 		.pbDisplay010 .shift,
 		.pbDisplay010 .function {width: 7px;left:28px;}
@@ -143,13 +147,13 @@
 	.pbDisplay010 .CSR09,
 	.pbDisplay010 .CSR10,
 	.pbDisplay010 .CSR11 {
-		display:			block;
-		width:				10px;
-		height:				21px;
-		background-repeat:	no-repeat;
-		background-color:	transparent;
-		position:			absolute;
-		top:				32px;
+		display           :	block;
+		width             :	10px;
+		height            :	21px;
+		background-repeat :	no-repeat;
+		background-color  :	transparent;
+		position          :	absolute;
+		top               :	32px;
 	} 
 	
 	.pbDisplay010 .CSR00 {left:19px !important}
@@ -308,129 +312,141 @@
 /*  Opacity
 --------------------------------------------------------------------------------------*/
 	.pbDisplay010 .op1 {
-		-moz-opacity:					0.1;
-		opacity:						0.1;
-		*background-position-x:			-180px;
-		z-index:						1001; /* ie5.5,6 & MacIE */		
+		-khtml-opacity                :	0.1;
+		-moz-opacity                  : 0.1;
+		opacity                       :	0.1;
+		*background-position-x        : -180px;
+		z-index                       :	1001; /* ie5.5,6 & MacIE */		
 	}
 	.pbDisplay-ActiveX-enabled .op1 {
-		filter:							alpha(opacity=10);
-		-ms-filter:						alpha(opacity=10);		
+		filter                        : alpha(opacity=10);		
 	}	
 	html>/**/body .pbDisplay010 .op1 {
 		background-position-x/*\**/:	-180px\9; /* ie8 (ie8mode) */
 	}
 	
 	.pbDisplay010 .op2 {
-		-moz-opacity:					0.2;
-		opacity:						0.2;
-		*background-position-x:			-160px;
-		z-index:						1002;				
+		-khtml-opacity                :	0.2;
+		-moz-opacity                  : 0.2;
+		opacity                       :	0.2;
+		*background-position-x        : -160px;
+		z-index                       : 1002;				
 	}
 	.pbDisplay-ActiveX-enabled .op2 {
-		filter:							alpha(opacity=20);
-		-ms-filter:						alpha(opacity=20);		
+		filter                        : alpha(opacity=20);	
 	}
 	html>/**/body .pbDisplay010 .op2 {
 		background-position-x/*\**/:	-160px\9;
 	}
 	
 	.pbDisplay010 .op3 {
-		-moz-opacity:					0.3;
-		opacity:						0.3;
-		*background-position-x:			-140px;
-		z-index:						1003;				
+		-khtml-opacity                :	0.3;
+		-moz-opacity                  :	0.3;
+		opacity                       :	0.3;
+		*background-position-x        : -140px;
+		z-index                       : 1003;				
 	}
 	.pbDisplay-ActiveX-enabled .op3 {
-		filter:							alpha(opacity=30);
-		-ms-filter:						alpha(opacity=30);		
+		filter                        : alpha(opacity=30);		
 	}
 	html>/**/body .pbDisplay010 .op3 {
 		background-position-x/*\**/:	-140px\9;
 	}
 	
 	.pbDisplay010 .op4 {
-		-moz-opacity:					0.4;
-		opacity:						0.4;
-		*background-position-x:			-120px;
-		z-index:						1004;				
+		-khtml-opacity                :	0.4;
+		-moz-opacity                  : 0.4;
+		opacity                       :	0.4;
+		*background-position-x        :	-120px;
+		z-index                       :	1004;				
 	}
 	.pbDisplay-ActiveX-enabled .op4 {
-		filter:							alpha(opacity=40);
-		-ms-filter:						alpha(opacity=40);		
+		filter                        : alpha(opacity=40);	
 	}
 	html>/**/body .pbDisplay010 .op4 {
 		background-position-x/*\**/:	-120px\9;
 	}
 	
 	.pbDisplay010 .op5 {
-		-moz-opacity:					0.5;
-		opacity:						0.5;
-		*background-position-x:			-100px;
-		z-index:						1005;				
+		-khtml-opacity                :	0.5;
+		-moz-opacity                  :	0.5;
+		opacity                       :	0.5;
+		*background-position-x        :	-100px;
+		z-index                       :	1005;				
 	}
 	.pbDisplay-ActiveX-enabled .op5 {
-		filter:							alpha(opacity=50);
-		-ms-filter:						alpha(opacity=50);
+		filter                        : alpha(opacity=50);
 	}
 	html>/**/body .pbDisplay010 .op5 {
 		background-position-x/*\**/:	-100px\9;
 	}
 	
 	.pbDisplay010 .op6 {
-		-moz-opacity:					0.6;
-		opacity:						0.6;
-		*background-position-x:			-80px;
-		z-index:						1006;				
+		-khtml-opacity                :	0.6;
+		-moz-opacity                  :	0.6;
+		opacity                       :	0.6;
+		*background-position-x        :	-80px;
+		z-index                       : 1006;				
 	}
 	.pbDisplay-ActiveX-enabled .op6 {
-		filter:							alpha(opacity=60);
-		-ms-filter:						alpha(opacity=60);		
+		filter                        : alpha(opacity=60);		
 	}
 	html>/**/body .pbDisplay010 .op6 {
 		background-position-x/*\**/:	-80px\9;
 	}
 	
 	.pbDisplay010 .op7 {
-		-moz-opacity:					0.7;
-		opacity:						0.7;
-		*background-position-x:			-60px;
-		z-index:						1007;			
+		-khtml-opacity                : 0.7;
+		-moz-opacity                  : 0.7;
+		opacity                       : 0.7;
+		*background-position-x        : -60px;
+		z-index                       : 1007;			
 	}
 	.pbDisplay-ActiveX-enabled .op7 {
-		filter:							alpha(opacity=70);
-		-ms-filter:						alpha(opacity=70);		
+		filter                        : alpha(opacity=70);
 	}
 	html>/**/body .pbDisplay010 .op7 {
 		background-position-x/*\**/:	-60px\9;
 	}
 	
 	.pbDisplay010 .op8 {
-		-moz-opacity:					0.8;
-		opacity:						0.8;
-		*background-position-x			-40px;
-		z-index:						1008;			
+		-khtml-opacity                :	0.8;
+		-moz-opacity                  :	0.8;
+		opacity                       : 0.8;
+		*background-position-x		  : -40px;
+		z-index                       : 1008;			
 	}
 	.pbDisplay-ActiveX-enabled .op8 {
-		filter:							alpha(opacity=80);
-		-ms-filter:						alpha(opacity=80);		
+		filter                        : alpha(opacity=80);
 	}
 	html>/**/body .pbDisplay010 .op8 {
 		background-position-x/*\**/:	-40px\9;
 	}
 	
 	.pbDisplay010 .op9 {
-		-moz-opacity:					0.9;
-		opacity:						0.9;
-		*background-position-x:			-20px;
-		z-index:						1009;
+		-khtml-opacity                : 0.9;
+		-moz-opacity                  : 0.9;
+		opacity                       : 0.9;
+		*background-position-x        : -20px;
+		z-index                       : 1009;
 	}
 	.pbDisplay-ActiveX-enabled .op9 {
-		filter:							alpha(opacity=90);
-		-ms-filter:						alpha(opacity=90);		
+		filter                        : alpha(opacity=90);	
 	}
 	html>/**/body .pbDisplay010 .op9 {
 		background-position-x/*\**/:	-20px\9;
+	}
+	
+	html>/**/body .pbDisplay010 .op1:not(:target),
+	html>/**/body .pbDisplay010 .op2:not(:target),
+	html>/**/body .pbDisplay010 .op3:not(:target),
+	html>/**/body .pbDisplay010 .op4:not(:target),
+	html>/**/body .pbDisplay010 .op5:not(:target),
+	html>/**/body .pbDisplay010 .op6:not(:target),
+	html>/**/body .pbDisplay010 .op7:not(:target),
+	html>/**/body .pbDisplay010 .op8:not(:target),
+	html>/**/body .pbDisplay010 .op9:not(:target) {
+	    background-position-x:	0\9; /* ie9 */
 	}
 
 /*  background-image
@@ -480,11 +496,12 @@
 	html>body .pbDisplay010 .CSR11 {
 		background-image/*\**/:			url(pbfont_x3_x10.png)\9; /* ie7,8 ActiveX disabled */
 	}
+	
 /*   fake opacity for cursol when ActiveX disabled. (winIE)
 --------------------------------------------------------------------------------------*/
 	.pbDisplay010 .chrCS {
-		*background-position-y:			18px;
-		*background-image:				url(pbfont_x3_x10_cs.gif);
+		*background-position-y        : 18px;
+		*background-image             : url(pbfont_x3_x10_cs.gif);
 	}
 	
 	html>body .pbDisplay010-Container .chrCS { /* ie7,8 */
@@ -549,7 +566,6 @@
 	}
 	.pbDisplay010 .chrCS {
 		background-image:	url(pbfont_x3_0.1.0.gif) !important;
-		z-index;			0 !important;
+		z-index:			0 !important;
 	}
 	/**/
-		

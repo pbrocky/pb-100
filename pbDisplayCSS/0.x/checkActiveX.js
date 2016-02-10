@@ -1,8 +1,10 @@
-(function(){
-	var	b = document.body || (function(){document.write('&lt;body&gt;');return document.body;})(),
-		x = (function(){
-			try {var t = new ActiveXObject('DXImageTransform.Microsoft.gradient');}catch(e){}
-			return t ? 'pbDisplay-ActiveX-enabled' : null;
-		})();
-	if( x && !b.className.match(x)) b.className += ( b.className.length === 0 ? '' : ' ') +x;
+(function(b, c, e){
+  b = document.body;
+  if(!b) return setTimeout(arguments.callee, 50);
+  c = b.className || '';
+  e = document.createElement('div');
+  b.appendChild(e);
+  e.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;line-height:1px;filter:dropshadow() progid:DXImageTransform.Microsoft.Shadow();';
+  b.className += ( c ? ' ' : c ) + ( e.offsetHeight > 1 ? 'pbDisplay-ActiveX-enabled' : '' );
+  b.removeChild(e);
 })();
