@@ -1,0 +1,317 @@
+/*
+ *  pb list image maker
+ * 
+ *   version 0.3
+ */
+
+/*--------------------------------------------------------------------------------------
+ * 
+ *  pb printer
+ *  
+ -------------------------------------------------------------------------------------*/
+.pb-printer-outer {
+	margin:						0;
+	padding:					1em 0;
+	_text-align:				center; /* for ie5.5 */
+}
+	/* reset */
+	.pb-printer-outer * {
+		margin:						0;
+		padding:					0;
+		float:						none;
+		width:						auto;
+		background:					none;
+	}
+	.pb-printer-outer br {
+		/*display:					none;*/
+	}
+	.pb-printer-inner {
+		margin-left:				auto;
+		margin-right:				auto;
+		_text-align:				left; /* for ie5.5 */
+	}
+		.pb-printer-body {
+			overflow:					auto;
+			zoom:						1; /* for ie6 background-color */
+		}
+		.pb-printer-footer {
+			clear:						both;
+		}
+			.pb-printer-sheet {
+				float:						left;
+			}
+			.FP-12T .pb-printer-sheet {
+				width:						190px;
+			}
+			.FP-40T .pb-printer-sheet {
+				width:						330px;
+			}
+				.pb-printer-spacer,
+				.pb-printer-printline {
+					clear:						both;
+					width:						auto;
+					height:						13px;
+					line-height:				13px;
+					font-size:					13px;
+					padding:					0 25px;
+				}
+
+/*--------------------------------------------------------------------------------------
+ * 
+ *  Desine
+ *  
+ -------------------------------------------------------------------------------------*/
+	
+	/*  Desine Print Common
+	--------------------------------------------------------------------------------------*/
+.desine_print{
+	_background-color:			#c1cacf; /* for ie6, don't support png-opacity */
+}
+	.desine_print .pb-printer-header,
+	.desine_print .pb-printer-footer {
+		height:						20px;
+		line-height:				20px;
+		font-size:					12px;
+		text-indent:				1em;
+		color:						#666;
+		background-position:		0 0;
+		background-repeat:			repeat-x;
+	}
+	.desine_print .pb-printer-footer {
+		background-position:		0 -20px;
+	}	
+	.desine_print .pb-printer-body {
+		background-position:		0 0;
+		background-repeat:			repeat;
+	}
+		.desine_print .pb-printer-sheet {
+			padding:					5px 0;
+		}
+	
+	/*  Desine Print [ FP-12T ]
+	--------------------------------------------------------------------------------------*/
+	.desine_print .FP-12T .pb-printer-header,
+	.desine_print .FP-12T .pb-printer-footer {
+		background-image:			url( sheet_FP-12T.png);
+	}
+	.desine_print .FP-12T .pb-printer-body {
+		background-image: 			url( sheet_FP-12T_body.png);
+	}
+
+	/*  Desine Print [ FP-40T ]
+	--------------------------------------------------------------------------------------*/
+	.desine_print .FP-40T .pb-printer-header,
+	.desine_print .FP-40T .pb-printer-footer {
+		background-image:			url( sheet_FP-40T.png);
+	}
+	.desine_print .FP-40T .pb-printer-body {
+		background-image: 			url( sheet_FP-40T_body.png);
+	}
+
+	/*  Desine Magazine [ PJ ]
+	--------------------------------------------------------------------------------------*/
+	.magazine_pj .pb-printer-header {
+		height:						26px;
+		line-height:				26px;
+		background-color:			#000;
+		color:						#fff;
+		font-size:					12px;
+		font-weight:				bold;
+		text-align:					center;
+		overflow:					hidden;
+	}
+	.magazine_pj .pb-printer-footer {
+		background-color:			#000;
+		height:						4px;
+		font-size:					0;
+		line-height:				4px;
+	}
+	.magazine_pj .pb-printer-body {
+		background-color: 			#fff;
+	}
+		.magazine_pj .pb-printer-sheet {
+			padding:					20px 0;
+		}
+			.magazine_pj .pb-printer-printline,
+			.magazine_pj .pb-printer-spacer {
+				padding:					0 25px 0 24px !important;
+				border-left:				1px #999 solid;
+			}
+			.magazine_pj .pb-printer-first .pb-printer-printline,
+			.magazine_pj .pb-printer-first .pb-printer-spacer {
+				padding:					0 25px !important;
+				border-left:				0;
+			}
+			
+/*--------------------------------------------------------------------------------------
+ * 
+ *  font
+ *  
+ -------------------------------------------------------------------------------------*/
+			.pb-printer-printline span {
+				width:						7px;
+				height:						13px;
+				font-size:					13px;
+				line-height:				13px;
+				background-image:			url( font_black.gif );
+				background-repeat:			no-repeat;
+				display:					block;
+				float:						left;
+				text-indent:				-9999px;
+			}
+
+	/*  code hilight
+	--------------------------------------------------------------------------------------*/
+			.pb-printer-printline .pb-printer-hilight-1 {
+				background-image:			url( font_red.gif );
+			}
+			.pb-printer-printline .pb-printer-hilight-2 {
+				background-image:			url( font_blue.gif );
+			}
+			.pb-printer-printline .pb-printer-hilight-3 {
+				background-image:			url( font_green.gif );
+			}
+
+	/*  special fonts
+	--------------------------------------------------------------------------------------*/
+			.FP-12T .pb-printer-tab {
+				width:						35px !important;
+			}
+			.FP-40T .pb-printer-tab {
+				width:						42px !important;
+			}
+			.FP-12T .pb-printer-tab,
+			.FP-40T .pb-printer-tab,
+			.pb-printer-printline .pb-printer-none {
+				background-image:			none;
+			}
+			.pb-printer-printline .pb-printer-none {
+				background-color:			red;
+			}
+
+	/*  pb-100 series fonts
+	--------------------------------------------------------------------------------------*/
+.chr00	{background-position:	2px 2px}
+.chr01	{background-position:	-8px 2px}
+.chr02	{background-position:	-18px 2px}
+.chr03	{background-position:	-28px 2px}
+.chr04	{background-position:	-38px 2px}
+.chr05	{background-position:	-48px 2px}
+.chr06	{background-position:	-58px 2px}
+.chr07	{background-position:	-68px 2px}
+.chr08	{background-position:	-78px 2px}
+.chr09	{background-position:	-88px 2px}
+.chr0A	{background-position:	-98px 2px}
+.chr0B	{background-position:	-108px 2px}
+.chr0C	{background-position:	-118px 2px}
+.chr0D	{background-position:	-128px 2px}
+.chr0E	{background-position:	-138px 2px}
+.chr0F	{background-position:	-148px 2px}
+.chr10	{background-position:	-158px 2px}
+.chr11	{background-position:	-168px 2px}
+.chr12	{background-position:	-178px 2px}
+.chr13	{background-position:	-188px 2px}
+.chr14	{background-position:	-198px 2px}
+.chr15	{background-position:	-208px 2px}
+.chr16	{background-position:	-218px 2px}
+.chr17	{background-position:	-228px 2px}
+.chr18	{background-position:	-238px 2px}
+.chr19	{background-position:	-248px 2px}
+.chr1A	{background-position:	-258px 2px}
+.chr1B	{background-position:	-268px 2px}
+.chr1C	{background-position:	-278px 2px}
+.chr1D	{background-position:	-288px 2px}
+.chr1E	{background-position:	-298px 2px}
+.chr1F	{background-position:	-308px 2px}
+.chr20	{background-position:	-318px 2px}
+.chr21	{background-position:	-328px 2px}
+.chr22	{background-position:	-338px 2px}
+.chr23	{background-position:	-348px 2px}
+.chr24	{background-position:	-358px 2px}
+.chr25	{background-position:	-368px 2px}
+.chr26	{background-position:	-378px 2px}
+.chr27	{background-position:	-388px 2px}
+.chr28	{background-position:	-398px 2px}
+.chr29	{background-position:	-408px 2px}
+.chr2A	{background-position:	-418px 2px}
+.chr2B	{background-position:	-428px 2px}
+.chr2C	{background-position:	-438px 2px}
+.chr2D	{background-position:	-448px 2px}
+.chr2E	{background-position:	-458px 2px}
+.chr2F	{background-position:	-468px 2px}
+.chr30	{background-position:	-478px 2px}
+.chr31	{background-position:	-488px 2px}
+.chr32	{background-position:	-498px 2px}
+.chr33	{background-position:	-508px 2px}
+.chr34	{background-position:	-518px 2px}
+.chr35	{background-position:	-528px 2px}
+.chr36	{background-position:	-538px 2px}
+.chr37	{background-position:	-548px 2px}
+.chr38	{background-position:	-558px 2px}
+.chr39	{background-position:	-568px 2px}
+
+.chr40	{background-position:	-638px 2px}
+.chr41	{background-position:	-648px 2px}
+.chr42	{background-position:	-658px 2px}
+.chr43	{background-position:	-668px 2px}
+.chr44	{background-position:	-678px 2px}
+.chr45	{background-position:	-688px 2px}
+.chr46	{background-position:	-698px 2px}
+.chr47	{background-position:	-708px 2px}
+.chr48	{background-position:	-718px 2px}
+.chr49	{background-position:	-728px 2px}
+.chr4A	{background-position:	-738px 2px}
+.chr4B	{background-position:	-748px 2px}
+.chr4C	{background-position:	-758px 2px}
+.chr4D	{background-position:	-768px 2px}
+.chr4E	{background-position:	-778px 2px}
+.chr4F	{background-position:	-788px 2px}
+.chr50	{background-position:	-798px 2px}
+.chr51	{background-position:	-808px 2px}
+.chr52	{background-position:	-818px 2px}
+.chr53	{background-position:	-828px 2px}
+.chr54	{background-position:	-838px 2px}
+.chr55	{background-position:	-848px 2px}
+.chr56	{background-position:	-858px 2px}
+.chr57	{background-position:	-868px 2px}
+.chr58	{background-position:	-878px 2px}
+
+.chr5B	{background-position:	-908px 2px}
+.chr5C	{background-position:	-918px 2px}
+.chr5D	{background-position:	-928px 2px}
+.chr5E	{background-position:	-938px 2px}
+.chr5F	{background-position:	-948px 2px}
+.chr60	{background-position:	-958px 2px}
+.chr61	{background-position:	-968px 2px}
+.chr62	{background-position:	-978px 2px}
+.chr63	{background-position:	-988px 2px}
+.chr64	{background-position:	-998px 2px}
+.chr65	{background-position:	-1008px 2px}
+.chr66	{background-position:	-1018px 2px}
+.chr67	{background-position:	-1028px 2px}
+.chr68	{background-position:	-1038px 2px}
+.chr69	{background-position:	-1048px 2px}
+.chr6A	{background-position:	-1058px 2px}
+.chr6B	{background-position:	-1068px 2px}
+.chr6C	{background-position:	-1078px 2px}
+.chr6D	{background-position:	-1088px 2px}
+.chr6E	{background-position:	-1098px 2px}
+.chr6F	{background-position:	-1108px 2px}
+.chr70	{background-position:	-1118px 2px}
+.chr71	{background-position:	-1128px 2px}
+.chr72	{background-position:	-1138px 2px}
+.chr73	{background-position:	-1148px 2px}
+.chr74	{background-position:	-1158px 2px}
+.chr75	{background-position:	-1168px 2px}
+.chr76	{background-position:	-1178px 2px}
+.chr77	{background-position:	-1188px 2px}
+.chr78	{background-position:	-1198px 2px}
+.chr79	{background-position:	-1208px 2px}
+.chr7A	{background-position:	-1218px 2px}
+.chr7B	{background-position:	-1228px 2px}
+
+.PB-120 .chr32	{background-position:	-588px 2px}
+.PB-120 .chr67	{background-position:	-598px 2px}
+.PB-120 .chr69	{background-position:	-608px 2px}
+.PB-120 .chr6A	{background-position:	-618px 2px}
+.PB-120 .chr6B	{background-position:	-628px 2px}
