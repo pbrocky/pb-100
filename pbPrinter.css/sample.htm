@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="imagetoolbar" content="no">
+	<title>pbPrinter.css 0.3 Sample</title>
+	<link rel="stylesheet" type="text/css" href="pbPrinter.css" media="all">
+</head>	
+<body>
+<pre><code class="PB-100 FP-12T separate:1">
+10 PRINT CSR 1;&quot;GOTO PB-100&quot;
+20 GOTO 10
+</code></pre>
+
+<pre><code class="PB-120 FP-40T hilight count">
+10 PRINT CSR 1;&quot;GOTO PB-100&quot;
+20 FOR A=0 TO 11
+30 PRINT CSR A;&quot;*&quot;;
+40 B = SQR π^ SQR π^SQR π
+50 NEXT A: PRINT
+60 PRINT &quot;Enjoy!&quot;
+</code></pre>
+
+<pre><code class="PB-100 FP-12T desine:pj" title="pbPrinter.css サンプル">
+10 PRINT CSR 1;&quot;GOTO PB-100&quot;
+20 FOR A=0 TO 11
+30 PRINT CSR A;&quot;*&quot;;
+40 B = π^π^π
+50 NEXT A: PRINT
+60 PRINT &quot;Enjoy!&quot;
+</code></pre>
+
+<script src="pbPrinter.js"></script>
+</body>
+</html>
