@@ -13,6 +13,7 @@
 	margin:						0;
 	padding:					1em 0;
 	_text-align:				center; /* for ie5.5 */
+	page-break-inside:          avoid;
 }
 	/* reset */
 	.pb-printer-outer * {
