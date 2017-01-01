@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="ja" lang="ja" xmlns='http://www.w3.org/1999/xhtml'>
+	
+<head>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<title>PB List Image Maker 0.3</title>
+	<link href='../../favicon.ico' rel='shortcut icon' />
+	<link type='text/css' rel='stylesheet' href='all.css' />
+</head>
+
+<body>
+
+<ul id="tabNavi">
+<!--  input  -->
+	<li id="input" class="focus">
+		<a href="#input" onclick="pbListImageMaker.tab('input'); return false;" class="tab">input</a>
+		<div class="tabContent">
+			<form name="dataTypeSetting">
+				<div class="caption">File Type</div>
+				<div class="u" style="width:400px;">
+					<input type="radio" name="dataType" value="basic" onclick="pbListImageMaker.changeSample('basic')" id="basic" checked="checked" />
+						<label for="basic">BASIC</label>
+					<input type="radio" name="dataType" value="databank" onclick="pbListImageMaker.changeSample('databank')" id="databank" />
+						<label for="databank">DATA BANK</label>
+					<input type="radio" name="dataType" value="values" onclick="pbListImageMaker.changeSample('value')" id="values" />
+						<label for="values">Value Table</label>
+					<input type="radio" name="dataType" value="output" onclick="pbListImageMaker.changeSample('output')" id="output" />
+						<label for="output">Program Output</label>
+				</div>
+			</form>
+			<input value="Title" type="text" id="listTitle" /><br>
+			<textarea rows=20 name="input" id="listTextarea" onclick="pbListImageMaker.editStart()" style="font-size:14px">
+--- Wellcome to PB List Maker! ---
+P0
+1 E=B:F=G*90:H=SIN F-COS F*9:I=SIN F*9+COS F:FOR J=0 TO 2:K=J*6-1
+2 FOR L=1 TO 2:IF FRAC (1~E3*SQR (E+H*L<.5;K=K+L:L(J*ABS O)=2
+3 NEXT L:E=B-H+I:I=-I:O(J)=K:NEXT J:PRINT
+4 PRINT A;MID(P,1);MID(10-O,1);MID(Q,1);MID(G+1,1);R;CSR 3;
+5 IF B<=13+D*43;C=362:D=7:PRINT "&hearts;( Fin":GOTO #1
+6 IF B+H=51+D*46;PRINT "□";:IF A=3;O=4:PRINT CSR 3;" ";
+7 W=X+7:IF B=C+99;R=INT W*4:PRINT "'";
+8 IF RAN#<.1 THEN 13
+9 IF KEY="4";G=G-3+4*SGN (3-G:GOTO 1
+10 IF KEY="6";G=G+3-4*SGN G:GOTO 1
+11 IF KEY<>"5" THEN 9
+12 B=B+H*SQR ABS O:IF O<>4 THEN 1
+13 V=O+7+INT ABS (COS B*4:S=V*5:PRINT CSR 3;MID(V+9,1)
+14 R(J)=R(J)-INT (RAN#*V(J):PRINT :PRINT R;S;:IF R<1 THEN #1
+15 J=RAN#^RAN#^RAN#+FRAC π:IF KEY="0";IF J>=1 THEN 1
+16 IF S>0 THEN 14
+17 IF V(J)=A+9;A=A+1:PRINT "&diams;"
+18 X=X+SQR V/W:GOTO 1
+P1
+1 A=0:B=C+99:$="↑←↓→ )○>・○ (○<syπΩS& @￥"
+			</textarea>
+			<p>&spades;&diams;&hearts;&clubs;</p>
+		</div>
+	</li>
+<!--  Preview  -->
+	<li id="preview">
+		<a href="#preview" onclick="pbListImageMaker.tab('preview'); return false;" class="tab">Preview</a>
+		<div class="tabContent">
+			<form name="outputSetting">
+				<table width="400">
+					<tr>
+						<td width="200">
+							<div class="caption">Charactor Set</div>
+							<div class="u">
+								<input type="radio" name="fontSet" value="PB-100" onclick="pbListImageMaker.setting.setFontSet('PB-100')" id="PB-100" checked="checked" />
+									<label for="PB-100">PB-100</label>
+								<input type="radio" name="fontSet" value="PB-120" onclick="pbListImageMaker.setting.setFontSet('PB-120')" id="PB-120" />
+									<label for="PB-120">PB-120</label>
+							</div>							
+						</td>
+						<td>
+							<div class="caption">Printer</div>
+							<div class="u">
+								<input type="radio" name="printer" value="FP-12T" onclick="pbListImageMaker.setting.setPrinter('FP-12T')" id="FP-12T" checked="checked" />
+									<label for="FP-12T">FP-12T</label>
+								<input type="radio" name="printer" value="FP-40T" onclick="pbListImageMaker.setting.setPrinter('FP-40T')" id="FP-40T" />
+									<label for="FP-40T">FP-40T</label>
+							</div>							
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="caption">Desine</div>
+							<div class="u">
+								<input type="radio" name="desine" value="magazine" onclick="pbListImageMaker.setting.setDesine('magazine')" id="magazine" checked="checked" />
+									<label for="magazine">Magazine Style</label>
+								<input type="radio" name="desine" value="printer" onclick="pbListImageMaker.setting.setDesine('printer')" id="printer" />
+									<label for="printer">Print Style</label>
+							</div>							
+						</td>
+						<td>
+							<div id='selectMagazine'>
+								<div class="caption">Magazine</div>
+								<div class="u">
+									 <select name="selectMagazine" onchange="pbListImageMaker.setting.setMagazin()">
+										<option value="style_pj" selected>ポケコンジャーナル風</option>
+										<option value="style_bm">マイコンBASICマガジン</option>
+										<option value="style_pp">プログラムポシェット</option>
+										<option value="style_og">パソコンおもしろゲーム</option>
+									</select>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td id='sheetCount'>							
+							<div class="caption">Separate</div>
+							<div class="u">
+								 <select name="sheetCountFP12" onchange="pbListImageMaker.setting.setSheetCount()" id="useFP-12T"><!-- FP-12T -->
+									<option value="1">1 Sheet</option>
+									<option value="2">2 sheets</option>
+									<option value="3" selected>3 sheets</option>
+									<option value="4">4 sheets</option>
+									<option value="5">5 sheets</option>
+								</select>
+								<select name="sheetCountFP40" onchange="pbListImageMaker.setting.setSheetCount()" id="useFP-40T"><!-- FP-40T -->
+									<option value="1" selected>1 Sheet</option>
+									<option value="2">2 sheets</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="caption">Count Program Size</div>
+							<div class="u">
+								<input type="checkbox" name="countSteps" value="enable" onclick="pbListImageMaker.setting.changeCountSteps( this.checked)" id="countSteps" />
+									<label for="countSteps">Enable</label>
+							</div>
+						</td>	
+					</tr>
+				</table>
+			</form>
+			<div id="outputDesine" style="margin-top:30px;">
+				<div id="outputPrinter">
+					<div id="outputSheetCount">
+						<div id="outputTop"></div>
+						<div id="outputBody"></div>
+						<div id="outputBottom"></div>
+					</div>				
+				</div>
+			</div>
+		</div>
+	</li>
+<!--  PB-SIM  -->
+	<li id="embed">
+		<a href="#embed" onclick="pbListImageMaker.tab('embed'); return false;" class="tab">PB-Sim</a>
+		<div class="tabContent">
+			<h2>File Name</h2>
+			<input type="text" value="file name">
+			<h2>Program Body</h2>
+			<p>Past Your PB-SIM style List,whitch debugged enouh.</p>
+			<textarea rows=20 cols=62 name="input">
+			</textarea>
+		</div>
+	</li>
+<!--  html  -->
+	<li id="html">
+		<a href="#html" onclick="pbListImageMaker.tab('html'); return false;" class="tab">HTML</a>
+		<div class="tabContent">
+			<h2>Get HTML</h2>
+			<textarea rows=20 cols=62 id="getHtml" onclick="this.focus(); this.select();"></textarea>
+		</div>
+	</li>
+<!--  help  -->
+	<li id="help" style="width:24px;">
+		<a href="#help" onclick="pbListImageMaker.tab('help'); return false;" class="tab">?</a>
+		<div class="tabContent">
+			<h2>help</h2>
+			<p>
+				comming soon...
+			</p>
+		</div>
+	</li>
+<!--  information  -->
+	<li id="infomation" style="width:24px;">
+		<a href="#information" onclick="pbListImageMaker.tab('infomation'); return false;" class="tab">i</a>
+		<div class="tabContent">
+			<h2>PB List Image Maker version 0.3.0</h2>
+			<p>
+				<a href="http://pb-100.blogspot.com/" target="_blank">CASIO PB-100の宇宙</a>/
+				<a href="http://pbrocky.blogspot.com/" target="_blank">PBロッキー</a>				
+			</p>
+		</div>
+	</li>
+</ul>
+<form>
+<textarea id="shadowTxtarea" style="display:none;">
+
+</textarea>
+</form>
+
+	<script type="text/javascript" src="jquery-min.js"></script>
+	<script src="pbList.js" type="text/javascript"></script>
+	<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
+
+
+
+
