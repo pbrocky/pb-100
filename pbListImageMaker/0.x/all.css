@@ -1,233 +1,286 @@
 @charset "utf-8";
-*{
-	zoom:1;
-	font-size:12px;
-	margin:0;
-	padding:0;
-}
-a {
-	text-decoration:none;
-}
-/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
-textarea, #listTitle {
-		font-size: 100%;
-		padding:1px;
-		width: 400px;
-		margin-top:10px;
+	* {
+		zoom:				1;
+		font-size:			12px;
+		margin:				0;
+		padding:			0;
+	}
+	a {
+		text-decoration:	none;
+	}
+	/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
+	textarea, #listTitle {
+		font-size:			100%;
+		padding:			1px;
+		width:				400px;
+		margin-top:			10px;
+	}
+	
+	/* 画像の下にできる隙間をなくす */
+	img {
+		vertical-align:		bottom;
 	}
 
-/* 画像の下にできる隙間をなくす */
-img { vertical-align: bottom; }
-
-/* Reset CSS for the case Embed to other Web Page */ 
-#pbdisplay_outer span,
-#pbdisplay_outer div {
-	margin:0;
-	padding:0;
-    border: none;
-    list-style-type: none;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    text-align: left;
-}
-/*------------------------------------------------
-	Tab
------------------------------------------------ */
-#tabNavi {
-	list-style:none;
-	position:absolute;
-	top:9px;
-	left:9px;
-	width:780px;
-}
-#tabNavi li {
-	display:block;float:left;
-	overflow:hidden;
-	line-height:18px;
-	height:18px;
-	width:60px;	
-	border:1px solid #999;
-	background:#ccc;
-	margin-left:2px;
-	text-align:center;
-}
-
-.focus {
-	z-index:99 !important;
-	background:#fff !important;
-	line-height:19px !important;
-	height:19px !important;
-	border-bottom:none !important;
-	font-weight:bold;
-}
-.tab {
-	display:block;
-	height:18px;
-	color:#666;
-}
-.tab:hover,
-.focus .tab {
-	background:#fff !important;
-	color:#333;
-}
-.tabContent {
-	display:none;
-	text-align:left;
-	position:absolute;
-	top:19px;
-	left:0;
-	border-top:1px solid #999;
-	z-index:-1;
-	width:100%;
-	font-weight:normal;
-	padding:10px;
-	line-height:1.8em;
-}
-.focus .tabContent {
-	display:block;
-}
-
-.caption {
-	font-sixze: 14px;
-	line-height: 14px;
-	width:100%;
-	height: 14px;
-	color:#009;
-	font-weight:bold;
-	padding: 0 5px;
-	margin: 5px 0;
-	border-left: 5px solid #009;
-}
-.u {
-	line-height: 22px;
-	height: 22px;
-	padding: 0 0 0 10px;
-	margin: 0 10px 0 0;
-	border-bottom: 1px solid #CCF;
-}
-
-select{
-	padding:1px;
-	width:160px;
-}
-
-#selectMagazine div {
-  filter:progid:DXImageTransform.Microsoft.Alpha(Enabled=1,Style=0,Opacity=25);
-  -moz-opacity:0.25;
-  opacity:0.25;
-}
-.magazine div {
-  filter:progid:DXImageTransform.Microsoft.Alpha(Enabled=1,Style=0,Opacity=100) !important;
-  -moz-opacity:1 !important;
-  opacity:1 !important;
-}
-
-#sheetCount #useFP-12T, #sheetCount #useFP-40T {
-	display: none;
-}
-
-.FP-12T #useFP-12T, .FP-40T #useFP-40T {
-	display: block !important;
-}
-/*------------------------------------------------
-	Preview
------------------------------------------------ */
-.sheet {
-		padding:5px 25px;
-		float:left;
+/*--------------------------------------------------------------------------------------
+ * 
+ *  Tab
+ *  
+ -------------------------------------------------------------------------------------*/
+	#tabNavi {
+		list-style:			none;
+		position:			absolute;
+		top:				9px;
+		left:				9px;
+		width:				780px;
 	}
-.spacer {
-		height:13px;font-size:7px;line-height:7px;
-		width:100%;
-		clear:both;
-		margin:0!important;
-		padding:0!important;
-		text-indent:-9999px;
-	}
-.printline {
-		clear:both;
-		margin:0!important;
-	}
-.FP-12T .printline { width:140px;}
-.FP-40T .printline { width:280px;}
+		#tabNavi li {
+			display:			block;
+			float:				left;
+			overflow:			hidden;
+			line-height:		18px;
+			height:				18px;
+			width:				60px;
+			border:				1px solid #999;
+			background:			#ccc;
+			margin-left:		2px;
+			text-align:			center;
+		}
+		
+		.focus {
+			z-index:			99 !important;
+			background:			#fff !important;
+			line-height:		19px !important;
+			height:				19px !important;
+			border-bottom:		none !important;
+			font-weight:		bold;
+		}
+			.tab {
+				display:			block;
+				height:				18px;
+				color:				#666;
+			}
+			.tab:hover,
+			.focus .tab {
+				background:			#fff !important;
+				color:				#333;
+			}
+				.tabContent {
+					display:			none;
+					text-align:			left;
+					position:			absolute;
+					top:				19px;
+					left:				0;
+					border-top:			1px solid #999;
+					z-index:			-1;
+					width:				100%;
+					font-weight:		normal;
+					padding:			10px;
+					line-height:		1.8em;
+				}
+				.focus .tabContent {
+					display:			block;
+				}
+	
+					.caption {
+						font-size:			14px;
+						line-height:		14px;
+						width:				100%;
+						height:				14px;
+						color:				#009;
+						font-weight:		bold;
+						padding:			0 5px;
+						margin:				5px 0;
+						border-left:		5px solid #009;
+					}
+					.u {
+						line-height:		22px;
+						height:				22px;
+						padding:			0 0 0 10px;
+						margin:				0 10px 0 0;
+						border-bottom:		1px solid #CCF;
+					}
+	
+					select {
+						padding:			1px;
+						width:				160px;
+					}
+					
+					label {
+						
+					}
+					
+					#selectMagazine div {
+					  filter:				progid:DXImageTransform.Microsoft.Alpha(Enabled=1,Style=0,Opacity=25);
+					  -moz-opacity:			0.25;
+					  opacity:				0.25;
+					}
+					.magazine div {
+					  filter:				progid:DXImageTransform.Microsoft.Alpha(Enabled=1,Style=0,Opacity=100) !important;
+					  -moz-opacity:			1 !important;
+					  opacity:				1 !important;
+					}
+					
+					#sheetCount #useFP-12T,
+					#sheetCount #useFP-40T {
+						display:			none;
+					}
+					
+					.FP-12T #useFP-12T, .FP-40T #useFP-40T {
+						display:			block !important;
+					}
 
-#outputBody {
-		overflow:auto;
+/*--------------------------------------------------------------------------------------
+ * 
+ *  output
+ *  
+ -------------------------------------------------------------------------------------*/
+	/*  outputBody
+	--------------------------------------------------------------------------------------*/
+	#outputBody {
+		clear:						both;
+		overflow:					auto;
+	}		
+		.sheet {
+			padding:					5px 0;
+			float:						left;
+		}
+			.spacer,
+			.printline {
+				clear:						both;
+				width:						auto;
+				height:						13px;
+				line-height:				13px;
+				font-size:					13px;
+				margin:						0;
+				padding:					0 25px;
+			}
+	
+	/*  Common
+	--------------------------------------------------------------------------------------*/
+	.printer #outputTop,
+	.printer #outputBottom {
+		height:						20px;
+		line-height:				20px;
+		background-position:		0 0;
+		background-repeat:			repeat-x;
+		text-indent:				-9999px;
 	}
-
-/* Desine Printer */
-.FP-12T #outputTop, .FP-12T #outputBottom,
-.FP-40T #outputTop, .FP-40T #outputBottom {
-		height: 20px;
-		background-position: 0 0;
-		background-repeat: repeat-x;
-		text-indent:-9999px;
-}
-
-/* FP-12T */
-.printer .FP-12T .sheet {
-		background: url( sheet_FP-12T_body.png) repeat 0 0;
-		width:140px;/* _width:180px; */
-}
-.printer .FP-12T #outputTop { background-image: url( sheet_FP-12T_top.png);}
-.printer .FP-12T #outputBottom { background-image: url( sheet_FP-12T_bottom.png);}
-.FP-12T .separeteNum1 { width: 190px;}
-.FP-12T .separeteNum2 { width: 380px;}
-.FP-12T .separeteNum3 { width: 570px;}
-.FP-12T .separeteNum4 { width: 760px;}
-.FP-12T .separeteNum5 { width: 950px;}
-.FP-12T .separeteNum6 { width: 1140px;}
-
-/* FP-40T */
-.printer .FP-40T .sheet {
-		background: url( sheet_FP-40T_body.png) repeat 0 0;
-		width:280px;/* _width:180px; */
-}
-.printer .FP-40T #outputTop	{ background-image: url( sheet_FP-40T_top.png);}
-.printer .FP-40T #outputBottom { background-image: url( sheet_FP-40T_bottom.png);}
-.FP-40T .separeteNum1 { width: 330px;}
-.FP-40T .separeteNum2 { width: 660px;}
-.FP-40T .separeteNum3 { width: 990px;}
-
-/* Desine Magazine */
-.style_pj #outputTop {
-	height: 20px !important;
-	background-color: #000 !important;
-	text-indent: 0 !important;
-	line-height: 20px;
-	color: #fff;
-	font-weight: bold;
-	text-align: center;
-	overflow:hidden;
+	.printer #outputBody {
+		background-position:		0 0;
+		background-repeat:			repeat;
 	}
-.style_pj #outputBottom {
-	background-color: #000 !important;
-	height: 4px !important;
+		.printer .sheet {
+			background-repeat:		repeat;
+			background-position:	0 0;
+		}
+		.FP-12T .sheet {
+			width:						190px;
+		}
+		.FP-40T .sheet {
+			width:						330px;
+		}
+	
+	.FP-12T .separeteNum1 { width: 190px;}
+	.FP-12T .separeteNum2 { width: 380px;}
+	.FP-12T .separeteNum3 { width: 570px;}
+	.FP-12T .separeteNum4 { width: 760px;}
+	.FP-12T .separeteNum5 { width: 950px;}
+	.FP-12T .separeteNum6 { width: 1140px;}
+
+	.FP-40T .separeteNum1 { width: 330px;}
+	.FP-40T .separeteNum2 { width: 660px;}
+	.FP-40T .separeteNum3 { width: 990px;}
+	
+	/*  Desine Printer [ FP-12T ]
+	--------------------------------------------------------------------------------------*/
+	.printer .FP-12T #outputTop,
+	.printer .FP-12T #outputBottom {
+		background-image:			url( sheet_FP-12T.png);
 	}
-.style_pj .sheet {
-		padding:15px 24px;
-		border-left: 2px #999 solid;
+	.printer .FP-12T #outputBottom {
+		background-position:		0 -20px;
 	}
-.style_pj .first {
-		padding:15px 25px !important;
-		border-left: 0 !important;
+	.printer .FP-12T #outputBody {
+		background-image: 			url( sheet_FP-12T_body.png);
 	}
 
+	/*  Desine Printer [ FP-40T ]
+	--------------------------------------------------------------------------------------*/
+	.printer .FP-40T #outputTop,
+	.printer .FP-40T #outputBottom {
+		background-image:			url( sheet_FP-40T.png);
+	}
+	.printer .FP-40T #outputBottom {
+		background-position:		0 -20px;
+	}
+	.printer .FP-40T #outputBody {
+		background-image: 			url( sheet_FP-40T_body.png);
+	}
 
-.printline span{
-		width:7px;
-		height:13px;
-		font-size:13px;line-height:13px;
-		background-image:url(pbfont_mini_black.gif);
-		background-repeat: no-repeat;
-		display:block;
-		float:left;
-		text-indent:-9999px;
-}
+	/*  Desine Magazine [ PJ ]
+	--------------------------------------------------------------------------------------*/
+	.style_pj #outputTop {
+		height:						26px;
+		line-height:				26px;
+		background-color:			#000;
+		color:						#fff;
+		font-weight:				bold;
+		text-align:					center;
+		overflow:					hidden;
+	}
+	.style_pj #outputBottom {
+		background-color:			#000;
+		height:						4px;
+		font-size:					0;
+		line-height:				4px;
+	}
+		.style_pj .sheet {
+			padding:					20px 0;
+		}
+		.style_pj .first {
+			border-left:				0 !important;
+		}
+			.style_pj .printline,
+			.style_pj .spacer {
+				padding:					0 25px 0 24px !important;
+				border-left:				1px #999 solid;
+			}
+			.style_pj .first .printline,
+			.style_pj .first .spacer {
+				padding:					0 25px !important;
+				border-left:				0;
+			}
 
-.tab5 { width: 35px !important;}
-.tab6 {	width: 42px !important;}
+
+	/*  Fonts
+	--------------------------------------------------------------------------------------*/
+			.printline span {
+				width:						7px;
+				height:						13px;
+				font-size:					13px;
+				line-height:				13px;
+				background-image:			url( pbfont_mini_black.gif);
+				background-repeat:			no-repeat;
+				display:					block;
+				float:						left;
+				text-indent:				-9999px;
+			}
+
+			.printline .codeHilight1 {
+				background-image:			url( pbfont_mini_red.gif);
+			}
+			.printline .codeHilight2 {
+				background-image:			url( pbfont_mini_blue.gif);
+			}
+			.printline .codeHilight3 {
+				background-image:			url( pbfont_mini_green.gif);
+			}
+
+
+.FP-12T .tab { width: 35px !important;}
+.FP-40T .tab { width: 42px !important;}
+
+.printline .none {background-position:	12px 2px}
 
 .chr00	{background-position:1px 0}
 .chr01	{background-position:1px -10px}
