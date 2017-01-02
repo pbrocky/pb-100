@@ -18,27 +18,27 @@ Create the General way sharing CASIO PB-100 programs.
 
 ### pbDisplay.css
 
-![pbDisplay.css の適用例](https://3.bp.blogspot.com/-CXvElz1f7go/WGj4fMfoLcI/AAAAAAAARI8/cKLLA1eguCQGeGf8PuXnF3k-YViT8OEVQCLcB/w320/pbDisplay.png)
+![pbDisplay.css example](https://3.bp.blogspot.com/-CXvElz1f7go/WGj4fMfoLcI/AAAAAAAARI8/cKLLA1eguCQGeGf8PuXnF3k-YViT8OEVQCLcB/w320/pbDisplay.png)
 
-[pbDisplay.css](https://itozyun.github.io/pb-100/pbDisplayCSS/0.x/)
+[pbDisplay.css](https://pbrocky.github.io/pb-100/pbDisplayCSS/0.x/)
 
 ### pbDisplayImageMaker
 
-![pbDisplayImageMaker の動作画面](https://2.bp.blogspot.com/-aMJavQw4mLI/S9xRkfHccVI/AAAAAAAAMcY/y0rm2XeHEgYhG1fuLTxoZ1ryrTl3vKbDgCPcB/w320/pbDIM0.1.0.gif)
+![pbDisplayImageMaker](https://2.bp.blogspot.com/-aMJavQw4mLI/S9xRkfHccVI/AAAAAAAAMcY/y0rm2XeHEgYhG1fuLTxoZ1ryrTl3vKbDgCPcB/w320/pbDIM0.1.0.gif)
 
-[pbDisplayImageMaker](https://itozyun.github.io/pb-100/pbDisplayImageMaker/1.x/)
+[pbDisplayImageMaker](https://pbrocky.github.io/pb-100/pbDisplayImageMaker/1.x/)
 
 ### pbPrinter.css
 
-![pbPrinter.css の動作画面](https://2.bp.blogspot.com/-q3zbU61PV8M/T6YE0ZZf1QI/AAAAAAAAKRk/VIP-IP5lX2ctjWH5xy_34tZXBJlzmsn3wCPcB/w320/%25EF%25BD%2590%25EF%25BD%2582ListMaker120506.png)
+![pbPrinter.css example](https://2.bp.blogspot.com/-q3zbU61PV8M/T6YE0ZZf1QI/AAAAAAAAKRk/VIP-IP5lX2ctjWH5xy_34tZXBJlzmsn3wCPcB/w320/%25EF%25BD%2590%25EF%25BD%2582ListMaker120506.png)
 
-[pbPrinter.css](https://itozyun.github.io/pb-100/pbPrinter/)
+[pbPrinter.css](https://pbrocky.github.io/pb-100/pbPrinter/)
 
 ### pbListImageMaker
 
-![pbListImageMaker の動作画面](https://4.bp.blogspot.com/-jcQAazJmNI0/TJRwqj81wmI/AAAAAAAAGyQ/KZgE-koWw5chLTcRjkvBIf7SEooI6xBygCPcB/w320/pb-list-maker_2.png)
+![pbListImageMaker](https://4.bp.blogspot.com/-jcQAazJmNI0/TJRwqj81wmI/AAAAAAAAGyQ/KZgE-koWw5chLTcRjkvBIf7SEooI6xBygCPcB/w320/pb-list-maker_2.png)
 
-[pbListImageMaker](https://itozyun.github.io/pb-100/pbListImageMaker/0.x/)
+[pbListImageMaker](https://pbrocky.github.io/pb-100/pbListImageMaker/0.x/)
 
 ## Licence
 
